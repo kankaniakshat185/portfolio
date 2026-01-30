@@ -105,6 +105,10 @@ export const BLOG_POSTS: BlogPost[] = [
 
 export const SOCIAL_LINKS: SocialLink[] = [
   {
+    label: 'Email',
+    link: 'mailto:kankaniakshat185@gmail.com'
+  },
+  {
     label: 'Github',
     link: 'https://github.com/kankaniakshat185',
   },
@@ -115,10 +119,6 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Leetcode',
     link: 'https://leetcode.com/u/Akshat185/'
-  },
-  {
-    label: 'Email',
-    link: 'mailto:kankaniakshat185@gmail.com'
   },
   {
     label: 'Resume',
