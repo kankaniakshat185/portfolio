@@ -119,6 +119,10 @@ export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Email',
     link: 'mailto:kankaniakshat185@gmail.com'
+  },
+  {
+    label: 'Resume',
+    link: '/Resume.pdf'
   }
 ]
 
