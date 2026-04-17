@@ -32,24 +32,32 @@ export const PROJECTS: Project[] = [
     name: 'BiasScope',
     description:
       'An AI-Powered Media Bias & Sentiment Analyzer',
-    link: 'https://github.com/kankaniakshat185/BiasScope',
+    link: 'https://biasscope-app.vercel.app',
     id: 'project1',
     img: "https://images.seattletimes.com/wp-content/uploads/2021/08/pressTSR.jpg?d=780x501"
   },
   {
-    name: 'Custom C Filesystem',
-    description: 'A UNIX like filesystem implementation written in C',
-    link: 'https://github.com/kankaniakshat185/Custom-C-Filesystem',
+    name: 'DataScope',
+    description: 'An AI-Powered dataset debugger.',
+    link: 'https://datascope-app.vercel.app',
     id: 'project2',
-    img: "https://media.gettyimages.com/id/1937108020/vector/computer-file-folder-window-drawing.jpg?s=612x612&w=0&k=20&c=ieEc5Of8jgHGlOeSY_4Uod0WIQjESOss1bTLqA-d5Rw="
+    img: "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fdata-analytics-cartoon&ved=0CBYQjRxqFwoTCKjKgpbd9ZMDFQAAAAAdAAAAABAG&opi=89978449"
   },
   {
     name: 'Custom C++ Shell',
     description: 'A UNIX like shell implementation written in C++',
     link: 'https://github.com/kankaniakshat185/Custom-Shell',
-    id: 'project2',
+    id: 'project3',
     img: "https://st.depositphotos.com/1537427/4584/v/450/depositphotos_45847715-stock-illustration-vector-command-line-icon.jpg"
   },
+  {
+    name: 'Conway\'s game of Life',
+    description: 'A Pygame implementation of the famous, Conway\'s game of Life',
+    link: 'https://github.com/kankaniakshat185/conways-game-of-life',
+    id: 'project4',
+    img: "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Femergentuniverse.fandom.com%2Fwiki%2FConway%27s_Game_of_Life&ved=0CBUQjRxqFwoTCLDos9rd9ZMDFQAAAAAdAAAAABAG&opi=89978449"
+  },
+
 
 ]
 
