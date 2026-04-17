@@ -50,13 +50,6 @@ export const PROJECTS: Project[] = [
     id: 'project3',
     img: "https://st.depositphotos.com/1537427/4584/v/450/depositphotos_45847715-stock-illustration-vector-command-line-icon.jpg"
   },
-  {
-    name: 'Conway\'s game of Life',
-    description: 'A Pygame implementation of the famous, Conway\'s game of Life',
-    link: 'https://github.com/kankaniakshat185/conways-game-of-life',
-    id: 'project4',
-    img: "https://static.wikia.nocookie.net/emergentuniverse/images/d/d0/Game_of_life_animated_glider_2.gif/revision/latest?cb=20120305021401"
-  },
 
 
 ]
