@@ -137,7 +137,7 @@ export default function Personal() {
       >
         <div className="flex-1">
           <p className="text-zinc-600 dark:text-zinc-400">
-            I'm Akshat Kankani, a driven Computer Science undergraduate student focused on building efficient, end-to-end AI/ML systems, deeply passionate about Operating Systems, Data Structures and algorithmic thinking.
+            I'm Akshat Kankani, a driven Computer Science undergraduate student focused on building efficient, end-to-end AI/ML systems, deeply passionate about Data Analytics, Machine Learning, Data Structures and algorithmic thinking.
           </p>
         </div>
       </motion.section>

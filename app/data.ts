@@ -41,7 +41,7 @@ export const PROJECTS: Project[] = [
     description: 'An AI-Powered dataset debugger.',
     link: 'https://datascope-app.vercel.app',
     id: 'project2',
-    img: "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Fwww.istockphoto.com%2Fphotos%2Fdata-analytics-cartoon&ved=0CBYQjRxqFwoTCKjKgpbd9ZMDFQAAAAAdAAAAABAG&opi=89978449"
+    img: "https://media.istockphoto.com/id/1960011023/vector/cartoon-document-with-loupe-icon-vector-illustration-diagram-icon-on-bubbles-background.jpg?s=612x612&w=0&k=20&c=jpiaAcihGGYinfoTGmvIKRLDfH7wQpD3a5oQtm-LK4Y="
   },
   {
     name: 'Custom C++ Shell',
@@ -55,7 +55,7 @@ export const PROJECTS: Project[] = [
     description: 'A Pygame implementation of the famous, Conway\'s game of Life',
     link: 'https://github.com/kankaniakshat185/conways-game-of-life',
     id: 'project4',
-    img: "https://www.google.com/url?sa=t&source=web&rct=j&url=https%3A%2F%2Femergentuniverse.fandom.com%2Fwiki%2FConway%27s_Game_of_Life&ved=0CBUQjRxqFwoTCLDos9rd9ZMDFQAAAAAdAAAAABAG&opi=89978449"
+    img: "https://static.wikia.nocookie.net/emergentuniverse/images/d/d0/Game_of_life_animated_glider_2.gif/revision/latest?cb=20120305021401"
   },
 
 
