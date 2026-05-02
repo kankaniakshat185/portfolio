@@ -43,13 +43,6 @@ export const PROJECTS: Project[] = [
     id: 'project2',
     img: "https://media.istockphoto.com/id/1960011023/vector/cartoon-document-with-loupe-icon-vector-illustration-diagram-icon-on-bubbles-background.jpg?s=612x612&w=0&k=20&c=jpiaAcihGGYinfoTGmvIKRLDfH7wQpD3a5oQtm-LK4Y="
   },
-  {
-    name: 'Custom C++ Shell',
-    description: 'A UNIX like shell implementation written in C++',
-    link: 'https://github.com/kankaniakshat185/Custom-Shell',
-    id: 'project3',
-    img: "https://st.depositphotos.com/1537427/4584/v/450/depositphotos_45847715-stock-illustration-vector-command-line-icon.jpg"
-  },
 
 
 ]
