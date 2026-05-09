@@ -38,7 +38,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'DataScope',
-    description: 'An AI-Powered dataset debugger.',
+    description: 'An AI powered intelligent web app that helps you debug and understand the scope of your data.',
     link: 'https://datascope-app.vercel.app',
     id: 'project2',
     img: "https://media.istockphoto.com/id/1960011023/vector/cartoon-document-with-loupe-icon-vector-illustration-diagram-icon-on-bubbles-background.jpg?s=612x612&w=0&k=20&c=jpiaAcihGGYinfoTGmvIKRLDfH7wQpD3a5oQtm-LK4Y="
@@ -76,7 +76,7 @@ export const PROJECTS: Project[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'A deep dive into me',
+    title: 'A deep dive',
     description: 'A deep dive into me and my interests',
     link: '/blog/a-deep-dive-into-me',
     uid: 'blog-1',
