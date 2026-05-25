@@ -2,8 +2,8 @@ type Project = {
   name: string
   description: string[]
   techStack: string[]
-  githubLink?: string
   liveLink?: string
+  githubLink?: string
   id: string
 }
 
@@ -39,8 +39,8 @@ export const PROJECTS: Project[] = [
       'Engineered a secure Next.js + PostgreSQL backend (Prisma ORM, Better-Auth) supporting persistent sessions, historical analytics, and automated PDF intelligence report generation.'
     ],
     techStack: ['Python', 'Hugging Face Transformers', 'PostgreSQL', 'FastAPI', 'Docker', 'Next.js'],
-    githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
     liveLink: 'https://biasscope-app.vercel.app',
+    githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
     id: 'project1',
   },
   {
@@ -53,8 +53,8 @@ export const PROJECTS: Project[] = [
       'Deployed an end-to-end architecture using Next.js, FastAPI, and PostgreSQL to handle secure dataset uploads, real-time ML processing, and automated reporting.'
     ],
     techStack: ['Python', 'Pandas', 'scikit-learn', 'PostgreSQL', 'FastAPI', 'Docker', 'Next.js'],
-    githubLink: 'https://github.com/kankaniakshat185/datascope-hf-backend',
     liveLink: 'https://datascope-app.vercel.app',
+    githubLink: 'https://github.com/kankaniakshat185/datascope-hf-backend',
     id: 'project2',
   },
   {
