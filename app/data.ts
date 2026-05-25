@@ -1,7 +1,9 @@
 type Project = {
   name: string
-  description: string
-  link: string
+  description: string[]
+  techStack: string[]
+  githubLink?: string
+  liveLink?: string
   id: string
   img: string
 }
@@ -30,23 +32,46 @@ type SocialLink = {
 export const PROJECTS: Project[] = [
   {
     name: 'BiasScope',
-    description:
-      'End-to-end NLP analytics pipeline for detecting media bias and sentiment using transformer-based models, scalable scraping infrastructure, and explainability-driven analysis workflows.',
-    link: 'https://biasscope-app.vercel.app',
+    description: [
+      'Architected a full-stack news intelligence platform that aggregates global media, detects political bias, and enables cross-examination via a RAG-based chat interface, built on a distributed microservices architecture.',
+      'Built an asynchronous ingestion pipeline (NewsAPI + headless scraping) to process 50+ sources with deduplication and anti-bot fallbacks, achieving 90% data quality across noisy real-world datasets.',
+      'Developed and deployed NLP pipelines using Hugging Face Transformers (DistilBERT, PoliticalBiasBERT) for bias and sentiment classification, enabling scalable, low-latency inference on live news streams.',
+      'Implemented a Retrieval-Augmented Generation (RAG) system using LLaMA-3-8B with strict context grounding, reducing hallucinations and ensuring fact-based responses from source articles.',
+      'Engineered a secure Next.js + PostgreSQL backend (Prisma ORM, Better-Auth) supporting persistent sessions, historical analytics, and automated PDF intelligence report generation.'
+    ],
+    techStack: ['Python', 'Hugging Face Transformers', 'PostgreSQL', 'FastAPI', 'Docker', 'Next.js'],
+    githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
+    liveLink: 'https://biasscope-app.vercel.app',
     id: 'project1',
     img: "https://images.seattletimes.com/wp-content/uploads/2021/08/pressTSR.jpg?d=780x501"
   },
   {
     name: 'DataScope',
-    description: 'ML validation and debugging platform featuring consensus-based anomaly detection, segmented explainability, drift analysis, and automated remediation pipelines.',
-    link: 'https://datascope-app.vercel.app',
+    description: [
+      'Architected a full-stack ML validation platform with automated pipelines for consensus-based outlier detection, data leakage checks, and comprehensive dataset drift analysis.',
+      'Engineered a Scikit-learn evaluation engine utilizing dynamic cross-validation to quantify the causal impact of data-cleaning techniques on accuracy and R² scores.',
+      'Implemented intelligent preprocessing heuristics that leverage SHAP values to visualize feature importance and optimize dataset quality for model training.',
+      'Designed an interactive analytics dashboard featuring an automated technical glossary, EDA plots, converting complex statistical diagnostics into actionable, interpretable visual insights.',
+      'Deployed an end-to-end architecture using Next.js, FastAPI, and PostgreSQL to handle secure dataset uploads, real-time ML processing, and automated reporting.'
+    ],
+    techStack: ['Python', 'Pandas', 'scikit-learn', 'PostgreSQL', 'FastAPI', 'Docker', 'Next.js'],
+    githubLink: 'https://github.com/kankaniakshat185/datascope-hf-backend',
+    liveLink: 'https://datascope-app.vercel.app',
     id: 'project2',
     img: "https://media.istockphoto.com/id/1960011023/vector/cartoon-document-with-loupe-icon-vector-illustration-diagram-icon-on-bubbles-background.jpg?s=612x612&w=0&k=20&c=jpiaAcihGGYinfoTGmvIKRLDfH7wQpD3a5oQtm-LK4Y="
   },
   {
-    name: 'custom-http-server',
-    description: 'A lightweight, robust, and custom-built HTTP/1.1 server written entirely from scratch in Python.',
-    link: 'https://github.com/kankaniakshat185/custom-http-server',
+    name: 'Custom-http-server',
+    description: [
+      'TCP Socket Management: Low-level binding, listening, and accepting of raw network connections.',
+      'Concurrent Threading: Capable of handling massive traffic via isolated background threads for each connection.',
+      'Persistent Connections: Implements Keep-Alive logic to reuse TCP connections across multiple requests.',
+      'Content Negotiation: Supports dynamic gzip compression based on client Accept-Encoding headers.',
+      'Dynamic Routing: URL path parsing and routing for endpoints.',
+      'File System Operations: Safely reads, writes, and serves binary files directly from disk based on POST and GET requests.'
+    ],
+    techStack: ['Python', 'HTTP Protocols', 'Computer Networks'],
+    githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
     id: 'project3',
     img: "https://ruslanspivak.com/lsbaws-part1/LSBAWS_HTTP_request_response.png"
   },

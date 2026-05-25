@@ -1,6 +1,6 @@
 'use client'
 import { motion } from 'motion/react'
-import { XIcon } from 'lucide-react'
+import { XIcon, Github, LinkIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
 import {
@@ -135,9 +135,35 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
-        <div className="flex-1">
+        <div className="flex-1 space-y-4">
           <p className="text-zinc-600 dark:text-zinc-400">
-            I'm Akshat Kankani, a driven Computer Science undergraduate student focused on building efficient, end-to-end AI/ML systems, deeply passionate about Data Analytics, Machine Learning, Data Structures and algorithmic thinking.
+            I’m a Computer Science student specializing in Artificial Intelligence, with interests in backend engineering, distributed-systems, machine learning, NLP, and scalable software systems. I enjoy building projects that combine software engineering with practical AI applications, especially systems that involve data processing, APIs, automation, or intelligent workflows.
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-400">
+            A large part of my learning currently revolves around understanding how modern applications are built end-to-end — from backend APIs and databases to model integration and deployment workflows. I’m particularly interested in backend development with Python and FastAPI, database systems, asynchronous architectures, and AI-powered applications.
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-400">
+            Alongside software engineering, I spend a lot of time learning machine learning fundamentals, data analysis, and NLP. My long-term goal is to work on advanced AI systems and research-oriented engineering problems, especially in areas related to language models and intelligent systems.
+          </p>
+          <div className="text-zinc-600 dark:text-zinc-400">
+            <p className="mb-2">Some areas I’m currently focused on include:</p>
+            <ul className="list-inside list-disc space-y-1 ml-2">
+              <li>Data Structures & Algorithms</li>
+              <li>Backend Development with FastAPI</li>
+              <li>Databases & SQL</li>
+              <li>APIs & Automation</li>
+              <li>System Design Fundamentals</li>
+              <li>Scalable AI Applications</li>
+              <li>Data Analysis & EDA</li>
+              <li>Statistics & Probability</li>
+              <li>Machine Learning & NLP</li>
+            </ul>
+          </div>
+          <p className="text-zinc-600 dark:text-zinc-400">
+            I prefer learning through building. Most of my projects are focused on applying concepts in realistic scenarios instead of only following tutorials. I enjoy working on systems that involve multiple components interacting together — such as APIs, databases, authentication, background tasks, scraping pipelines, or ML integration.
+          </p>
+          <p className="text-zinc-600 dark:text-zinc-400">
+            Outside of academics, I regularly work on side projects, explore new technologies, and experiment with different tools and workflows to improve both my engineering and problem-solving skills. Long term, I aim to contribute to high-impact engineering or research teams working on NLP, AI infrastructure, and intelligent software systems.
           </p>
         </div>
       </motion.section>
@@ -146,25 +172,88 @@ export default function Personal() {
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
+        <h3 className="mb-5 text-lg font-medium">Tech Stack & Interests</h3>
+        <div className="flex flex-wrap gap-2">
+          {[
+            'Python', 'C', 'C++', 'FastAPI', 'Redis', 'Docker', 'Kubernetes', 'Celery',
+            'PostgreSQL', 'MongoDB', 'PyTorch', 'TensorFlow', 'Keras', 'HuggingFace',
+            'Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib',
+            'Natural Language Processing (NLP)', 'Transformer-based models',
+            'Distributed & Scalable Systems', 'System Design', 'AI Infrastructure', 
+            'RESTful APIs', 'Asynchronous Processing', 'Caching', 'Authentication',
+            'Database Management Systems', 'Relational Schema Design',
+            'Operating Systems', 'Computer Networks', 'Object Oriented Programming',
+            'Git', 'GitHub', 'Postman', 'PowerBI'
+          ].map((tech) => (
+            <span
+              key={tech}
+              className="inline-flex items-center rounded-md bg-zinc-100 px-3 py-1.5 text-sm font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+      </motion.section>
+
+      <motion.section
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
         <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+        <div className="flex flex-col space-y-12">
           {PROJECTS.map((project) => (
             <div key={project.name} className="space-y-2">
-              <div className="flex justify-center items-center rounded-2xl p-1">
-                <img src={project.img} className="object-cover max-h-42 rounded-2xl" />
-              </div>
               <div className="px-1">
-                <a
-                  className="font-base group relative inline-block font-[450] text-zinc-900 dark:text-zinc-50"
-                  href={project.link}
-                  target="_blank"
-                >
-                  {project.name}
-                  <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-                </a>
-                <p className="text-base text-zinc-600 dark:text-zinc-400">
-                  {project.description}
-                </p>
+                <div className="flex items-center justify-between">
+                  <a
+                    className="font-base group relative inline-block text-lg font-[450] text-zinc-900 dark:text-zinc-50"
+                    href={project.liveLink || project.githubLink}
+                    target="_blank"
+                  >
+                    {project.name}
+                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
+                  </a>
+                  <div className="flex items-center gap-2">
+                    {project.githubLink && (
+                      <a
+                        href={project.githubLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-zinc-800"
+                        aria-label="GitHub Repository"
+                      >
+                        <Github className="h-4 w-4" />
+                      </a>
+                    )}
+                    {project.liveLink && (
+                      <a
+                        href={project.liveLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-zinc-800"
+                        aria-label="Live Demo"
+                      >
+                        <LinkIcon className="h-4 w-4" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+                <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  {project.description.map((desc, i) => (
+                    <li key={i}>{desc}</li>
+                  ))}
+                </ul>
+                <div className="mt-3 flex flex-wrap items-center gap-2">
+                  <span className="text-sm font-medium text-zinc-900 dark:text-zinc-50">Tech Stack:</span>
+                  {project.techStack.map((tech) => (
+                    <span
+                      key={tech}
+                      className="inline-flex items-center rounded-md bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
