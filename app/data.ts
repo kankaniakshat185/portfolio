@@ -31,14 +31,14 @@ export const PROJECTS: Project[] = [
   {
     name: 'BiasScope',
     description:
-      'An AI-Powered Media Bias & Sentiment Analyzer',
+      'End-to-end NLP analytics pipeline for detecting media bias and sentiment using transformer-based models, scalable scraping infrastructure, and explainability-driven analysis workflows.',
     link: 'https://biasscope-app.vercel.app',
     id: 'project1',
     img: "https://images.seattletimes.com/wp-content/uploads/2021/08/pressTSR.jpg?d=780x501"
   },
   {
     name: 'DataScope',
-    description: 'An AI powered intelligent web app that helps you debug and understand the scope of your data.',
+    description: 'ML validation and debugging platform featuring consensus-based anomaly detection, segmented explainability, drift analysis, and automated remediation pipelines.',
     link: 'https://datascope-app.vercel.app',
     id: 'project2',
     img: "https://media.istockphoto.com/id/1960011023/vector/cartoon-document-with-loupe-icon-vector-illustration-diagram-icon-on-bubbles-background.jpg?s=612x612&w=0&k=20&c=jpiaAcihGGYinfoTGmvIKRLDfH7wQpD3a5oQtm-LK4Y="
