@@ -43,6 +43,13 @@ export const PROJECTS: Project[] = [
     id: 'project2',
     img: "https://media.istockphoto.com/id/1960011023/vector/cartoon-document-with-loupe-icon-vector-illustration-diagram-icon-on-bubbles-background.jpg?s=612x612&w=0&k=20&c=jpiaAcihGGYinfoTGmvIKRLDfH7wQpD3a5oQtm-LK4Y="
   },
+  {
+    name: 'custom-http-server',
+    description: 'A lightweight, robust, and custom-built HTTP/1.1 server written entirely from scratch in Python.',
+    link: 'https://github.com/kankaniakshat185/custom-http-server',
+    id: 'project3',
+    img: "https://ruslanspivak.com/lsbaws-part1/LSBAWS_HTTP_request_response.png"
+  },
 
 
 ]
