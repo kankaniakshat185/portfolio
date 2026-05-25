@@ -5,7 +5,6 @@ type Project = {
   githubLink?: string
   liveLink?: string
   id: string
-  img: string
 }
 
 type WorkExperience = {
@@ -43,7 +42,6 @@ export const PROJECTS: Project[] = [
     githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
     liveLink: 'https://biasscope-app.vercel.app',
     id: 'project1',
-    img: "https://images.seattletimes.com/wp-content/uploads/2021/08/pressTSR.jpg?d=780x501"
   },
   {
     name: 'DataScope',
@@ -58,7 +56,6 @@ export const PROJECTS: Project[] = [
     githubLink: 'https://github.com/kankaniakshat185/datascope-hf-backend',
     liveLink: 'https://datascope-app.vercel.app',
     id: 'project2',
-    img: "https://media.istockphoto.com/id/1960011023/vector/cartoon-document-with-loupe-icon-vector-illustration-diagram-icon-on-bubbles-background.jpg?s=612x612&w=0&k=20&c=jpiaAcihGGYinfoTGmvIKRLDfH7wQpD3a5oQtm-LK4Y="
   },
   {
     name: 'Custom-http-server',
@@ -73,7 +70,6 @@ export const PROJECTS: Project[] = [
     techStack: ['Python', 'HTTP Protocols', 'Computer Networks'],
     githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
     id: 'project3',
-    img: "https://ruslanspivak.com/lsbaws-part1/LSBAWS_HTTP_request_response.png"
   },
 
 
