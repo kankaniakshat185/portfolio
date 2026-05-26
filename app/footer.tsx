@@ -16,11 +16,6 @@ const THEMES_OPTIONS = [
     id: 'dark',
     icon: <MoonIcon className="h-4 w-4" />,
   },
-  {
-    label: 'System',
-    id: 'system',
-    icon: <MonitorIcon className="h-4 w-4" />,
-  },
 ]
 
 function ThemeSwitch() {
