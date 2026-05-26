@@ -12,13 +12,13 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://nim-fawn.vercel.app/'),
+  metadataBase: new URL('https://kankaniakshat.vercel.app/'),
   alternates: {
     canonical: '/'
   },
   title: {
     default: 'Akshat - Personal portfolio',
-    template: '%s | Nim'
+    template: '%s | Akshat'
   },
   description:  'Akshat Kankani\'s personal portfolio website built with Next.js 15, React 19 and Motion-Primitives.',
 };
