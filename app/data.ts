@@ -58,6 +58,20 @@ export const PROJECTS: Project[] = [
     id: 'project2',
   },
   {
+    name: 'PRScope - PR Review Intelligence',
+    description: [
+      'Architected a full-stack Chrome Extension using Next.js and FastAPI that acts as an autonomous Senior Engineer, directly injecting deterministic risk scores and LLM-driven architectural reviews into the GitHub UI.',
+      'Built a custom risk-scoring engine that evaluates Pull Requests based on rigid metrics like LOC volatility, symbol mutation density, and test coverage deltas to prevent stochastic LLM hallucinations.',
+      'Integrated an abstract syntax tree parser with react-force-graph-2d to dynamically map and visualize upstream service dependencies and downstream cascading failure risks within the browser.',
+      'Implemented automated fetching and parsing of repository-specific .prscope.yml rules, allowing engineering teams to enforce bespoke boundary constraints and import restrictions on a per-project basis.',
+      'Designed a secure Bring Your Own Key (BYOK) system with Chrome Local Storage persistence, bypassing global LLM rate limits and ensuring complete data sovereignty for private enterprise codebases.',
+      'Scaled the backend architecture by implementing native GitHub Webhook ingestion to autonomously execute computationally heavy AI analyses in the background across PR lifecycle events.'
+    ],
+    techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'Gemini API', 'OAuth 2.0'],
+    githubLink: 'https://github.com/kankaniakshat185/prscope',
+    id: 'project3',
+  },
+  {
     name: 'Custom-http-server',
     description: [
       'TCP Socket Management: Low-level binding, listening, and accepting of raw network connections.',
@@ -69,7 +83,7 @@ export const PROJECTS: Project[] = [
     ],
     techStack: ['Python', 'HTTP Protocols', 'Computer Networks'],
     githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
-    id: 'project3',
+    id: 'project4',
   },
 
 
