@@ -126,6 +126,13 @@ function MagneticSocialLink({
 }
 
 export default function Personal() {
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
   return (
     <motion.main
       className="space-y-24"
@@ -133,13 +140,39 @@ export default function Personal() {
       initial="hidden"
       animate="visible"
     >
+      <motion.nav
+        className="sticky top-6 z-50 flex w-full items-center gap-1 rounded-full bg-white/60 p-1 backdrop-blur-lg shadow-lg shadow-zinc-200/20 dark:bg-zinc-950/60 dark:shadow-none"
+        variants={VARIANTS_SECTION}
+        transition={TRANSITION_SECTION}
+      >
+        {[
+          { label: 'About', id: 'about' },
+          { label: 'Tech Stack', id: 'tech-stack' },
+          { label: 'Projects', id: 'projects' },
+          { label: 'Blogs', id: 'blogs' },
+          { label: 'Connect', id: 'contact' },
+        ].map((item) => (
+          <button
+            key={item.id}
+            onClick={() => scrollTo(item.id)}
+            className="group flex-1 rounded-full px-2 py-2.5 text-center text-xs sm:text-sm font-medium text-zinc-500 transition-colors hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/80 dark:hover:text-zinc-50"
+          >
+            <span className="relative inline-block">
+              {item.label}
+              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-zinc-900 transition-all duration-300 group-hover:w-full dark:bg-zinc-50"></span>
+            </span>
+          </button>
+        ))}
+      </motion.nav>
+
       <motion.section
+        id="about"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
         <div className="flex-1 space-y-4">
           <p className="text-zinc-600 dark:text-zinc-400">
-            I’m a Computer Science student specializing in Artificial Intelligence, with interests in backend engineering, distributed-systems, machine learning, NLP, and scalable software systems. I enjoy building projects that combine software engineering with practical AI applications, especially systems that involve data processing, APIs, automation, or intelligent workflows.
+            I’m a Computer Science student, currently in my 3rd year, specializing in Artificial Intelligence, with interests in backend engineering, distributed-systems, machine learning, NLP, and scalable software systems. I enjoy building projects that combine software engineering with practical AI applications, especially systems that involve data processing, APIs, automation, or intelligent workflows.
           </p>
           <p className="text-zinc-600 dark:text-zinc-400">
             A large part of my learning currently revolves around understanding how modern applications are built end-to-end — from backend APIs and databases to model integration and deployment workflows. I’m particularly interested in backend development with Python and FastAPI, database systems, asynchronous architectures, and AI-powered applications.
@@ -151,12 +184,11 @@ export default function Personal() {
             <p className="mb-2">Some areas I’m currently focused on include:</p>
             <ul className="list-inside list-disc space-y-1 ml-2">
               <li>Data Structures & Algorithms</li>
-              <li>Backend Development with FastAPI</li>
+              <li>Scalable Backend Development</li>
               <li>Databases & SQL</li>
               <li>APIs & Automation</li>
               <li>System Design Fundamentals</li>
-              <li>Scalable AI Applications</li>
-              <li>Data Analysis & EDA</li>
+              <li>Data Analysis</li>
               <li>Statistics & Probability</li>
               <li>Machine Learning & NLP</li>
             </ul>
@@ -171,33 +203,57 @@ export default function Personal() {
       </motion.section>
 
       <motion.section
+        id="tech-stack"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
         <h3 className="mb-5 text-lg font-medium">Tech Stack & Interests</h3>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-col space-y-6">
           {[
-            'Python', 'C', 'C++', 'FastAPI', 'Redis', 'Docker', 'Kubernetes', 'Celery',
-            'PostgreSQL', 'MongoDB', 'PyTorch', 'TensorFlow', 'Keras', 'HuggingFace',
-            'Scikit-learn', 'Pandas', 'NumPy', 'Matplotlib',
-            'Natural Language Processing (NLP)', 'Transformer-based models',
-            'Distributed & Scalable Systems', 'System Design', 'AI Infrastructure', 
-            'RESTful APIs', 'Asynchronous Processing', 'Caching', 'Authentication',
-            'Database Management Systems', 'Relational Schema Design',
-            'Operating Systems', 'Computer Networks', 'Object Oriented Programming',
-            'Git', 'GitHub', 'Postman', 'PowerBI'
-          ].map((tech) => (
-            <span
-              key={tech}
-              className="inline-flex items-center rounded-md bg-zinc-100 px-3 py-1.5 text-sm font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50"
-            >
-              {tech}
-            </span>
+            {
+              category: 'Languages',
+              items: ['Python', 'C', 'C++']
+            },
+            {
+              category: 'Backend & Infrastructure',
+              items: ['FastAPI', 'RESTful APIs', 'Redis', 'Docker', 'Kubernetes', 'Celery', 'Asynchronous Processing', 'Caching', 'Authentication']
+            },
+            {
+              category: 'Databases',
+              items: ['PostgreSQL', 'MongoDB', 'Relational Schema Design']
+            },
+            {
+              category: 'Data Science & Machine Learning',
+              items: ['NumPy', 'Pandas', 'Matplotlib', 'Scikit-learn', 'PyTorch', 'HuggingFace']
+            },
+            {
+              category: 'Core CS Concepts',
+              items: ['Distributed & Scalable Systems', 'System Design', 'Object Oriented Programming', 'DBMS', 'OS', 'CN']
+            },
+            {
+              category: 'Tools',
+              items: ['Git', 'GitHub', 'Postman', 'PowerBI']
+            }
+          ].map((group) => (
+            <div key={group.category} className="flex flex-col space-y-2">
+              <h4 className="text-sm font-medium text-zinc-500 dark:text-zinc-400">{group.category}</h4>
+              <div className="flex flex-wrap gap-2">
+                {group.items.map((tech) => (
+                  <span
+                    key={tech}
+                    className="inline-flex items-center rounded-md bg-zinc-100 px-3 py-1.5 text-sm font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
           ))}
         </div>
       </motion.section>
 
       <motion.section
+        id="projects"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -301,6 +357,7 @@ export default function Personal() {
       </motion.section> */}
 
       <motion.section
+        id="blogs"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -337,6 +394,7 @@ export default function Personal() {
       </motion.section>
 
       <motion.section
+        id="contact"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >

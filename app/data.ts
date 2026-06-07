@@ -30,7 +30,7 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'BiasScope',
+    name: 'BiasScope - News Sentiment & Bias Intelligence',
     description: [
       'Architected a full-stack news intelligence platform that aggregates global media, detects political bias, and enables cross-examination via a RAG-based chat interface, built on a distributed microservices architecture.',
       'Built an asynchronous ingestion pipeline (NewsAPI + headless scraping) to process 50+ sources with deduplication and anti-bot fallbacks, achieving 90% data quality across noisy real-world datasets.',
@@ -38,19 +38,20 @@ export const PROJECTS: Project[] = [
       'Implemented a Retrieval-Augmented Generation (RAG) system using LLaMA-3-8B with strict context grounding, reducing hallucinations and ensuring fact-based responses from source articles.',
       'Engineered a secure Next.js + PostgreSQL backend (Prisma ORM, Better-Auth) supporting persistent sessions, historical analytics, and automated PDF intelligence report generation.'
     ],
-    techStack: ['Python', 'Hugging Face Transformers', 'PostgreSQL', 'FastAPI', 'Docker', 'Next.js'],
+    techStack: ['Python', 'Hugging Face', 'PostgreSQL', 'FastAPI', 'Docker', 'Redis', 'Next.js'],
     liveLink: 'https://biasscope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
     id: 'project1',
   },
   {
-    name: 'DataScope',
+    name: 'DataScope - ML Observability Intelligence',
     description: [
-      'Architected a full-stack ML validation platform with automated pipelines for consensus-based outlier detection, data leakage checks, and comprehensive dataset drift analysis.',
+      'Architected a full-stack ML governance platform with automated pipelines for consensus-based outlier detection, data leakage checks, and comprehensive dataset drift analysis.',
       'Engineered a Scikit-learn evaluation engine utilizing dynamic cross-validation to quantify the causal impact of data-cleaning techniques on accuracy and R² scores.',
       'Implemented intelligent preprocessing heuristics that leverage SHAP values to visualize feature importance and optimize dataset quality for model training.',
       'Designed an interactive analytics dashboard featuring an automated technical glossary, EDA plots, converting complex statistical diagnostics into actionable, interpretable visual insights.',
-      'Deployed an end-to-end architecture using Next.js, FastAPI, and PostgreSQL to handle secure dataset uploads, real-time ML processing, and automated reporting.'
+      'Deployed an end-to-end architecture using Next.js, FastAPI, and PostgreSQL to handle secure dataset uploads, real-time ML processing, and automated reporting.',
+      'Developed an installable python SDK (pypi package) to support within-code data & Ml validation directly in the development workflow'
     ],
     techStack: ['Python', 'Pandas', 'scikit-learn', 'PostgreSQL', 'FastAPI', 'Docker', 'Next.js'],
     liveLink: 'https://datascope-app.vercel.app',
@@ -67,7 +68,7 @@ export const PROJECTS: Project[] = [
       'Designed a secure Bring Your Own Key (BYOK) system with Chrome Local Storage persistence, bypassing global LLM rate limits and ensuring complete data sovereignty for private enterprise codebases.',
       'Scaled the backend architecture by implementing native GitHub Webhook ingestion to autonomously execute computationally heavy AI analyses in the background across PR lifecycle events.'
     ],
-    techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'Gemini API', 'OAuth 2.0'],
+    techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'OAuth 2.0'],
     githubLink: 'https://github.com/kankaniakshat185/prscope',
     id: 'project3',
   },
