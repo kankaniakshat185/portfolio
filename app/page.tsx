@@ -167,6 +167,7 @@ export default function Personal() {
 
       <motion.section
         id="about"
+        className="scroll-mt-24"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -204,6 +205,7 @@ export default function Personal() {
 
       <motion.section
         id="tech-stack"
+        className="scroll-mt-24"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -254,6 +256,7 @@ export default function Personal() {
 
       <motion.section
         id="projects"
+        className="scroll-mt-24"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -358,6 +361,7 @@ export default function Personal() {
 
       <motion.section
         id="blogs"
+        className="scroll-mt-24"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >
@@ -395,6 +399,7 @@ export default function Personal() {
 
       <motion.section
         id="contact"
+        className="scroll-mt-24"
         variants={VARIANTS_SECTION}
         transition={TRANSITION_SECTION}
       >

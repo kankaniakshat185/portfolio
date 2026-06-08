@@ -30,7 +30,7 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'BiasScope - News Sentiment & Bias Intelligence',
+    name: 'BiasScope - News Sentiment and Bias Intelligence',
     description: [
       'Architected a full-stack news intelligence platform that aggregates global media, detects political bias, and enables cross-examination via a RAG-based chat interface, built on a distributed microservices architecture.',
       'Built an asynchronous ingestion pipeline (NewsAPI + headless scraping) to process 50+ sources with deduplication and anti-bot fallbacks, achieving 90% data quality across noisy real-world datasets.',
