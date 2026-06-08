@@ -33,12 +33,12 @@ export const PROJECTS: Project[] = [
     name: 'BiasScope - News Sentiment and Bias Intelligence',
     description: [
       'Architected a full-stack news intelligence platform that aggregates global media, detects political bias, and enables cross-examination via a RAG-based chat interface, built on a distributed microservices architecture.',
-      'Built an asynchronous ingestion pipeline (NewsAPI + headless scraping) to process 50+ sources with deduplication and anti-bot fallbacks, achieving 90% data quality across noisy real-world datasets.',
-      'Developed and deployed NLP pipelines using Hugging Face Transformers (DistilBERT, PoliticalBiasBERT) for bias and sentiment classification, enabling scalable, low-latency inference on live news streams.',
-      'Implemented a Retrieval-Augmented Generation (RAG) system using LLaMA-3-8B with strict context grounding, reducing hallucinations and ensuring fact-based responses from source articles.',
+      'Built an asynchronous dual-ingestion pipeline leveraging GDELT 2.0 API and NewsAPI to process global events with robust deduplication and anti-bot fallbacks, bypassing traditional scraping rate limits.',
+      'Engineered a mathematical Polarization Engine chaining Sentence-Transformers (HDBSCAN clustering) and DeBERTa-v3 NLI, instantly routing cross-ideological media into Entailment (Consensus) or Contradiction (Polarization) buckets.',
+      'Implemented a Retrieval-Augmented Generation (RAG) system using LLaMA-3-8B with strict context grounding, reducing hallucinations and ensuring fact-based event summarization.',
       'Engineered a secure Next.js + PostgreSQL backend (Prisma ORM, Better-Auth) supporting persistent sessions, historical analytics, and automated PDF intelligence report generation.'
     ],
-    techStack: ['Python', 'Hugging Face', 'PostgreSQL', 'FastAPI', 'Docker', 'Redis', 'Next.js'],
+    techStack: ['Python', 'Hugging Face', 'PostgreSQL', 'FastAPI', 'Docker', 'Redis', 'Next.js', 'Sentence-BERT', 'DeBERTa-v3 NLI'],
     liveLink: 'https://biasscope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
     id: 'project1',
