@@ -1,5 +1,6 @@
 'use client'
-import { motion } from 'motion/react'
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'motion/react'
 import { XIcon, Github, LinkIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
@@ -125,293 +126,346 @@ function MagneticSocialLink({
   )
 }
 
+const CATEGORIES = ['All', 'AI/ML', 'Backend', 'Fullstack', 'Systems']
+
 export default function Personal() {
-  const scrollTo = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' })
+  const [activeCategory, setActiveCategory] = useState<string>('All')
+
+  const getProjectBadge = (id: string) => {
+    switch (id) {
+      case 'project1':
+        return 'Live App'
+      case 'project2':
+        return 'PyPI Package'
+      case 'project3':
+        return 'Chrome Extension'
+      case 'project4':
+        return 'Network Engine'
+      default:
+        return 'Project'
     }
   }
 
   return (
     <motion.main
-      className="space-y-24"
+      className="space-y-12"
       variants={VARIANTS_CONTAINER}
       initial="hidden"
       animate="visible"
     >
-      <motion.nav
-        className="sticky top-6 z-50 flex w-full items-center gap-1 rounded-full bg-white/60 p-1 backdrop-blur-lg shadow-lg shadow-zinc-200/20 dark:bg-zinc-950/60 dark:shadow-none"
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        {[
-          { label: 'About', id: 'about' },
-          { label: 'Tech Stack', id: 'tech-stack' },
-          { label: 'Projects', id: 'projects' },
-          { label: 'Blogs', id: 'blogs' },
-          { label: 'Connect', id: 'contact' },
-        ].map((item) => (
-          <button
-            key={item.id}
-            onClick={() => scrollTo(item.id)}
-            className="group flex-1 rounded-full px-2 py-2.5 text-center text-xs sm:text-sm font-medium text-zinc-500 transition-colors hover:bg-zinc-100/80 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/80 dark:hover:text-zinc-50"
-          >
-            <span className="relative inline-block">
-              {item.label}
-              <span className="absolute -bottom-1 left-0 h-[2px] w-0 bg-zinc-900 transition-all duration-300 group-hover:w-full dark:bg-zinc-50"></span>
-            </span>
-          </button>
-        ))}
-      </motion.nav>
 
-      <motion.section
-        id="about"
-        className="scroll-mt-24"
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <div className="flex-1 space-y-4">
-          <p className="text-zinc-600 dark:text-zinc-400">
-            I’m a Computer Science student, currently in my 3rd year, specializing in Artificial Intelligence, with interests in backend engineering, distributed-systems, machine learning, NLP, and scalable software systems. I enjoy building projects that combine software engineering with practical AI applications, especially systems that involve data processing, APIs, automation, or intelligent workflows.
-          </p>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            A large part of my learning currently revolves around understanding how modern applications are built end-to-end — from backend APIs and databases to model integration and deployment workflows. I’m particularly interested in backend development with Python and FastAPI, database systems, asynchronous architectures, and AI-powered applications.
-          </p>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Alongside software engineering, I spend a lot of time learning machine learning fundamentals, data analysis, and NLP. My long-term goal is to work on advanced AI systems and research-oriented engineering problems, especially in areas related to language models and intelligent systems.
-          </p>
-          <div className="text-zinc-600 dark:text-zinc-400">
-            <p className="mb-2">Some areas I’m currently focused on include:</p>
-            <ul className="list-inside list-disc space-y-1 ml-2">
-              <li>Data Structures & Algorithms</li>
-              <li>Scalable Backend Development</li>
-              <li>Databases & SQL</li>
-              <li>APIs & Automation</li>
-              <li>System Design Fundamentals</li>
-              <li>Data Analysis</li>
-              <li>Statistics & Probability</li>
-              <li>Machine Learning & NLP</li>
-            </ul>
+      <div className="flex flex-col space-y-24">
+        {/* About Section */}
+        <motion.section
+          id="about"
+          className="scroll-mt-24 w-full"
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <div className="flex-1 space-y-4">
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm">
+              I’m a Computer Science student specializing in Artificial Intelligence, with core interests in <span className="font-serif italic font-medium text-zinc-900 dark:text-zinc-100">backend engineering, distributed systems, machine learning, and scalable architectures</span>. I enjoy building applications that fuse rigorous software engineering with practical AI, specifically systems involving large-scale data pipelines, APIs, and intelligent workflows.
+            </p>
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm">
+              A large part of my learning currently revolves around understanding how modern software scales end-to-end—from backend service design to model orchestration. I'm particularly drawn to backend development using Python &amp; FastAPI, asynchronous event-driven architectures, caching, and database design.
+            </p>
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm text-zinc-500">
+              I prefer learning through building, focusing on applying theoretical concepts in real-world scenarios to design high-performance systems.
+            </p>
           </div>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            I prefer learning through building. Most of my projects are focused on applying concepts in realistic scenarios instead of only following tutorials. I enjoy working on systems that involve multiple components interacting together — such as APIs, databases, authentication, background tasks, scraping pipelines, or ML integration.
-          </p>
-          <p className="text-zinc-600 dark:text-zinc-400">
-            Outside of academics, I regularly work on side projects, explore new technologies, and experiment with different tools and workflows to improve both my engineering and problem-solving skills. Long term, I aim to contribute to high-impact engineering or research teams working on NLP, AI infrastructure, and intelligent software systems.
-          </p>
-        </div>
-      </motion.section>
+        </motion.section>
 
-      <motion.section
-        id="tech-stack"
-        className="scroll-mt-24"
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Tech Stack & Interests</h3>
-        <div className="flex flex-col space-y-6">
-          {[
-            {
-              category: 'Languages',
-              items: ['Python', 'C', 'C++']
-            },
-            {
-              category: 'Backend & Infrastructure',
-              items: ['FastAPI', 'RESTful APIs', 'Redis', 'Docker', 'Kubernetes', 'Celery', 'Asynchronous Processing', 'Caching', 'Authentication']
-            },
-            {
-              category: 'Databases',
-              items: ['PostgreSQL', 'MongoDB', 'Relational Schema Design']
-            },
-            {
-              category: 'Data Science & Machine Learning',
-              items: ['NumPy', 'Pandas', 'Matplotlib', 'Scikit-learn', 'PyTorch', 'HuggingFace']
-            },
-            {
-              category: 'Core CS Concepts',
-              items: ['Distributed & Scalable Systems', 'System Design', 'Object Oriented Programming', 'DBMS', 'OS', 'CN']
-            },
-            {
-              category: 'Tools',
-              items: ['Git', 'GitHub', 'Postman', 'PowerBI']
-            }
-          ].map((group) => (
-            <div key={group.category} className="flex flex-col space-y-2">
-              <h4 className="text-sm font-medium text-zinc-500 dark:text-zinc-400">{group.category}</h4>
-              <div className="flex flex-wrap gap-2">
-                {group.items.map((tech) => (
-                  <span
-                    key={tech}
-                    className="inline-flex items-center rounded-md bg-zinc-100 px-3 py-1.5 text-sm font-medium text-zinc-900 dark:bg-zinc-800 dark:text-zinc-50"
+        {/* Education Section */}
+        <motion.section
+          id="education"
+          className="scroll-mt-24 w-full"
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <h3 className="mb-4 text-lg font-medium">Education</h3>
+          <div className="relative overflow-hidden rounded-2xl p-5 bg-zinc-50/30 dark:bg-zinc-900/10 transition-colors duration-300 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/20">
+            <div className="relative z-10 flex flex-col gap-1.5">
+              <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500">July 2023 – May 2027</span>
+              <h4 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">Manipal Institute of Technology</h4>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed">
+                Bachelor of Technology in Computer Science (Artificial Intelligence)
+              </p>
+              <div className="mt-1 flex items-center gap-1.5">
+                <span className="inline-flex items-center rounded-md border border-zinc-200 bg-zinc-50/50 px-2 py-0.5 text-[10px] font-mono tracking-wider uppercase text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900/20 dark:text-zinc-400">
+                  CGPA: 8.11
+                </span>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* Projects Section */}
+        <motion.section
+          id="projects"
+          className="scroll-mt-24 w-full"
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+            <h3 className="text-lg font-medium">Selected Projects</h3>
+            
+            {/* Category filter tabs */}
+            <div className="flex gap-1 p-0.5 rounded-lg bg-zinc-100/60 dark:bg-zinc-900/60 border border-zinc-200/20 dark:border-zinc-800/20 w-fit">
+              <AnimatedBackground
+                defaultValue="All"
+                onValueChange={(val) => setActiveCategory(val || 'All')}
+                className="h-full rounded-md bg-white shadow-xs dark:bg-zinc-800"
+                transition={{
+                  type: 'spring',
+                  bounce: 0,
+                  duration: 0.25,
+                }}
+              >
+                {CATEGORIES.map((cat) => (
+                  <button
+                    key={cat}
+                    data-id={cat}
+                    className={`rounded-md px-2.5 py-1 text-xs font-medium cursor-pointer transition-colors ${
+                      activeCategory === cat
+                        ? 'text-zinc-900 dark:text-zinc-50'
+                        : 'text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200'
+                    }`}
                   >
-                    {tech}
-                  </span>
+                    {cat}
+                  </button>
                 ))}
-              </div>
+              </AnimatedBackground>
             </div>
-          ))}
-        </div>
-      </motion.section>
+          </div>
 
-      <motion.section
-        id="projects"
-        className="scroll-mt-24"
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Selected Projects</h3>
-        <div className="flex flex-col space-y-12">
-          {PROJECTS.map((project) => (
-            <div key={project.name} className="space-y-2">
-              <div className="px-1">
-                <div className="flex items-center justify-between">
-                  <a
-                    className="font-base group relative inline-block text-lg font-[450] text-zinc-900 dark:text-zinc-50"
-                    href={project.liveLink || project.githubLink}
-                    target="_blank"
+          <motion.div layout className="flex flex-col space-y-4">
+            <AnimatePresence mode="popLayout">
+              {PROJECTS.filter(
+                (project) =>
+                  activeCategory === 'All' ||
+                  project.categories.includes(activeCategory)
+              ).map((project) => {
+                const badge = getProjectBadge(project.id)
+                return (
+                  <motion.div
+                    layout
+                    initial={{ opacity: 0, scale: 0.98, y: 10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.98, y: -10 }}
+                    transition={{ duration: 0.25 }}
+                    key={project.id}
+                    className="group relative rounded-2xl p-6 transition-all duration-300 hover:bg-zinc-50/30 dark:hover:bg-zinc-900/10"
                   >
-                    {project.name}
-                    <span className="absolute bottom-0.5 left-0 block h-[1px] w-full max-w-0 bg-zinc-900 dark:bg-zinc-50 transition-all duration-200 group-hover:max-w-full"></span>
-                  </a>
-                  <div className="flex items-center gap-2">
-                    {project.liveLink && (
-                      <a
-                        href={project.liveLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-zinc-800"
-                        aria-label="Live Demo"
-                      >
-                        <LinkIcon className="h-4 w-4" />
-                      </a>
-                    )}
-                    {project.githubLink && (
-                      <a
-                        href={project.githubLink}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-50 dark:hover:bg-zinc-800"
-                        aria-label="GitHub Repository"
-                      >
-                        <Github className="h-4 w-4" />
-                      </a>
-                    )}
-                  </div>
-                </div>
-                <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-zinc-600 dark:text-zinc-400">
-                  {project.description.map((desc, i) => (
-                    <li key={i}>{desc}</li>
-                  ))}
-                </ul>
-                <div className="mt-3 flex flex-wrap items-center gap-2">
-                  <span className="text-sm font-medium text-zinc-900 dark:text-zinc-50">Tech Stack:</span>
-                  {project.techStack.map((tech) => (
-                    <span
-                      key={tech}
-                      className="inline-flex items-center rounded-md bg-zinc-100 px-2 py-1 text-xs font-medium text-zinc-600 dark:bg-zinc-800 dark:text-zinc-400"
-                    >
-                      {tech}
-                    </span>
+                    <div className="relative z-10">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="flex flex-wrap items-center gap-2.5">
+                          <a
+                            className="font-medium text-base text-zinc-900 dark:text-zinc-50 hover:underline flex items-center gap-1"
+                            href={project.liveLink || project.githubLink}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {project.name}
+                            <span className="text-zinc-400 dark:text-zinc-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-sm">↗</span>
+                          </a>
+                          <span className="px-2 py-0.5 text-[9px] font-mono tracking-wider uppercase rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900/20 dark:text-zinc-400">
+                            {badge}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-1.5 shrink-0 pt-0.5">
+                          {project.liveLink && (
+                            <a
+                              href={project.liveLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
+                              aria-label="Live Demo"
+                            >
+                              <LinkIcon className="h-3.5 w-3.5" />
+                            </a>
+                          )}
+                          {project.githubLink && (
+                            <a
+                              href={project.githubLink}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
+                              aria-label="GitHub Repository"
+                            >
+                              <Github className="h-3.5 w-3.5" />
+                            </a>
+                          )}
+                        </div>
+                      </div>
+                      <ul className="mt-3.5 space-y-2 text-[13px] leading-relaxed text-zinc-700 dark:text-zinc-300">
+                        {project.description.map((desc, i) => (
+                          <li key={i} className="flex items-start gap-2.5">
+                            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+                            <span>{desc}</span>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px] font-mono">
+                        <span className="font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mr-1">Stack:</span>
+                        {project.techStack.map((tech, idx) => (
+                          <div key={tech} className="flex items-center">
+                            <span className="text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors duration-200 cursor-default">
+                              {tech}
+                            </span>
+                            {idx < project.techStack.length - 1 && (
+                              <span className="ml-2.5 text-zinc-300 dark:text-zinc-800 font-mono select-none">/</span>
+                            )}
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </motion.div>
+                )
+              })}
+            </AnimatePresence>
+          </motion.div>
+        </motion.section>
+
+        {/* Tech Stack Section */}
+        <motion.section
+          id="tech-stack"
+          className="scroll-mt-24 w-full"
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <h3 className="mb-5 text-lg font-medium">Tech Stack &amp; Interests</h3>
+          <div className="divide-y divide-zinc-100 dark:divide-zinc-900/50">
+            {[
+              {
+                category: 'Languages',
+                items: ['Python', 'C', 'C++']
+              },
+              {
+                category: 'Backend & Infrastructure',
+                items: ['FastAPI', 'RESTful APIs', 'Redis', 'Docker', 'Kubernetes', 'Celery', 'Asynchronous Processing', 'System Design', 'Caching', 'Authentication']
+              },
+              {
+                category: 'Databases',
+                items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Relational Schema Design']
+              },
+              {
+                category: 'Data Science & ML',
+                items: ['NumPy', 'Pandas', 'Matplotlib', 'Scikit-learn', 'PyTorch', 'HuggingFace', 'NLP', 'RAG']
+              },
+              {
+                category: 'Core CS Concepts',
+                items: ['Distributed & Scalable Systems', 'OOP', 'DBMS', 'OS', 'CN']
+              },
+              {
+                category: 'Developer Tools',
+                items: ['Git', 'GitHub', 'Postman', 'PowerBI', 'Vercel']
+              }
+            ].map((group) => (
+              <div key={group.category} className="py-5 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-zinc-100 dark:border-zinc-900/50 last:border-b-0">
+                <h4 className="w-full sm:w-1/4 text-[10px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-mono">{group.category}</h4>
+                <div className="w-full sm:w-3/4 flex flex-wrap gap-x-3 gap-y-1.5 leading-relaxed">
+                  {group.items.map((tech, idx) => (
+                    <div key={tech} className="flex items-center text-sm">
+                      <span className="text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors duration-200 cursor-default font-medium">
+                        {tech}
+                      </span>
+                      {idx < group.items.length - 1 && (
+                        <span className="ml-3 text-zinc-300 dark:text-zinc-800 font-mono text-xs select-none">/</span>
+                      )}
+                    </div>
                   ))}
                 </div>
               </div>
-            </div>
-          ))}
-        </div>
-      </motion.section>
+            ))}
+          </div>
+        </motion.section>
 
-      {/* <motion.section
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Work Experience</h3>
-        <div className="flex flex-col space-y-2">
-          {WORK_EXPERIENCE.map((job) => (
-            <a
-              className="relative overflow-hidden rounded-2xl bg-zinc-300/30 p-[1px] dark:bg-zinc-600/30"
-              href={job.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              key={job.id}
+        {/* Blogs Section */}
+        <motion.section
+          id="blogs"
+          className="scroll-mt-24 w-full"
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <h3 className="mb-3 text-lg font-medium">Personal Blogs</h3>
+          <div className="flex flex-col space-y-0">
+            <AnimatedBackground
+              enableHover
+              className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
+              transition={{
+                type: 'spring',
+                bounce: 0,
+                duration: 0.2,
+              }}
             >
-              <Spotlight
-                className="from-zinc-900 via-zinc-800 to-zinc-700 blur-2xl dark:from-zinc-100 dark:via-zinc-200 dark:to-zinc-50"
-                size={64}
-              />
-              <div className="relative h-full w-full rounded-[15px] bg-white p-4 dark:bg-zinc-950">
-                <div className="relative flex w-full flex-row justify-between">
-                  <div>
+              {BLOG_POSTS.map((post) => (
+                <Link
+                  key={post.uid}
+                  className="-mx-3 rounded-xl px-3 py-3"
+                  href={post.link}
+                  data-id={post.uid}
+                >
+                  <div className="flex flex-col space-y-1">
                     <h4 className="font-normal dark:text-zinc-100">
-                      {job.title}
+                      {post.title}
                     </h4>
-                    <p className="text-zinc-500 dark:text-zinc-400">
-                      {job.company}
+                    <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                      {post.description}
                     </p>
                   </div>
-                  <p className="text-zinc-600 dark:text-zinc-400">
-                    {job.start} - {job.end}
-                  </p>
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
-      </motion.section> */}
+                </Link>
+              ))}
+            </AnimatedBackground>
+          </div>
+        </motion.section>
 
-      <motion.section
-        id="blogs"
-        className="scroll-mt-24"
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-3 text-lg font-medium">Personal Blogs</h3>
-        <div className="flex flex-col space-y-0">
-          <AnimatedBackground
-            enableHover
-            className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
-            transition={{
-              type: 'spring',
-              bounce: 0,
-              duration: 0.2,
-            }}
-          >
-            {BLOG_POSTS.map((post) => (
-              <Link
-                key={post.uid}
-                className="-mx-3 rounded-xl px-3 py-3"
-                href={post.link}
-                data-id={post.uid}
-              >
-                <div className="flex flex-col space-y-1">
-                  <h4 className="font-normal dark:text-zinc-100">
-                    {post.title}
-                  </h4>
-                  <p className="text-zinc-500 dark:text-zinc-400">
-                    {post.description}
-                  </p>
+        {/* Connect Section */}
+        <motion.section
+          id="contact"
+          className="scroll-mt-24 w-full"
+          variants={VARIANTS_SECTION}
+          transition={TRANSITION_SECTION}
+        >
+          <h3 className="mb-4 text-lg font-medium">Connect</h3>
+          
+          <div className="space-y-6">
+            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+              I’m always open to discussing new opportunities, open-source projects, systems design, or anything tech-related. Drop me a line!
+            </p>
+            
+            {/* Minimalist ledger-style links */}
+            <div className="divide-y divide-zinc-100 dark:divide-zinc-900/50 border-t border-b border-zinc-100 dark:border-zinc-900/50">
+              {[
+                { label: 'Email', value: EMAIL, href: `mailto:${EMAIL}` },
+                { label: 'GitHub', value: 'github.com/kankaniakshat185', href: 'https://github.com/kankaniakshat185' },
+                { label: 'LinkedIn', value: 'linkedin.com/in/akshat-kankani', href: 'https://www.linkedin.com/in/akshat-kankani' },
+                { label: 'LeetCode', value: 'leetcode.com/Akshat185', href: 'https://leetcode.com/u/Akshat185' },
+                { label: 'Resume', value: 'View Resume (PDF)', href: '/Resume.pdf' },
+              ].map((item) => (
+                <div 
+                  key={item.label}
+                  className="flex items-baseline justify-between py-3 group"
+                >
+                  <span className="text-zinc-500 dark:text-zinc-400 tracking-wider uppercase text-[10px] font-mono">{item.label}</span>
+                  <div className="flex items-center gap-1.5">
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors text-xs font-mono"
+                    >
+                      {item.value}
+                    </a>
+                    <span className="text-zinc-300 dark:text-zinc-600 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-[10px]">↗</span>
+                  </div>
                 </div>
-              </Link>
-            ))}
-          </AnimatedBackground>
-        </div>
-      </motion.section>
-
-      <motion.section
-        id="contact"
-        className="scroll-mt-24"
-        variants={VARIANTS_SECTION}
-        transition={TRANSITION_SECTION}
-      >
-        <h3 className="mb-5 text-lg font-medium">Connect</h3>
-        <div className="flex items-center justify-start space-x-3">
-          {SOCIAL_LINKS.map((link) => (
-            <MagneticSocialLink key={link.label} link={link.link}>
-              {link.label}
-            </MagneticSocialLink>
-          ))}
-        </div>
-      </motion.section>
+              ))}
+            </div>
+          </div>
+        </motion.section>
+      </div>
     </motion.main>
   )
 }
+
+

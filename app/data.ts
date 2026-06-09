@@ -5,6 +5,7 @@ type Project = {
   liveLink?: string
   githubLink?: string
   id: string
+  categories: string[]
 }
 
 type WorkExperience = {
@@ -42,6 +43,7 @@ export const PROJECTS: Project[] = [
     liveLink: 'https://biasscope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
     id: 'project1',
+    categories: ['AI/ML', 'Backend', 'Fullstack']
   },
   {
     name: 'DataScope - ML Observability Intelligence',
@@ -57,6 +59,7 @@ export const PROJECTS: Project[] = [
     liveLink: 'https://datascope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/datascope-hf-backend',
     id: 'project2',
+    categories: ['AI/ML', 'Backend']
   },
   {
     name: 'PRScope - PR Review Intelligence',
@@ -71,6 +74,7 @@ export const PROJECTS: Project[] = [
     techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'OAuth 2.0'],
     githubLink: 'https://github.com/kankaniakshat185/prscope',
     id: 'project3',
+    categories: ['Backend', 'Fullstack']
   },
   {
     name: 'Custom-http-server',
@@ -85,6 +89,7 @@ export const PROJECTS: Project[] = [
     techStack: ['Python', 'HTTP Protocols', 'Computer Networks'],
     githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
     id: 'project4',
+    categories: ['Systems']
   },
 
 
