@@ -59,7 +59,7 @@ export const PROJECTS: Project[] = [
     liveLink: 'https://datascope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/datascope-hf-backend',
     id: 'project2',
-    categories: ['AI/ML', 'Backend']
+    categories: ['AI/ML', 'Backend', 'Fullstack']
   },
   {
     name: 'PRScope - PR Review Intelligence',
@@ -74,7 +74,7 @@ export const PROJECTS: Project[] = [
     techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'OAuth 2.0'],
     githubLink: 'https://github.com/kankaniakshat185/prscope',
     id: 'project3',
-    categories: ['Backend', 'Fullstack']
+    categories: ['AI/ML', 'Backend', 'Fullstack']
   },
   {
     name: 'Custom-http-server',
