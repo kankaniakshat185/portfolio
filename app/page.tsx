@@ -225,8 +225,8 @@ export default function Personal() {
             </div>
           </div>
 
-          <motion.div layout className="flex flex-col space-y-4">
-            <AnimatePresence mode="popLayout">
+          <motion.div layout className="relative flex flex-col space-y-4">
+            <AnimatePresence mode="wait">
               {PROJECTS.filter(
                 (project) =>
                   activeCategory === 'All' ||
@@ -235,12 +235,16 @@ export default function Personal() {
                 return (
                   <motion.div
                     layout
-                    initial={{ opacity: 0, scale: 0.98, y: 10 }}
-                    animate={{ opacity: 1, scale: 1, y: 0 }}
-                    exit={{ opacity: 0, scale: 0.98, y: -10 }}
-                    transition={{ duration: 0.25 }}
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    transition={{
+                      type: 'spring',
+                      bounce: 0,
+                      duration: 0.3,
+                    }}
                     key={project.id}
-                    className="group relative rounded-2xl -mx-6 p-6 transition-all duration-300 hover:bg-zinc-50/30 dark:hover:bg-zinc-900/10"
+                    className="group relative rounded-2xl -mx-6 p-6 transition-colors duration-300 hover:bg-zinc-50/30 dark:hover:bg-zinc-900/10"
                   >
                     <div className="relative z-10">
                       <div className="flex items-start justify-between gap-4">
