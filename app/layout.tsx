@@ -19,7 +19,7 @@ export const metadata: Metadata = {
     canonical: '/'
   },
   title: {
-    default: 'Akshat - Personal portfolio',
+    default: 'Akshat - Software Developer',
     template: '%s | Akshat'
   },
   description:  'Akshat Kankani\'s personal portfolio website built with Next.js 15, React 19 and Motion-Primitives.',

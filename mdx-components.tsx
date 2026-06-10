@@ -15,11 +15,14 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
       caption: string
     }) => {
       return (
-        <figure>
-          <img src={src} alt={alt} className="rounded-xl" />
-          <figcaption className="text-center">{caption}</figcaption>
+        <figure className="mx-auto flex flex-col items-center justify-center">
+          <img src={src} alt={alt} className="mx-auto rounded-xl" />
+          {caption && <figcaption className="text-center mt-2">{caption}</figcaption>}
         </figure>
       )
+    },
+    img: ({ src, alt, ...props }: ComponentPropsWithoutRef<'img'>) => {
+      return <img src={src} alt={alt} className="mx-auto rounded-xl" {...props} />
     },
     code: ({ children, ...props }: ComponentPropsWithoutRef<'code'>) => {
       const codeHTML = highlight(children as string)

@@ -131,20 +131,7 @@ const CATEGORIES = ['All', 'AI/ML', 'Backend', 'Fullstack', 'Systems']
 export default function Personal() {
   const [activeCategory, setActiveCategory] = useState<string>('All')
 
-  const getProjectBadge = (id: string) => {
-    switch (id) {
-      case 'project1':
-        return 'Live App'
-      case 'project2':
-        return 'PyPI Package'
-      case 'project3':
-        return 'Chrome Extension'
-      case 'project4':
-        return 'Network Engine'
-      default:
-        return 'Project'
-    }
-  }
+
 
   return (
     <motion.main
@@ -163,13 +150,13 @@ export default function Personal() {
           transition={TRANSITION_SECTION}
         >
           <div className="flex-1 space-y-4">
-            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm">
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
               I’m a Computer Science student specializing in Artificial Intelligence, with core interests in <span className="font-serif italic font-medium text-zinc-900 dark:text-zinc-100">backend engineering, distributed systems, machine learning, and scalable architectures</span>. I enjoy building applications that fuse rigorous software engineering with practical AI, specifically systems involving large-scale data pipelines, APIs, and intelligent workflows.
             </p>
-            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm">
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
               A large part of my learning currently revolves around understanding how modern software scales end-to-end—from backend service design to model orchestration. I'm particularly drawn to backend development using Python &amp; FastAPI, asynchronous event-driven architectures, caching, and database design.
             </p>
-            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-sm text-zinc-500">
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base text-zinc-500">
               I prefer learning through building, focusing on applying theoretical concepts in real-world scenarios to design high-performance systems.
             </p>
           </div>
@@ -183,18 +170,18 @@ export default function Personal() {
           transition={TRANSITION_SECTION}
         >
           <h3 className="mb-4 text-lg font-medium">Education</h3>
-          <div className="relative overflow-hidden rounded-2xl p-5 bg-zinc-50/30 dark:bg-zinc-900/10 transition-colors duration-300 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/20">
+          <div className="relative overflow-hidden rounded-2xl p-3 bg-zinc-50/30 dark:bg-zinc-900/10 transition-colors duration-300 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/20">
             <div className="relative z-10 flex flex-col gap-1.5">
-              <span className="text-[10px] font-mono text-zinc-400 dark:text-zinc-500">July 2023 – May 2027</span>
-              <h4 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">Manipal Institute of Technology</h4>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed">
-                Bachelor of Technology in Computer Science (Artificial Intelligence)
-              </p>
-              <div className="mt-1 flex items-center gap-1.5">
-                <span className="inline-flex items-center rounded-md border border-zinc-200 bg-zinc-50/50 px-2 py-0.5 text-[10px] font-mono tracking-wider uppercase text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900/20 dark:text-zinc-400">
+              <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">July 2023 – May 2027</span>
+              <div className="flex items-center justify-between gap-4">
+                <h4 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">Manipal Institute of Technology</h4>
+                <span className="text-sm font-mono text-zinc-500 dark:text-zinc-400">
                   CGPA: 8.11
                 </span>
               </div>
+              <p className="text-base text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed">
+                Bachelor of Technology in Computer Science (Artificial Intelligence)
+              </p>
             </div>
           </div>
         </motion.section>
@@ -245,7 +232,6 @@ export default function Personal() {
                   activeCategory === 'All' ||
                   project.categories.includes(activeCategory)
               ).map((project) => {
-                const badge = getProjectBadge(project.id)
                 return (
                   <motion.div
                     layout
@@ -254,7 +240,7 @@ export default function Personal() {
                     exit={{ opacity: 0, scale: 0.98, y: -10 }}
                     transition={{ duration: 0.25 }}
                     key={project.id}
-                    className="group relative rounded-2xl p-6 transition-all duration-300 hover:bg-zinc-50/30 dark:hover:bg-zinc-900/10"
+                    className="group relative rounded-2xl -mx-6 p-6 transition-all duration-300 hover:bg-zinc-50/30 dark:hover:bg-zinc-900/10"
                   >
                     <div className="relative z-10">
                       <div className="flex items-start justify-between gap-4">
@@ -268,9 +254,6 @@ export default function Personal() {
                             {project.name}
                             <span className="text-zinc-400 dark:text-zinc-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-sm">↗</span>
                           </a>
-                          <span className="px-2 py-0.5 text-[9px] font-mono tracking-wider uppercase rounded-md border border-zinc-200 bg-zinc-50/50 text-zinc-500 dark:border-zinc-800 dark:bg-zinc-900/20 dark:text-zinc-400">
-                            {badge}
-                          </span>
                         </div>
                         <div className="flex items-center gap-1.5 shrink-0 pt-0.5">
                           {project.liveLink && (
@@ -297,7 +280,7 @@ export default function Personal() {
                           )}
                         </div>
                       </div>
-                      <ul className="mt-3.5 space-y-2 text-[13px] leading-relaxed text-zinc-700 dark:text-zinc-300">
+                      <ul className="mt-3.5 space-y-2 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
                         {project.description.map((desc, i) => (
                           <li key={i} className="flex items-start gap-2.5">
                             <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-zinc-300 dark:bg-zinc-700" />
@@ -305,7 +288,7 @@ export default function Personal() {
                           </li>
                         ))}
                       </ul>
-                      <div className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-[11px] font-mono">
+                      <div className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm font-mono">
                         <span className="font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mr-1">Stack:</span>
                         {project.techStack.map((tech, idx) => (
                           <div key={tech} className="flex items-center">
@@ -409,7 +392,7 @@ export default function Personal() {
                     <h4 className="font-normal dark:text-zinc-100">
                       {post.title}
                     </h4>
-                    <p className="text-zinc-500 dark:text-zinc-400 text-sm leading-relaxed">
+                    <p className="text-zinc-500 dark:text-zinc-400 text-base leading-relaxed">
                       {post.description}
                     </p>
                   </div>
@@ -429,7 +412,7 @@ export default function Personal() {
           <h3 className="mb-4 text-lg font-medium">Connect</h3>
           
           <div className="space-y-6">
-            <p className="text-zinc-600 dark:text-zinc-400 text-sm leading-relaxed">
+            <p className="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
               I’m always open to discussing new opportunities, open-source projects, systems design, or anything tech-related. Drop me a line!
             </p>
             
@@ -446,13 +429,13 @@ export default function Personal() {
                   key={item.label}
                   className="flex items-baseline justify-between py-3 group"
                 >
-                  <span className="text-zinc-500 dark:text-zinc-400 tracking-wider uppercase text-[10px] font-mono">{item.label}</span>
+                  <span className="text-zinc-500 dark:text-zinc-400 tracking-wider uppercase text-[10px] font-mono font-bold">{item.label}</span>
                   <div className="flex items-center gap-1.5">
                     <a
                       href={item.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors text-xs font-mono"
+                      className="text-zinc-600 dark:text-zinc-400 hover:text-zinc-950 dark:hover:text-zinc-50 transition-colors text-sm font-mono"
                     >
                       {item.value}
                     </a>
