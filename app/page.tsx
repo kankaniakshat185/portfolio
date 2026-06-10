@@ -197,11 +197,11 @@ export default function Personal() {
             <h3 className="text-lg font-medium">Selected Projects</h3>
             
             {/* Category filter tabs */}
-            <div className="flex gap-1 p-0.5 rounded-lg bg-zinc-100/60 dark:bg-zinc-900/60 border border-zinc-200/20 dark:border-zinc-800/20 w-fit">
+            <div className="flex gap-1 p-1 rounded-full bg-white/60 backdrop-blur-lg shadow-lg shadow-zinc-200/20 dark:bg-zinc-950/60 dark:shadow-none border border-zinc-200/20 dark:border-zinc-800/20 w-fit">
               <AnimatedBackground
                 defaultValue="All"
                 onValueChange={(val) => setActiveCategory(val || 'All')}
-                className="h-full rounded-md bg-white shadow-xs dark:bg-zinc-800"
+                className="h-full rounded-full bg-white shadow-xs dark:bg-zinc-800"
                 transition={{
                   type: 'spring',
                   bounce: 0,
@@ -212,7 +212,7 @@ export default function Personal() {
                   <button
                     key={cat}
                     data-id={cat}
-                    className={`rounded-md px-2.5 py-1 text-xs font-medium cursor-pointer transition-colors ${
+                    className={`rounded-full px-3 py-1 text-xs font-medium cursor-pointer transition-colors ${
                       activeCategory === cat
                         ? 'text-zinc-900 dark:text-zinc-50'
                         : 'text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200'
