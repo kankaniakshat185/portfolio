@@ -62,7 +62,6 @@ export function Navbar() {
     <nav className="sticky top-6 z-50 mb-8 flex w-full items-center gap-1 rounded-full bg-white/60 p-1 backdrop-blur-lg shadow-lg shadow-zinc-200/20 dark:bg-zinc-950/60 dark:shadow-none">
       {[
         { label: 'About', id: 'about' },
-        { label: 'Education', id: 'education' },
         { label: 'Projects', id: 'projects' },
         { label: 'Tech Stack', id: 'tech-stack' },
         { label: 'Blogs', id: 'blogs' },
