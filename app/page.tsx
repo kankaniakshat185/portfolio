@@ -173,7 +173,7 @@ export default function Personal() {
           <h3 className="mb-4 text-lg font-medium">Education</h3>
           <div className="relative overflow-hidden rounded-2xl p-3 bg-zinc-50/30 dark:bg-zinc-900/10 transition-colors duration-300 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/20">
             <div className="relative z-10 flex flex-col gap-1.5">
-              <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500">July 2023 – May 2027</span>
+              <span className="text-sm font-mono text-zinc-400 dark:text-zinc-500">July 2023 – May 2027</span>
               <div className="flex items-center justify-between gap-4">
                 <h4 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">Manipal Institute of Technology</h4>
                 <span className="text-sm font-mono text-zinc-500 dark:text-zinc-400">
@@ -274,7 +274,7 @@ export default function Personal() {
               }
             ].map((group) => (
               <div key={group.category} className="py-5 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-zinc-100 dark:border-zinc-900/50 last:border-b-0">
-                <h4 className="w-full sm:w-1/4 text-[10px] font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-mono">{group.category}</h4>
+                <h4 className="w-full sm:w-1/4 text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400 font-mono">{group.category}</h4>
                 <div className="w-full sm:w-3/4 flex flex-wrap gap-x-3 gap-y-1.5 leading-relaxed">
                   {group.items.map((tech, idx) => (
                     <div key={tech} className="flex items-center text-sm">
@@ -358,7 +358,7 @@ export default function Personal() {
                   key={item.label}
                   className="flex items-baseline justify-between py-3 group"
                 >
-                  <span className="text-zinc-500 dark:text-zinc-400 tracking-wider uppercase text-[10px] font-mono font-bold">{item.label}</span>
+                  <span className="text-zinc-500 dark:text-zinc-400 tracking-wider uppercase text-xs font-mono font-bold">{item.label}</span>
                   <div className="flex items-center gap-1.5">
                     <a
                       href={item.href}

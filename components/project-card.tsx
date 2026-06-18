@@ -146,8 +146,8 @@ export function ProjectCard({ project }: { project: Project }) {
         </AnimatePresence>
 
         <div className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm font-mono">
-          <span className="font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mr-1">
-            Stack:
+          <span className="text-xs font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mr-1">
+            STACK:
           </span>
           {project.techStack.map((tech, idx) => (
             <div key={tech} className="flex items-center">
