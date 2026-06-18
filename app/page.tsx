@@ -20,6 +20,7 @@ import {
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
+import { ProjectCard } from '@/components/project-card'
 
 const VARIANTS_CONTAINER = {
   hidden: { opacity: 0 },
@@ -195,7 +196,7 @@ export default function Personal() {
         >
           <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
             <h3 className="text-lg font-medium">Selected Projects</h3>
-            
+
             {/* Category filter tabs */}
             <div className="flex gap-1 p-1 rounded-full bg-white/60 backdrop-blur-lg shadow-lg shadow-zinc-200/20 dark:bg-zinc-950/60 dark:shadow-none border border-zinc-200/20 dark:border-zinc-800/20 w-fit">
               <AnimatedBackground
@@ -212,11 +213,10 @@ export default function Personal() {
                   <button
                     key={cat}
                     data-id={cat}
-                    className={`rounded-full px-3 py-1 text-xs font-medium cursor-pointer transition-colors ${
-                      activeCategory === cat
+                    className={`rounded-full px-3 py-1 text-xs font-medium cursor-pointer transition-colors ${activeCategory === cat
                         ? 'text-zinc-900 dark:text-zinc-50'
                         : 'text-zinc-500 hover:text-zinc-800 dark:text-zinc-400 dark:hover:text-zinc-200'
-                    }`}
+                      }`}
                   >
                     {cat}
                   </button>
@@ -231,84 +231,9 @@ export default function Personal() {
                 (project) =>
                   activeCategory === 'All' ||
                   project.categories.includes(activeCategory)
-              ).map((project) => {
-                return (
-                  <motion.div
-                    layout
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{
-                      type: 'spring',
-                      bounce: 0,
-                      duration: 0.3,
-                    }}
-                    key={project.id}
-                    className="group relative rounded-2xl -mx-6 p-6 transition-colors duration-300 hover:bg-zinc-50/30 dark:hover:bg-zinc-900/10"
-                  >
-                    <div className="relative z-10">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="flex flex-wrap items-center gap-2.5">
-                          <a
-                            className="font-medium text-base text-zinc-900 dark:text-zinc-50 hover:underline flex items-center gap-1"
-                            href={project.liveLink || project.githubLink}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                          >
-                            {project.name}
-                            <span className="text-zinc-400 dark:text-zinc-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-sm">↗</span>
-                          </a>
-                        </div>
-                        <div className="flex items-center gap-1.5 shrink-0 pt-0.5">
-                          {project.liveLink && (
-                            <a
-                              href={project.liveLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
-                              aria-label="Live Demo"
-                            >
-                              <LinkIcon className="h-3.5 w-3.5" />
-                            </a>
-                          )}
-                          {project.githubLink && (
-                            <a
-                              href={project.githubLink}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
-                              aria-label="GitHub Repository"
-                            >
-                              <Github className="h-3.5 w-3.5" />
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                      <ul className="mt-3.5 space-y-2 text-base leading-relaxed text-zinc-700 dark:text-zinc-300">
-                        {project.description.map((desc, i) => (
-                          <li key={i} className="flex items-start gap-2.5">
-                            <span className="mt-1.5 h-1 w-1 shrink-0 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-                            <span>{desc}</span>
-                          </li>
-                        ))}
-                      </ul>
-                      <div className="mt-5 flex flex-wrap items-center gap-x-2.5 gap-y-1 text-sm font-mono">
-                        <span className="font-bold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider mr-1">Stack:</span>
-                        {project.techStack.map((tech, idx) => (
-                          <div key={tech} className="flex items-center">
-                            <span className="text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors duration-200 cursor-default">
-                              {tech}
-                            </span>
-                            {idx < project.techStack.length - 1 && (
-                              <span className="ml-2.5 text-zinc-300 dark:text-zinc-800 font-mono select-none">/</span>
-                            )}
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </motion.div>
-                )
-              })}
+              ).map((project) => (
+                <ProjectCard key={project.id} project={project} />
+              ))}
             </AnimatePresence>
           </motion.div>
         </motion.section>
@@ -414,12 +339,12 @@ export default function Personal() {
           transition={TRANSITION_SECTION}
         >
           <h3 className="mb-4 text-lg font-medium">Connect</h3>
-          
+
           <div className="space-y-6">
             <p className="text-zinc-600 dark:text-zinc-400 text-base leading-relaxed">
               I’m always open to discussing new opportunities, open-source projects, systems design, or anything tech-related. Drop me a line!
             </p>
-            
+
             {/* Minimalist ledger-style links */}
             <div className="divide-y divide-zinc-100 dark:divide-zinc-900/50 border-t border-b border-zinc-100 dark:border-zinc-900/50">
               {[
@@ -429,7 +354,7 @@ export default function Personal() {
                 { label: 'LeetCode', value: 'leetcode.com/Akshat185', href: 'https://leetcode.com/u/Akshat185' },
                 { label: 'Resume', value: 'View Resume (PDF)', href: '/Resume.pdf' },
               ].map((item) => (
-                <div 
+                <div
                   key={item.label}
                   className="flex items-baseline justify-between py-3 group"
                 >

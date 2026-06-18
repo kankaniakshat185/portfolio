@@ -6,6 +6,7 @@ type Project = {
   githubLink?: string
   id: string
   categories: string[]
+  techDetails?: Record<string, string>
 }
 
 type WorkExperience = {
@@ -43,7 +44,12 @@ export const PROJECTS: Project[] = [
     liveLink: 'https://biasscope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
     id: 'project1',
-    categories: ['AI/ML', 'Backend', 'Fullstack']
+    categories: ['AI/ML', 'Backend', 'Fullstack'],
+    techDetails: {
+      'Python': 'Backend service & data processing',
+      'FastAPI': 'High-performance API endpoints',
+      'Next.js': 'Frontend interface'
+    }
   },
   {
     name: 'DataScope - ML Observability Intelligence',
@@ -59,7 +65,11 @@ export const PROJECTS: Project[] = [
     liveLink: 'https://datascope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/datascope-hf-backend',
     id: 'project2',
-    categories: ['AI/ML', 'Backend', 'Fullstack']
+    categories: ['AI/ML', 'Backend', 'Fullstack'],
+    techDetails: {
+      'scikit-learn': 'Evaluation engine for metrics',
+      'FastAPI': 'Real-time ML processing backend'
+    }
   },
   {
     name: 'PRScope - PR Review Intelligence',
@@ -74,7 +84,11 @@ export const PROJECTS: Project[] = [
     techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'OAuth 2.0'],
     githubLink: 'https://github.com/kankaniakshat185/prscope',
     id: 'project3',
-    categories: ['AI/ML', 'Backend', 'Fullstack']
+    categories: ['AI/ML', 'Backend', 'Fullstack'],
+    techDetails: {
+      'Next.js': 'Chrome Extension UI',
+      'FastAPI': 'Risk-scoring & AST parsing engine'
+    }
   },
   {
     name: 'Custom-http-server',
@@ -89,7 +103,10 @@ export const PROJECTS: Project[] = [
     techStack: ['Python', 'HTTP Protocols', 'Computer Networks'],
     githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
     id: 'project4',
-    categories: ['Systems']
+    categories: ['Systems'],
+    techDetails: {
+      'Python': 'Low-level socket programming'
+    }
   },
 
 
