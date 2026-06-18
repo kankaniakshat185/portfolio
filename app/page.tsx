@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'motion/react'
 import { XIcon, Github, LinkIcon } from 'lucide-react'
 import { Spotlight } from '@/components/ui/spotlight'
 import { Magnetic } from '@/components/ui/magnetic'
+import { CodingStats } from '@/components/coding-stats'
 import {
   MorphingDialog,
   MorphingDialogTrigger,
@@ -291,6 +292,8 @@ export default function Personal() {
             ))}
           </div>
         </motion.section>
+
+        <CodingStats />
 
         {/* Blogs Section */}
         <motion.section

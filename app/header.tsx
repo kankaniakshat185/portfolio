@@ -64,6 +64,7 @@ export function Navbar() {
         { label: 'About', id: 'about' },
         { label: 'Projects', id: 'projects' },
         { label: 'Tech Stack', id: 'tech-stack' },
+        { label: 'Activity', id: 'coding-stats' },
         { label: 'Blogs', id: 'blogs' },
         { label: 'Connect', id: 'contact' },
       ].map((item) => (
