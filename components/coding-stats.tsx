@@ -54,8 +54,8 @@ export function CodingStats() {
               </a>
             </h4>
           </div>
-          <div className="overflow-x-auto pb-2 flex justify-center w-full">
-            <div className="inline-flex min-w-max">
+          <div className="overflow-x-auto pb-2 flex w-full" dir="rtl">
+            <div dir="ltr" className="inline-flex min-w-max mx-auto">
               <GitHubCalendar 
                 username="kankaniakshat185" 
                 colorScheme={resolvedTheme === 'dark' ? 'dark' : 'light'}
