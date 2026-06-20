@@ -1,7 +1,7 @@
 'use client'
 import { TextEffect } from '@/components/ui/text-effect'
 import Link from 'next/link'
-import { Github, Linkedin } from 'lucide-react'
+import { Github, Linkedin, FileText } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 export function Header() {
@@ -22,6 +22,15 @@ export function Header() {
         </TextEffect>
       </div>
       <div className="flex items-center gap-2">
+        <a
+          href="/Resume.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-800"
+          aria-label="Resume PDF"
+        >
+          <FileText className="h-4 w-4" />
+        </a>
         <a
           href="https://www.linkedin.com/in/akshat-kankani/"
           target="_blank"
