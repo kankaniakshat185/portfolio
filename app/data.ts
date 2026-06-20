@@ -23,6 +23,8 @@ type BlogPost = {
   description: string
   link: string
   uid: string
+  date: string
+  readingTime: string
 }
 
 type SocialLink = {
@@ -145,6 +147,8 @@ export const BLOG_POSTS: BlogPost[] = [
     description: 'A deep dive into me and my interests',
     link: '/blog/a-deep-dive-into-me',
     uid: 'blog-1',
+    date: 'Jun 2026',
+    readingTime: '3 min read',
   },
   {
     title: 'Thinking in systems: How I learn Computer Science',
@@ -152,6 +156,8 @@ export const BLOG_POSTS: BlogPost[] = [
       'A deep dive into how I see Computers and my thoughts about everything related.',
     link: '/blog/thinking-in-systems',
     uid: 'blog-2',
+    date: 'May 2026',
+    readingTime: '4 min read',
   },
   {
     title: 'Dreams. Goals',
@@ -159,6 +165,8 @@ export const BLOG_POSTS: BlogPost[] = [
       'An ever expanding page going deep into what I\'ve always dream\'t about and the goals I strive to achieve.',
     link: '/blog/my-dreams-and-goals',
     uid: 'blog-3',
+    date: 'May 2026',
+    readingTime: '5 min read',
   },
 ]
 

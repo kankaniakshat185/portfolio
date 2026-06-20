@@ -48,76 +48,103 @@ export function ProjectCard({ project }: { project: Project }) {
             </a>
           </div>
           <div className="flex items-center gap-1.5 shrink-0 pt-0.5">
-            <button
-              onClick={() => setIsExpanded(!isExpanded)}
-              className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
-              aria-label="Toggle Description"
-            >
-              {isExpanded ? (
-                <ChevronUp className="h-4 w-4" />
-              ) : (
-                <ChevronDown className="h-4 w-4" />
-              )}
-            </button>
+            {/* Toggle Details */}
+            <div className="relative group/tooltip">
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
+                aria-label="Toggle Description"
+              >
+                {isExpanded ? (
+                  <ChevronUp className="h-4 w-4" />
+                ) : (
+                  <ChevronDown className="h-4 w-4" />
+                )}
+              </button>
+              <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 scale-95 opacity-0 rounded-md bg-zinc-900 px-2 py-1 text-[10px] font-sans font-medium text-white transition-all duration-200 group-hover/tooltip:scale-100 group-hover/tooltip:opacity-100 dark:bg-zinc-100 dark:text-zinc-900 whitespace-nowrap shadow-md z-30">
+                {isExpanded ? 'Hide Details' : 'Show Details'}
+              </span>
+            </div>
+
+            {/* Architecture Diagram */}
             {PROJECT_DIAGRAMS[project.id] && (
-              <MorphingDialog
-                transition={{
-                  type: 'spring',
-                  bounce: 0,
-                  duration: 0.3,
-                }}
-              >
-                <MorphingDialogTrigger>
-                  <div
-                    className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900 cursor-pointer"
-                    aria-label="View Architecture"
-                  >
-                    <Network className="h-3.5 w-3.5" />
-                  </div>
-                </MorphingDialogTrigger>
-                <MorphingDialogContainer>
-                  <MorphingDialogContent className="relative rounded-2xl bg-white p-2 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50 sm:p-4 max-w-4xl w-[90vw]">
-                    <div className="w-full max-h-[80vh] overflow-y-auto overflow-x-hidden rounded-xl bg-zinc-50 dark:bg-zinc-900/50">
-                      <Mermaid chart={PROJECT_DIAGRAMS[project.id]} />
+              <div className="relative group/tooltip">
+                <MorphingDialog
+                  transition={{
+                    type: 'spring',
+                    bounce: 0,
+                    duration: 0.3,
+                  }}
+                >
+                  <MorphingDialogTrigger>
+                    <div
+                      className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900 cursor-pointer"
+                      aria-label="View Architecture"
+                    >
+                      <Network className="h-3.5 w-3.5" />
                     </div>
-                  </MorphingDialogContent>
-                  <MorphingDialogClose
-                    className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1 z-50 cursor-pointer"
-                    variants={{
-                      initial: { opacity: 0 },
-                      animate: {
-                        opacity: 1,
-                        transition: { delay: 0.3, duration: 0.1 },
-                      },
-                      exit: { opacity: 0, transition: { duration: 0 } },
-                    }}
-                  >
-                    <XIcon className="h-5 w-5 text-zinc-500" />
-                  </MorphingDialogClose>
-                </MorphingDialogContainer>
-              </MorphingDialog>
+                  </MorphingDialogTrigger>
+                  <MorphingDialogContainer>
+                    <MorphingDialogContent className="relative rounded-2xl bg-white p-2 ring-1 ring-zinc-200/50 ring-inset dark:bg-zinc-950 dark:ring-zinc-800/50 sm:p-4 max-w-4xl w-[90vw]">
+                      <div className="w-full max-h-[80vh] overflow-y-auto overflow-x-hidden rounded-xl bg-zinc-50 dark:bg-zinc-900/50">
+                        <Mermaid chart={PROJECT_DIAGRAMS[project.id]} />
+                      </div>
+                    </MorphingDialogContent>
+                    <MorphingDialogClose
+                      className="fixed top-6 right-6 h-fit w-fit rounded-full bg-white p-1 z-50 cursor-pointer"
+                      variants={{
+                        initial: { opacity: 0 },
+                        animate: {
+                          opacity: 1,
+                          transition: { delay: 0.3, duration: 0.1 },
+                        },
+                        exit: { opacity: 0, transition: { duration: 0 } },
+                      }}
+                    >
+                      <XIcon className="h-5 w-5 text-zinc-500" />
+                    </MorphingDialogClose>
+                  </MorphingDialogContainer>
+                </MorphingDialog>
+                <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 scale-95 opacity-0 rounded-md bg-zinc-900 px-2 py-1 text-[10px] font-sans font-medium text-white transition-all duration-200 group-hover/tooltip:scale-100 group-hover/tooltip:opacity-100 dark:bg-zinc-100 dark:text-zinc-900 whitespace-nowrap shadow-md z-30">
+                  View Architecture
+                </span>
+              </div>
             )}
+
+            {/* Live Demo */}
             {project.liveLink && (
-              <a
-                href={project.liveLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
-                aria-label="Live Demo"
-              >
-                <LinkIcon className="h-3.5 w-3.5" />
-              </a>
+              <div className="relative group/tooltip">
+                <a
+                  href={project.liveLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
+                  aria-label="Live Demo"
+                >
+                  <LinkIcon className="h-3.5 w-3.5" />
+                </a>
+                <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 scale-95 opacity-0 rounded-md bg-zinc-900 px-2 py-1 text-[10px] font-sans font-medium text-white transition-all duration-200 group-hover/tooltip:scale-100 group-hover/tooltip:opacity-100 dark:bg-zinc-100 dark:text-zinc-900 whitespace-nowrap shadow-md z-30">
+                  Live Demo
+                </span>
+              </div>
             )}
+
+            {/* GitHub Repo */}
             {project.githubLink && (
-              <a
-                href={project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
-                aria-label="GitHub Repository"
-              >
-                <Github className="h-3.5 w-3.5" />
-              </a>
+              <div className="relative group/tooltip">
+                <a
+                  href={project.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
+                  aria-label="GitHub Repository"
+                >
+                  <Github className="h-3.5 w-3.5" />
+                </a>
+                <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 scale-95 opacity-0 rounded-md bg-zinc-900 px-2 py-1 text-[10px] font-sans font-medium text-white transition-all duration-200 group-hover/tooltip:scale-100 group-hover/tooltip:opacity-100 dark:bg-zinc-100 dark:text-zinc-900 whitespace-nowrap shadow-md z-30">
+                  View Code
+                </span>
+              </div>
             )}
           </div>
         </div>

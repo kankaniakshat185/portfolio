@@ -23,6 +23,28 @@ export const metadata: Metadata = {
     template: '%s | Akshat'
   },
   description:  'Akshat Kankani\'s personal portfolio website built with Next.js 15, React 19 and Motion-Primitives.',
+  openGraph: {
+    title: 'Akshat - Software Developer',
+    description: 'Akshat Kankani\'s personal portfolio website built with Next.js 15, React 19 and Motion-Primitives.',
+    url: 'https://kankaniakshat.vercel.app/',
+    siteName: 'Akshat Kankani Portfolio',
+    images: [
+      {
+        url: '/cover.jpg',
+        width: 1200,
+        height: 630,
+        alt: 'Akshat Kankani Portfolio Cover Image',
+      },
+    ],
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Akshat - Software Developer',
+    description: 'Akshat Kankani\'s personal portfolio website built with Next.js 15, React 19 and Motion-Primitives.',
+    images: ['/cover.jpg'],
+  },
 };
 
 const geist = Geist({

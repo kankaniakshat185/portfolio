@@ -321,9 +321,14 @@ export default function Personal() {
                   data-id={post.uid}
                 >
                   <div className="flex flex-col space-y-1">
-                    <h4 className="font-normal dark:text-zinc-100">
-                      {post.title}
-                    </h4>
+                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                      <h4 className="font-normal dark:text-zinc-100">
+                        {post.title}
+                      </h4>
+                      <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 shrink-0">
+                        {post.date} • {post.readingTime}
+                      </span>
+                    </div>
                     <p className="text-zinc-500 dark:text-zinc-400 text-base leading-relaxed">
                       {post.description}
                     </p>
