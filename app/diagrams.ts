@@ -1,3 +1,5 @@
+import { Server } from "http"
+
 export const PROJECT_DIAGRAMS: Record<string, string> = {
   project1: `graph TD
     A[Raw Media Ingestion] --> B{Input Modality}
@@ -82,18 +84,28 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
     MainThread -->|Spawns Thread| T3[Worker Thread 3]
 
     subgraph "Connection Handler (Per Thread)"
-    T1 --> |1. Read Bytes| Parse[Parse Headers & Request Line]
+    T1 --> |1. Read Bytes| Parse[Read request and parse headers]
     Parse --> |2. Route Path| Routing{Router}
     
+    Routing -->|/| Root[200 OK]
     Routing -->|/echo/| Echo[Gzip Compress & Echo Text]
     Routing -->|/user-agent| UA[Extract Client Software]
-    Routing -->|/files/ GET| ReadFile[Read from Disk]
-    Routing -->|/files/ POST| WriteFile[Write to Disk]
+    Routing -->|/files/| PathCheck{Path Check: Directory Traversal?}
     
-    Echo --> |3. Send Response| Res[Send HTTP/1.1 Bytes]
+    PathCheck -->|Invalid Path| Forbidden[403 Forbidden]
+    PathCheck -->|Valid Path| FileOps{HTTP Method}
+    
+    FileOps -->|GET| ReadFile[Read from Disk with MIME detection]
+    FileOps -->|POST| WriteFile[Write to Disk as Binary]
+    FileOps -->|DELETE| DeleteFile[Delete from Disk]
+    
+    Root --> |3. Send Response| Res[Send HTTP/1.1 Bytes]
+    Echo --> Res
     UA --> Res
+    Forbidden --> Res
     ReadFile --> Res
     WriteFile --> Res
+    DeleteFile --> Res
     
     Res --> |4. Keep-Alive| T1
     end`
