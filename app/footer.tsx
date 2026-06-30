@@ -68,7 +68,7 @@ export function Footer() {
         <a href="https://github.com/kankaniakshat185" target="_blank">
           <TextLoop className="text-xs text-zinc-500">
             <span>Akshat Kankani</span>
-            <span>Always learning, Always building.</span>
+            <span>Always learning. Always building.</span>
           </TextLoop>
         </a>
         <div className="text-xs text-zinc-400">
