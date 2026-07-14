@@ -19,26 +19,31 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
     K --> L[FastAPI Results Endpoint]`,
     
   project2: `graph TD
-    User([Data Scientist]) -->|pip install datascope-ml| SDK(Python PyPI SDK)
-    User -->|Web Login| Dashboard(Next.js Web UI)
+    User([Quant / User]) -->|Build Strategy| UI(Next.js Web UI)
     
-    SDK -->|Bearer Token Auth| API(Next.js API Gateway)
-    Dashboard -->|Session Auth| API
+    UI <-->|REST API & JWT| API(FastAPI Backend)
     
-    API <-->|Prisma ORM| DB[(Neon Postgres Database)]
-    API <-->|Concurrent REST| Fast(FastAPI ML Backend)
+    API <-->|Alembic / SQLAlchemy| DB[(PostgreSQL Database)]
+    API -->|Submit Task| Redis[(Upstash Redis Broker)]
     
-    Fast --> C(Governance Scoring Engine)
-    Fast --> D(Statistical Leakage Engine)
-    Fast --> E(Drift Engine & Pipeline Engine)
+    Redis -->|Dequeue Task| Celery[Celery Background Worker]
     
-    C --> F(Outlier Consensus Engine)
-    F -->|Z-Score, MAD, iForest, DBSCAN| G[Clean Data]
+    subgraph "AlphaLab Quant Engine"
+        Celery -->|1. Parse| Parser[DSL Factor Compiler]
+        Parser -->|2. Fetch| Storage[(DuckDB 5-Yr Data)]
+        Storage -->|3. Evaluate| Evaluator[Factor Evaluator]
+        Evaluator -->|4. Target| Portfolio[Portfolio Constructor]
+        Portfolio -->|5. Returns| Metrics[Performance Calculator]
+        
+        Metrics -.->|18x Robustness Grid| Evaluator
+    end
     
-    style API fill:#f9f,stroke:#333,stroke-width:2px
-    style Fast fill:#bfb,stroke:#333,stroke-width:2px`,
+    Celery -->|Prompt via httpx| Gemini[Gemini LLM API]
+    Gemini -.->|Human-readable Verdict| Celery
+    
+    Celery -->|Save Results| DB`,
 
-    project3: `graph TD
+  project3: `graph TD
     subgraph Client [Chrome Browser]
         UI[Next.js React UI]
         CS[Content Scripts]
@@ -72,7 +77,27 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
     LLM --> Chroma
     LLM --> Gemini`,
 
-    project4: `graph TD
+  project4: `graph TD
+    User([Data Scientist]) -->|pip install datascope-ml| SDK(Python PyPI SDK)
+    User -->|Web Login| Dashboard(Next.js Web UI)
+    
+    SDK -->|Bearer Token Auth| API(Next.js API Gateway)
+    Dashboard -->|Session Auth| API
+    
+    API <-->|Prisma ORM| DB[(Neon Postgres Database)]
+    API <-->|Concurrent REST| Fast(FastAPI ML Backend)
+    
+    Fast --> C(Governance Scoring Engine)
+    Fast --> D(Statistical Leakage Engine)
+    Fast --> E(Drift Engine & Pipeline Engine)
+    
+    C --> F(Outlier Consensus Engine)
+    F -->|Z-Score, MAD, iForest, DBSCAN| G[Clean Data]
+    
+    style API fill:#f9f,stroke:#333,stroke-width:2px
+    style Fast fill:#bfb,stroke:#333,stroke-width:2px`,
+
+  project5: `graph TD
     Client1[Client / Browser 1] -->|TCP Connection| ServerSocket[Server Socket :4221]
     Client2[Client / Browser 2] -->|TCP Connection| ServerSocket
     Client3[Client / Browser 3] -->|TCP Connection| ServerSocket

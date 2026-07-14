@@ -128,7 +128,7 @@ function MagneticSocialLink({
   )
 }
 
-const CATEGORIES = ['All', 'AI/ML', 'Backend', 'Fullstack', 'Systems']
+const CATEGORIES = ['All', 'AI/ML', 'Research', 'Backend', 'Fullstack', 'Systems']
 
 export default function Personal() {
   const [activeCategory, setActiveCategory] = useState<string>('All')
