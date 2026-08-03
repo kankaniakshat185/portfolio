@@ -98,42 +98,47 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
     style Fast fill:#bfb,stroke:#333,stroke-width:2px`,
 
   project5: `graph TD
-    Client1[Client / Browser 1] -->|TCP Connection| ServerSocket[Server Socket :4221]
-    Client2[Client / Browser 2] -->|TCP Connection| ServerSocket
-    Client3[Client / Browser 3] -->|TCP Connection| ServerSocket
+    Client[Client] -->|TCP Connect| ServerSocket[Server Socket :4221]
+    ServerSocket --> EventLoop[Event Loop - selectors epoll/kqueue]
 
-    ServerSocket -->|Accepts Connection| MainThread[Main Thread 'while True']
+    EventLoop -->|non-blocking recv| BufferBytes[Buffer bytes into session]
+    BufferBytes --> HeaderCheck{Header boundary CRLFCRLF found?}
+    HeaderCheck -->|No, but over MAX_HEADER_BYTES| Reject400[400 Bad Request]
+    HeaderCheck -->|Not yet, under limit| EventLoop
+    HeaderCheck -->|Found| ChunkedCheck{Transfer-Encoding chunked?}
 
-    MainThread -->|Spawns Thread| T1[Worker Thread 1]
-    MainThread -->|Spawns Thread| T2[Worker Thread 2]
-    MainThread -->|Spawns Thread| T3[Worker Thread 3]
+    ChunkedCheck -->|Yes| Reject501[501 Not Implemented]
+    ChunkedCheck -->|No| SizeCheck{Content-Length over MAX_BODY_BYTES?}
+    SizeCheck -->|Yes| Reject413[413 Payload Too Large]
+    SizeCheck -->|No| BodyWait{Full body buffered yet?}
+    BodyWait -->|Not yet| EventLoop
+    BodyWait -->|Yes| Dispatch["Unregister socket (queued),<br/>dispatch to Thread Pool"]
 
-    subgraph "Connection Handler (Per Thread)"
-    T1 --> |1. Read Bytes| Parse[Read request and parse headers]
-    Parse --> |2. Route Path| Routing{Router}
-    
-    Routing -->|/| Root[200 OK]
-    Routing -->|/echo/| Echo[Gzip Compress & Echo Text]
-    Routing -->|/user-agent| UA[Extract Client Software]
-    Routing -->|/files/| PathCheck{Path Check: Directory Traversal?}
-    
-    PathCheck -->|Invalid Path| Forbidden[403 Forbidden]
-    PathCheck -->|Valid Path| FileOps{HTTP Method}
-    
-    FileOps -->|GET| ReadFile[Read from Disk with MIME detection]
-    FileOps -->|POST| WriteFile[Write to Disk as Binary]
-    FileOps -->|DELETE| DeleteFile[Delete from Disk]
-    
-    Root --> |3. Send Response| Res[Send HTTP/1.1 Bytes]
-    Echo --> Res
-    UA --> Res
-    Forbidden --> Res
-    ReadFile --> Res
-    WriteFile --> Res
-    DeleteFile --> Res
-    
-    Res --> |4. Keep-Alive| T1
-    end`
+    subgraph ThreadPoolWorker["Thread Pool Worker"]
+    Dispatch --> ParseCheck{Request line parses?}
+    ParseCheck -->|No| Reject400b[400 Bad Request]
+    ParseCheck -->|Yes| Pipeline["Middleware Pipeline:<br/>Logger -> StaticFiles"]
+    Pipeline --> RouteMatch{Router match on method+path?}
+    RouteMatch -->|Handler found| Handler[Route Handler]
+    RouteMatch -->|Path exists, wrong method| Reject405["405 + Allow header"]
+    RouteMatch -->|No route at all| Reject404[404 Not Found]
+
+    Handler --> TraversalCheck{"/files/ request:<br/>resolves outside sandbox?"}
+    TraversalCheck -->|Yes| Reject403[403 Forbidden]
+    TraversalCheck -->|No, large file GET| StreamFile["Stream file,<br/>64KB chunks"]
+    TraversalCheck -->|No, small/dynamic| BufferBody["Buffer body,<br/>optional gzip"]
+
+    StreamFile --> SendResponse["Send response<br/>(socket set blocking for this write)"]
+    BufferBody --> SendResponse
+    Reject405 --> SendResponse
+    Reject404 --> SendResponse
+    Reject403 --> SendResponse
+    end
+
+    SendResponse -->|Keep-Alive| Requeue["Queue register(conn) action"]
+    Requeue --> EventLoop
+    SendResponse -->|Connection close| CloseConn[Close connection]`
+
 
 
 }

@@ -114,14 +114,16 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Custom-http-server',
-    description: [
-      'TCP Socket Management: Low-level binding, listening, and accepting of raw network connections.',
-      'Concurrent Threading: Capable of handling massive traffic via isolated background threads for each connection.',
-      'Persistent Connections: Implements Keep-Alive logic to reuse TCP connections across multiple requests.',
-      'Content Negotiation: Supports dynamic gzip compression based on client Accept-Encoding headers.',
-      'Dynamic Routing: URL path parsing and routing for endpoints.',
-      'File System Operations: Safely reads, writes, and serves binary files directly from disk based on POST and GET requests.'
-    ],
+description: [
+  'Hybrid Concurrency Model: Async selectors (epoll/kqueue) event loop with a worker thread pool, single-writer selector queue, and per-connection locking — backed by a 33-test suite in CI.',
+  'TCP Socket Management: Low-level binding, non-blocking listening, and accepting of raw network connections.',
+  'Persistent Connections: Keep-Alive and request pipelining to reuse TCP connections across multiple requests.',
+  'Content Negotiation: Dynamic gzip compression based on Accept-Encoding, skipped automatically for already-compressed content types.',
+  'Dynamic Routing: URL path parsing with correct 404 vs. 405 semantics, plus request size and idle-timeout limits to resist abuse.',
+  'File System Operations: Safely reads, writes, and deletes binary files, streaming large files in chunks with directory-traversal defense.',
+],
+
+
     techStack: ['Python', 'HTTP Protocols', 'Computer Networks'],
     githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
     id: 'project5',
