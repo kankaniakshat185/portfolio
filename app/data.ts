@@ -25,6 +25,8 @@ type BlogPost = {
   uid: string
   date: string
   readingTime: string
+  githubLink?: string
+  liveLink?: string
 }
 
 type SocialLink = {
@@ -209,6 +211,7 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
     uid: 'tech-blog-1',
     date: 'Aug 2026',
     readingTime: '10 min read',
+    githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
   },
 ]
 

@@ -5,6 +5,12 @@ import { Github, Linkedin, FileText } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 
 export function Header() {
+  const pathname = usePathname()
+
+  if (pathname !== '/') {
+    return null
+  }
+
   return (
     <header className="mb-8 flex items-center justify-between">
       <div>
@@ -74,7 +80,7 @@ export function Navbar() {
         { label: 'Projects', id: 'projects' },
         { label: 'Tech Stack', id: 'tech-stack' },
         { label: 'Activity', id: 'coding-stats' },
-        { label: 'Blogs', id: 'blogs' },
+        { label: 'Blogs', id: 'tech-blogs' },
         { label: 'Connect', id: 'contact' },
       ].map((item) => (
         <Link
