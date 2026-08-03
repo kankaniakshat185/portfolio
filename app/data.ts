@@ -192,6 +192,26 @@ export const BLOG_POSTS: BlogPost[] = [
   },
 ]
 
+export const TECH_BLOG_POSTS: BlogPost[] = [
+  // You can add technical blogs here, e.g.:
+  // {
+  //   title: 'Understanding Distributed Systems',
+  //   description: 'A deep dive into how large scale systems communicate.',
+  //   link: '/tech-blog/understanding-distributed-systems',
+  //   uid: 'tech-blog-1',
+  //   date: 'Oct 2026',
+  //   readingTime: '5 min read',
+  // },
+  {
+    title: 'i built a custom http server in python to actually understand concurrency',
+    description: 'a raw-socket http/1.1 server in python - an event loop, a thread pool, and the four real concurrency bugs a self-audit found in code i thought was already correct..',
+    link: '/tech-blog/custom-http-server',
+    uid: 'tech-blog-1',
+    date: 'Aug 2026',
+    readingTime: '10 min read',
+  },
+]
+
 export const SOCIAL_LINKS: SocialLink[] = [
   {
     label: 'Email',

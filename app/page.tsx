@@ -18,6 +18,7 @@ import {
   PROJECTS,
   //WORK_EXPERIENCE,
   BLOG_POSTS,
+  TECH_BLOG_POSTS,
   EMAIL,
   SOCIAL_LINKS,
 } from './data'
@@ -294,6 +295,52 @@ export default function Personal() {
         </motion.section>
 
         <CodingStats />
+
+        {/* Tech Blogs Section */}
+        {TECH_BLOG_POSTS.length > 0 && (
+          <motion.section
+            id="tech-blogs"
+            className="scroll-mt-24 w-full"
+            variants={VARIANTS_SECTION}
+            transition={TRANSITION_SECTION}
+          >
+            <h3 className="mb-3 text-lg font-medium">Technical Blogs</h3>
+            <div className="flex flex-col space-y-0">
+              <AnimatedBackground
+                enableHover
+                className="h-full w-full rounded-lg bg-zinc-100 dark:bg-zinc-900/80"
+                transition={{
+                  type: 'spring',
+                  bounce: 0,
+                  duration: 0.2,
+                }}
+              >
+                {TECH_BLOG_POSTS.map((post) => (
+                  <Link
+                    key={post.uid}
+                    className="-mx-3 rounded-xl px-3 py-3"
+                    href={post.link}
+                    data-id={post.uid}
+                  >
+                    <div className="flex flex-col space-y-1">
+                      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                        <h4 className="font-normal dark:text-zinc-100">
+                          {post.title}
+                        </h4>
+                        <span className="text-xs font-mono text-zinc-400 dark:text-zinc-500 shrink-0">
+                          {post.date} • {post.readingTime}
+                        </span>
+                      </div>
+                      <p className="text-zinc-500 dark:text-zinc-400 text-base leading-relaxed">
+                        {post.description}
+                      </p>
+                    </div>
+                  </Link>
+                ))}
+              </AnimatedBackground>
+            </div>
+          </motion.section>
+        )}
 
         {/* Blogs Section */}
         <motion.section
