@@ -405,7 +405,7 @@ export default function Personal() {
               {[
                 { label: 'Email', value: EMAIL, href: `mailto:${EMAIL}` },
                 { label: 'GitHub', value: 'github.com/kankaniakshat185', href: 'https://github.com/kankaniakshat185' },
-                { label: 'LinkedIn', value: 'linkedin.com/in/akshat-kankani', href: 'https://www.linkedin.com/in/akshat-kankani' },
+                { label: 'LinkedIn', value: 'linkedin.com/in/akshat185', href: 'https://www.linkedin.com/in/akshat185' },
                 { label: 'LeetCode', value: 'leetcode.com/Akshat185', href: 'https://leetcode.com/u/Akshat185' },
                 { label: 'Resume', value: 'View Resume (PDF)', href: '/Resume.pdf' },
               ].map((item) => (

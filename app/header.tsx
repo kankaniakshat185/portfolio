@@ -38,7 +38,7 @@ export function Header() {
           <FileText className="h-4 w-4" />
         </a>
         <a
-          href="https://www.linkedin.com/in/akshat-kankani/"
+          href="https://www.linkedin.com/in/akshat185"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-900 transition-colors hover:bg-zinc-100 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:bg-zinc-800"
