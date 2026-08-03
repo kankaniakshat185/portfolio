@@ -124,7 +124,7 @@ description: [
 ],
 
 
-    techStack: ['Python', 'HTTP Protocols', 'Computer Networks'],
+    techStack: ['Python', 'HTTP Protocols', 'Socket Programming', 'Docker', 'Concurrency & Multithreading'],
     githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
     id: 'project5',
     categories: ['Systems'],
