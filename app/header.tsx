@@ -79,8 +79,8 @@ export function Navbar() {
         { label: 'About', id: 'about' },
         { label: 'Projects', id: 'projects' },
         { label: 'Tech Stack', id: 'tech-stack' },
-        { label: 'Activity', id: 'coding-stats' },
         { label: 'Blogs', id: 'tech-blogs' },
+        { label: 'Activity', id: 'coding-stats' },
         { label: 'Connect', id: 'contact' },
       ].map((item) => (
         <Link

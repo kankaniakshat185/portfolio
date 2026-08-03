@@ -294,8 +294,6 @@ export default function Personal() {
           </div>
         </motion.section>
 
-        <CodingStats />
-
         {/* Tech Blogs Section */}
         {TECH_BLOG_POSTS.length > 0 && (
           <motion.section
@@ -385,6 +383,8 @@ export default function Personal() {
             </AnimatedBackground>
           </div>
         </motion.section>
+
+        <CodingStats />
 
         {/* Connect Section */}
         <motion.section
