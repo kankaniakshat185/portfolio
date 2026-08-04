@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import { Github, LinkIcon } from 'lucide-react'
 import { usePathname } from 'next/navigation'
 import { TECH_BLOG_POSTS } from '../data'
+import { TableOfContents } from '@/components/table-of-contents'
 
 function CopyButton() {
   const [text, setText] = useState('Copy')
@@ -49,7 +50,17 @@ export default function LayoutBlogPost({
         }}
       />
 
-      <main className="prose prose-gray max-w-none mt-24 pb-20 prose-h4:prose-base dark:prose-invert prose-h1:text-xl prose-h1:font-medium prose-h2:mt-12 prose-h2:scroll-m-20 prose-h2:text-lg prose-h2:font-medium prose-h3:text-base prose-h3:font-medium prose-h4:font-medium prose-h5:text-base prose-h5:font-medium prose-h6:text-base prose-h6:font-medium prose-strong:font-medium">
+      <TableOfContents />
+      
+      <main className="prose prose-gray max-w-none mt-24 pb-20 prose-h4:prose-base dark:prose-invert prose-h1:text-center prose-h1:text-xl prose-h1:font-serif prose-h1:font-medium prose-h2:mt-12 prose-h2:scroll-m-20 prose-h2:text-lg prose-h2:font-medium prose-h3:text-base prose-h3:font-medium prose-h4:font-medium prose-h5:text-base prose-h5:font-medium prose-h6:text-base prose-h6:font-medium prose-strong:font-medium">
+        {currentPost && (
+          <div className="flex flex-col items-center mb-6">
+            <span className="text-[0.8rem] font-mono uppercase tracking-widest text-zinc-500">
+              {currentPost.date} • {currentPost.readingTime}
+            </span>
+          </div>
+        )}
+        
         {(currentPost?.githubLink || currentPost?.liveLink) && (
           <div className="float-right flex items-center gap-2 ml-4 mb-2 mt-0.5">
             {currentPost?.githubLink && (

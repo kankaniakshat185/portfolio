@@ -2,6 +2,36 @@
 import { TextMorph } from '@/components/ui/text-morph'
 import { ScrollProgress } from '@/components/ui/scroll-progress'
 import { useEffect, useState } from 'react'
+import { usePathname } from 'next/navigation'
+import { BLOG_POSTS } from '../data'
+
+function BlogHeaderData() {
+  const pathname = usePathname()
+  const currentPost = BLOG_POSTS.find(post => post.link === pathname)
+
+  useEffect(() => {
+    const moveElement = () => {
+      const h1 = document.querySelector('main.prose h1')
+      const container = document.getElementById('blog-header-data')
+      if (h1 && container) {
+        h1.parentNode?.insertBefore(container, h1)
+        container.classList.remove('hidden')
+        container.classList.add('flex')
+      }
+    }
+    setTimeout(moveElement, 50)
+  }, [])
+
+  if (!currentPost) return null
+
+  return (
+    <div id="blog-header-data" className="hidden flex-col items-center mb-6 mt-12 w-full">
+      <span className="text-[0.8rem] font-mono uppercase tracking-widest text-zinc-500">
+        {currentPost.date} • {currentPost.readingTime}
+      </span>
+    </div>
+  )
+}
 
 function CopyButton() {
   const [text, setText] = useState('Copy')
@@ -46,7 +76,8 @@ export default function LayoutBlogPost({
       <div className="absolute right-4 top-24">
         {/* <CopyButton /> */}
       </div>
-      <main className="prose prose-gray max-w-none mt-24 pb-20 prose-h4:prose-base dark:prose-invert prose-h1:text-xl prose-h1:font-medium prose-h2:mt-12 prose-h2:scroll-m-20 prose-h2:text-lg prose-h2:font-medium prose-h3:text-base prose-h3:font-medium prose-h4:font-medium prose-h5:text-base prose-h5:font-medium prose-h6:text-base prose-h6:font-medium prose-strong:font-medium">
+      <main className="prose prose-gray max-w-none mt-24 pb-20 prose-h4:prose-base dark:prose-invert prose-h1:text-center prose-h1:text-2xl prose-h1:font-serif prose-h1:font-medium prose-h2:mt-12 prose-h2:scroll-m-20 prose-h2:text-lg prose-h2:font-medium prose-h3:text-base prose-h3:font-medium prose-h4:font-medium prose-h5:text-base prose-h5:font-medium prose-h6:text-base prose-h6:font-medium prose-strong:font-medium">
+        <BlogHeaderData />
         {children}
       </main>
     </>

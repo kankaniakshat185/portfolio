@@ -32,7 +32,7 @@ export function ScrollToTop() {
   }
 
   // Only render on blog pages
-  if (!pathname || !pathname.startsWith('/blog')) {
+  if (!pathname || (!pathname.startsWith('/blog') && !pathname.startsWith('/tech-blog'))) {
     return null
   }
 

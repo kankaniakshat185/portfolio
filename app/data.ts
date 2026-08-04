@@ -205,12 +205,12 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
   //   readingTime: '5 min read',
   // },
   {
-    title: 'i built a custom http server in python to actually understand concurrency',
-    description: 'a raw-socket http/1.1 server in python - an event loop, a thread pool, and the four real concurrency bugs a self-audit found in code i thought was already correct..',
+    title: 'Behind the Sockets: What I Learned Building a Python HTTP Server',
+    description: 'a raw-socket http/1.1 server in python - the whole architecture, and the four real concurrency bugs a self-audit found in code i thought was already correct.',
     link: '/tech-blog/custom-http-server',
     uid: 'tech-blog-1',
     date: 'Aug 2026',
-    readingTime: '10 min read',
+    readingTime: '17 min read',
     githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
   },
 ]
