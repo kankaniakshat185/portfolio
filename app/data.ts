@@ -79,12 +79,12 @@ export const PROJECTS: Project[] = [
   {
     name: 'PRScope - PR Review Intelligence',
     description: [
-      'Architected a full-stack Chrome Extension (Next.js) and FastAPI backend that injects real-time PR risk analysis directly into the GitHub UI, deliberately splitting deterministic static analysis from LLM reasoning so core findings never depend on non-deterministic output.',
-      'Built a risk-scoring engine combining McCabe cyclomatic complexity (computed from real control-flow graphs, not a LOC proxy), Bandit-based security scanning, and configurable per-repository architecture rules — all reproducible independently of any LLM call.',
-      'Engineered multi-language call-graph analysis (Python and JS/TS via tree-sitter) backed by a persisted, incrementally-updated repository index, surfacing cross-file "blast radius" callers that a single-diff analysis would otherwise miss entirely.',
-      'Designed and evaluated a retrieval-augmented incident-matching system against a labeled dataset — 93% precision@1, 100% hit-rate@3 — then used those measured results to catch and fix a live calibration bug that was silently hiding correct matches from users.',
-      'Automated CI-style analysis via signature-verified, debounced GitHub webhooks; cut per-analysis LLM call volume by ~85%; and added multi-provider failover (Gemini, OpenAI, Groq) with bring-your-own-key support to stay available under real rate-limit pressure.',
-      'Extended the platform with team-scoped collaboration — shared review visibility, crowdsourced incident reporting, and one-click GitHub commit-status publishing — turning single-player PR analysis into a shared team workflow.'
+      'Architected a Chrome Extension + FastAPI platform injecting deterministic PR risk scores and LLM-driven reviews directly into GitHub.',
+      'Built a risk engine using real control-flow-graph complexity and Bandit security scanning — reproducible without any LLM call.',
+      'Engineered multi-language (Python/JS/TS) call-graph analysis backed by a persisted, incrementally-updated repo index for cross-file blast-radius detection.',
+      'Designed and evaluated a retrieval-augmented incident matcher — 93% precision@1 — catching a real calibration bug that hid correct matches from users.',
+      'Automated CI-style analysis via debounced GitHub webhooks; cut LLM call volume ~85% with multi-provider failover with BYOK (Gemini/OpenAI/Groq) for resilience',
+      'Extended the platform with team-scoped collaboration: shared review visibility, crowdsourced incidents, and one-click GitHub commit-status publishing.'
     ],
     techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'OAuth 2.0', 'ChromaDB', 'Tree-sitter'],
     liveLink: 'https://chromewebstore.google.com/detail/jfngcklfbiljgpoeehlkpkackahgopoc?utm_source=item-share-cb',
