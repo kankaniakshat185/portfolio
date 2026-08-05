@@ -272,7 +272,7 @@ export default function Personal() {
               },
               {
                 category: 'Developer Tools',
-                items: ['Git', 'GitHub', 'Linux', 'Nginx', 'Pytest', 'Github Actions', 'Postman', 'PowerBI']
+                items: ['Git', 'GitHub', 'Linux', 'Nginx', 'Pytest', 'GitHub Actions', 'Postman', 'PowerBI']
               }
             ].map((group) => (
               <div key={group.category} className="py-5 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-zinc-100 dark:border-zinc-900/50 last:border-b-0">

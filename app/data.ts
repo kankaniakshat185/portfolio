@@ -79,14 +79,15 @@ export const PROJECTS: Project[] = [
   {
     name: 'PRScope - PR Review Intelligence',
     description: [
-      'Architected a full-stack Chrome Extension using Next.js and FastAPI that acts as an autonomous Senior Engineer, directly injecting deterministic risk scores and LLM-driven architectural reviews into the GitHub UI.',
-      'Built a custom risk-scoring engine that evaluates Pull Requests based on rigid metrics like LOC volatility, symbol mutation density, and test coverage deltas to prevent stochastic LLM hallucinations.',
-      'Integrated an abstract syntax tree parser with react-force-graph-2d to dynamically map and visualize upstream service dependencies and downstream cascading failure risks within the browser.',
-      'Implemented automated fetching and parsing of repository-specific .prscope.yml rules, allowing engineering teams to enforce bespoke boundary constraints and import restrictions on a per-project basis.',
-      'Designed a secure Bring Your Own Key (BYOK) system with Chrome Local Storage persistence, bypassing global LLM rate limits and ensuring complete data sovereignty for private enterprise codebases.',
-      'Scaled the backend architecture by implementing native GitHub Webhook ingestion to autonomously execute computationally heavy AI analyses in the background across PR lifecycle events.'
+      'Architected a full-stack Chrome Extension (Next.js) and FastAPI backend that injects real-time PR risk analysis directly into the GitHub UI, deliberately splitting deterministic static analysis from LLM reasoning so core findings never depend on non-deterministic output.',
+      'Built a risk-scoring engine combining McCabe cyclomatic complexity (computed from real control-flow graphs, not a LOC proxy), Bandit-based security scanning, and configurable per-repository architecture rules — all reproducible independently of any LLM call.',
+      'Engineered multi-language call-graph analysis (Python and JS/TS via tree-sitter) backed by a persisted, incrementally-updated repository index, surfacing cross-file "blast radius" callers that a single-diff analysis would otherwise miss entirely.',
+      'Designed and evaluated a retrieval-augmented incident-matching system against a labeled dataset — 93% precision@1, 100% hit-rate@3 — then used those measured results to catch and fix a live calibration bug that was silently hiding correct matches from users.',
+      'Automated CI-style analysis via signature-verified, debounced GitHub webhooks; cut per-analysis LLM call volume by ~85%; and added multi-provider failover (Gemini, OpenAI, Groq) with bring-your-own-key support to stay available under real rate-limit pressure.',
+      'Extended the platform with team-scoped collaboration — shared review visibility, crowdsourced incident reporting, and one-click GitHub commit-status publishing — turning single-player PR analysis into a shared team workflow.'
     ],
-    techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'OAuth 2.0'],
+    techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'OAuth 2.0', 'ChromaDB', 'Tree-sitter'],
+    liveLink: 'https://chromewebstore.google.com/detail/jfngcklfbiljgpoeehlkpkackahgopoc?utm_source=item-share-cb',
     githubLink: 'https://github.com/kankaniakshat185/prscope',
     id: 'project3',
     categories: ['Backend', 'Fullstack'],

@@ -44,38 +44,64 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
     Celery -->|Save Results| DB`,
 
   project3: `graph TD
-    subgraph Client [Chrome Browser]
-        UI[Next.js React UI]
-        CS[Content Scripts]
-        BS[Background Service Worker]
-        Storage[(Local Storage)]
+    subgraph Client [Chrome Extension]
+        CS[Content Script<br/>injects iframe on github.com/*/pull/*]
+        BS[Background Worker<br/>on-demand injection]
+        UI[Next.js React UI<br/>runs inside the iframe]
+        Storage[(localStorage<br/>JWT session, BYOK keys, GitHub PAT)]
     end
 
-    subgraph Backend [FastAPI Application Layer]
-        API[API Router]
-        Auth[OAuth Provider]
-        Risk[Risk & Telemetry Engine]
-        LLM[LLM Service Abstraction]
+    subgraph Backend [FastAPI Backend]
+        CORS{CORS gate<br/>allow-listed origins only}
+        Auth[Auth: GitHub OAuth + JWT<br/>mock login gated, dev-only]
+        API[Analysis API<br/>requires bearer token · split: fast /analyze + slower /analyze/enrich]
+        Engines[Deterministic Engines<br/>risk · reviewability · security ·<br/>architecture · dependency graph · symbols]
+        Indexer[Repo Index Engine<br/>full + incremental, background task]
+        LLMSvc[LLM Service<br/>thread-pool offloaded, timeout-bounded]
+        Webhook[Webhook Receiver<br/>HMAC-SHA256 verified · debounced auto-analysis]
     end
 
-    subgraph Infrastructure [Data & Inference]
-        PG[(Neon PostgreSQL)]
-        Chroma[(ChromaDB Vector Store)]
+    subgraph Data [Persistence]
+        DB[(SQLite or PostgreSQL<br/>users, saved reviews, repo-wide function/call index)]
+        Chroma[(ChromaDB<br/>15 real sourced incidents + team-contributed)]
+    end
+
+    subgraph External [External Services]
+        GH[GitHub REST API<br/>OAuth, PR data, issue comments, commit statuses]
         Gemini[Google Gemini API]
+        OpenAI[OpenAI API]
+        Groq[Groq API<br/>OpenAI-compatible]
     end
 
-    UI <-->|DOM Injection| CS
-    CS <-->|Messaging| BS
-    BS <-->|HTTPS REST| API
-    Storage -.->|BYOK Key| BS
+    BS -->|chrome.scripting.executeScript| CS
+    CS <-->|postMessage, origin-checked both ways| UI
+    UI -->|fetch, Bearer JWT| CORS
+    CORS --> API
+    Storage -.->|session + BYOK keys| UI
 
     API --> Auth
-    Auth --> PG
-    API --> Risk
-    API --> LLM
+    Auth -->|OAuth code exchange| GH
+    Auth --> DB
+    API --> Engines
+    Engines -->|fetch PR diff, files & base/head content| GH
+    Engines -.->|read: cross-file blast radius| DB
+    API -->|post comments & commit statuses, user-supplied PAT| GH
+    Engines -->|read: similarity search| Chroma
+    API -->|write: report a team incident| Chroma
+    API --> LLMSvc
+    LLMSvc --> Gemini
+    LLMSvc --> OpenAI
+    LLMSvc --> Groq
+    API --> DB
+    API -->|explicit build/refresh request| Indexer
+    Indexer -->|fetch full tree, changed files| GH
+    Indexer -->|write: functions & call edges| DB
 
-    LLM --> Chroma
-    LLM --> Gemini`,
+    GH -->|pull_request events| Webhook
+    Webhook -->|debounced| Engines
+    Webhook -.->|refresh if already indexed| Indexer
+    Webhook -->|risk verdict as commit status| GH`
+,
 
   project4: `graph TD
     User([Data Scientist]) -->|pip install datascope-ml| SDK(Python PyPI SDK)
