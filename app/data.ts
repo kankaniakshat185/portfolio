@@ -36,23 +36,59 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'BiasScope - News Sentiment and Bias Intelligence',
+    name: 'Low-Latency Matching-Engine',
     description: [
-      'Claim-Centric Media Intelligence: Architected a full-stack news analysis platform using Next.js and FastAPI that moves beyond basic sentiment analysis, extracting and mapping distinct political claims to expose media echo chambers across hundreds of global news outlets.',
-      'Intelligent Information Extraction: Engineered an automated NLP pipeline integrating LLMs for atomic claim extraction and Sentence-Transformers for vector-based semantic clustering, instantly condensing hundreds of disparate news paragraphs into unified, verifiable factual clusters.',
-      'Distributed Background Processing: Built an asynchronous task queue utilizing Celery and Redis to offload heavy web scraping and LLM computations from the main API thread, keeping the frontend UI completely responsive during multi-minute intelligence runs.',
-      'Secure Data Persistence & Auth: Implemented a robust PostgreSQL database managed via Prisma ORM, seamlessly integrated with Better-Auth for stateless JWT session management to safely track user query histories and persist thousands of generated claim graphs.',
-      'High-Performance Visual Dashboard: Designed a polished, interactive UI leveraging Tailwind CSS and Next.js server-side rendering, translating dense mathematical and semantic relationships into a clean, zero-lag visual experience for end-users.'
+      'Built a C++20 limit order book and matching engine from scratch, implementing strict price-time priority matching with partial order fills.',
+      'Designed and benchmarked four independent implementations of the order book\'s core data structure — a standard-library baseline, a custom memory pool, and two cache-optimized array-based variants — to directly compare their real-world performance impact.',
+      'Achieved up to 14.5 million orders processed per second in the best-performing version — a 2.4x to 3.9x throughput improvement over the baseline, measured consistently across three distinct workload patterns.',
+      'Verified correctness across all four implementations with differential testing: identical order sequences replayed through each version, comparing results before trusting any performance claim.',
+      'Profiled with real hardware performance counters to confirm the true source of every bottleneck, not just wall-clock timing.',
+      'Backed by 71 automated tests, 99% code coverage, and a 5-stage CI pipeline — including one performance trade-off that was identified, documented, and resolved in a later version.'
     ],
-    techStack: ['Python', 'Hugging Face', 'PostgreSQL', 'FastAPI', 'Docker', 'Redis', 'Next.js', 'Sentence-BERT', 'DeBERTa-v3 NLI'],
-    liveLink: 'https://biasscope-app.vercel.app',
-    githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
-    id: 'project1',
-    categories: ['AI/ML', 'Backend', 'Fullstack'],
+    techStack: ['C++20', 'CMake', 'GoogleTest', 'clang', 'GitHub Actions', 'Apple Instruments (os_signpost)'],
+    githubLink: 'https://github.com/kankaniakshat185/low-latency-matching-engine',
+    id: 'project6',
+    categories: ['Systems'],
     techDetails: {
-      'Python': 'Backend service & data processing',
-      'FastAPI': 'High-performance API endpoints',
-      'Next.js': 'Frontend interface'
+      'C++20': 'Low-latency systems programming'
+    }
+  },
+  {
+    name: 'Custom-http-server',
+    description: [
+      'Hybrid Concurrency Model: Async selectors (epoll/kqueue) event loop with a worker thread pool, single-writer selector queue, and per-connection locking — backed by a 33-test suite in CI.',
+      'TCP Socket Management: Low-level binding, non-blocking listening, and accepting of raw network connections.',
+      'Persistent Connections: Keep-Alive and request pipelining to reuse TCP connections across multiple requests.',
+      'Content Negotiation: Dynamic gzip compression based on Accept-Encoding, skipped automatically for already-compressed content types.',
+      'Dynamic Routing: URL path parsing with correct 404 vs. 405 semantics, plus request size and idle-timeout limits to resist abuse.',
+      'File System Operations: Safely reads, writes, and deletes binary files, streaming large files in chunks with directory-traversal defense.',
+    ],
+    techStack: ['Python', 'HTTP Protocols', 'Socket Programming', 'Docker', 'Concurrency & Multithreading'],
+    githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
+    id: 'project5',
+    categories: ['Systems'],
+    techDetails: {
+      'Python': 'Low-level socket programming'
+    }
+  },
+  {
+    name: 'PRScope - PR Review Intelligence',
+    description: [
+      'Architected a Chrome Extension + FastAPI platform injecting deterministic PR risk scores and LLM-driven reviews directly into GitHub.',
+      'Built a risk engine using real control-flow-graph complexity and Bandit security scanning — reproducible without any LLM call.',
+      'Engineered multi-language (Python/JS/TS) call-graph analysis backed by a persisted, incrementally-updated repo index for cross-file blast-radius detection.',
+      'Designed and evaluated a retrieval-augmented incident matcher — 93% precision@1 — catching a real calibration bug that hid correct matches from users.',
+      'Automated CI-style analysis via debounced GitHub webhooks; cut LLM call volume ~85% with multi-provider failover with BYOK (Gemini/OpenAI/Groq) for resilience',
+      'Extended the platform with team-scoped collaboration: shared review visibility, crowdsourced incidents, and one-click GitHub commit-status publishing.'
+    ],
+    techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'OAuth 2.0', 'ChromaDB', 'Tree-sitter'],
+    liveLink: 'https://chromewebstore.google.com/detail/jfngcklfbiljgpoeehlkpkackahgopoc?utm_source=item-share-cb',
+    githubLink: 'https://github.com/kankaniakshat185/prscope',
+    id: 'project3',
+    categories: ['Backend', 'Fullstack'],
+    techDetails: {
+      'Next.js': 'Chrome Extension UI',
+      'FastAPI': 'Risk-scoring & AST parsing engine'
     }
   },
   {
@@ -77,23 +113,23 @@ export const PROJECTS: Project[] = [
     }
   },
   {
-    name: 'PRScope - PR Review Intelligence',
+    name: 'BiasScope - News Sentiment and Bias Intelligence',
     description: [
-      'Architected a Chrome Extension + FastAPI platform injecting deterministic PR risk scores and LLM-driven reviews directly into GitHub.',
-      'Built a risk engine using real control-flow-graph complexity and Bandit security scanning — reproducible without any LLM call.',
-      'Engineered multi-language (Python/JS/TS) call-graph analysis backed by a persisted, incrementally-updated repo index for cross-file blast-radius detection.',
-      'Designed and evaluated a retrieval-augmented incident matcher — 93% precision@1 — catching a real calibration bug that hid correct matches from users.',
-      'Automated CI-style analysis via debounced GitHub webhooks; cut LLM call volume ~85% with multi-provider failover with BYOK (Gemini/OpenAI/Groq) for resilience',
-      'Extended the platform with team-scoped collaboration: shared review visibility, crowdsourced incidents, and one-click GitHub commit-status publishing.'
+      'Claim-Centric Media Intelligence: Architected a full-stack news analysis platform using Next.js and FastAPI that moves beyond basic sentiment analysis, extracting and mapping distinct political claims to expose media echo chambers across hundreds of global news outlets.',
+      'Intelligent Information Extraction: Engineered an automated NLP pipeline integrating LLMs for atomic claim extraction and Sentence-Transformers for vector-based semantic clustering, instantly condensing hundreds of disparate news paragraphs into unified, verifiable factual clusters.',
+      'Distributed Background Processing: Built an asynchronous task queue utilizing Celery and Redis to offload heavy web scraping and LLM computations from the main API thread, keeping the frontend UI completely responsive during multi-minute intelligence runs.',
+      'Secure Data Persistence & Auth: Implemented a robust PostgreSQL database managed via Prisma ORM, seamlessly integrated with Better-Auth for stateless JWT session management to safely track user query histories and persist thousands of generated claim graphs.',
+      'High-Performance Visual Dashboard: Designed a polished, interactive UI leveraging Tailwind CSS and Next.js server-side rendering, translating dense mathematical and semantic relationships into a clean, zero-lag visual experience for end-users.'
     ],
-    techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'OAuth 2.0', 'ChromaDB', 'Tree-sitter'],
-    liveLink: 'https://chromewebstore.google.com/detail/jfngcklfbiljgpoeehlkpkackahgopoc?utm_source=item-share-cb',
-    githubLink: 'https://github.com/kankaniakshat185/prscope',
-    id: 'project3',
-    categories: ['Backend', 'Fullstack'],
+    techStack: ['Python', 'Hugging Face', 'PostgreSQL', 'FastAPI', 'Docker', 'Redis', 'Next.js', 'Sentence-BERT', 'DeBERTa-v3 NLI'],
+    liveLink: 'https://biasscope-app.vercel.app',
+    githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
+    id: 'project1',
+    categories: ['AI/ML', 'Backend', 'Fullstack'],
     techDetails: {
-      'Next.js': 'Chrome Extension UI',
-      'FastAPI': 'Risk-scoring & AST parsing engine'
+      'Python': 'Backend service & data processing',
+      'FastAPI': 'High-performance API endpoints',
+      'Next.js': 'Frontend interface'
     }
   },
   {
@@ -114,29 +150,7 @@ export const PROJECTS: Project[] = [
       'scikit-learn': 'Evaluation engine for metrics',
       'FastAPI': 'Real-time ML processing backend'
     }
-  },
-  {
-    name: 'Custom-http-server',
-description: [
-  'Hybrid Concurrency Model: Async selectors (epoll/kqueue) event loop with a worker thread pool, single-writer selector queue, and per-connection locking — backed by a 33-test suite in CI.',
-  'TCP Socket Management: Low-level binding, non-blocking listening, and accepting of raw network connections.',
-  'Persistent Connections: Keep-Alive and request pipelining to reuse TCP connections across multiple requests.',
-  'Content Negotiation: Dynamic gzip compression based on Accept-Encoding, skipped automatically for already-compressed content types.',
-  'Dynamic Routing: URL path parsing with correct 404 vs. 405 semantics, plus request size and idle-timeout limits to resist abuse.',
-  'File System Operations: Safely reads, writes, and deletes binary files, streaming large files in chunks with directory-traversal defense.',
-],
-
-
-    techStack: ['Python', 'HTTP Protocols', 'Socket Programming', 'Docker', 'Concurrency & Multithreading'],
-    githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
-    id: 'project5',
-    categories: ['Systems'],
-    techDetails: {
-      'Python': 'Low-level socket programming'
-    }
-  },
-
-
+  }
 ]
 
 // export const WORK_EXPERIENCE: WorkExperience[] = [
@@ -213,6 +227,14 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
     date: 'Aug 2026',
     readingTime: '17 min read',
     githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
+  },
+  {
+    title: 'Inside a 14.5M Ops/sec C++ order Book Matching Engine',
+    description: 'what got built: a limit order book, from scratch, in c++20. price-time priority matching, partial fills, market orders.',
+    link: '/tech-blog/low-latency-matching-engine',
+    uid: 'tech-blog-2',
+    date: 'Aug 2026',
+    readingTime: '10 min read',
   },
 ]
 

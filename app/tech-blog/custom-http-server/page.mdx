@@ -13,8 +13,6 @@ so, this one's about a project i've had running for a while now: a custom http/1
 
 i want to walk through the whole thing here, not just the interesting parts, because honestly the boring parts (header parsing, routing, gzip) are where you learn just as much as the async stuff. but i'll admit the *really* interesting part is the second half - what happened when i stopped treating "it works" as the same thing as "it's correct," and audited my own code like it belonged to someone else. i found four real concurrency bugs. one of them meant the server would hang forever on shutdown, basically every single time i ran it. we'll get there.
 
-grab a coffee, this is a long one.
-
 ---
 
 ## why build an http server from scratch

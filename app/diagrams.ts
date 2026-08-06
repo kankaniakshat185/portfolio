@@ -163,8 +163,20 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
 
     SendResponse -->|Keep-Alive| Requeue["Queue register(conn) action"]
     Requeue --> EventLoop
-    SendResponse -->|Connection close| CloseConn[Close connection]`
+    SendResponse -->|Connection close| CloseConn[Close connection]`,
 
+  project6: `flowchart TD
+    A["Caller: processOrder(order) / cancelOrder(id)"] --> B["MatchingEngineT&lt;BookT&gt;<br/>validate -&gt; delegate to BookT -&gt; rest unfilled remainder"]
+    B -->|"owns one, by value"| C["BookT — one of four interchangeable implementations"]
+    C --> D["bids_ — highest price first"]
+    C --> E["asks_ — lowest price first"]
+    C --> F["OrderId -&gt; location index — O(1) cancel"]
+    D --> G["PriceLevel — resting orders, oldest first"]
+    E --> H["PriceLevel — resting orders, oldest first"]
 
+    C -.->|"template parameter,<br/>zero code changes elsewhere"| I["1.0 OrderBook<br/>std::map + std::list + unordered_map"]
+    C -.-> J["2.0 OrderBookV2<br/>std::map + intrusive pool-backed list"]
+    C -.-> K["3.0 OrderBookV3<br/>flat tick-indexed array + occupancy bitmap"]
+    C -.-> L["4.0 OrderBookV4<br/>V3 + cached best-tick + flat id index"]`
 
 }
