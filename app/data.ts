@@ -234,7 +234,7 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
     link: '/tech-blog/low-latency-matching-engine',
     uid: 'tech-blog-2',
     date: 'Aug 2026',
-    readingTime: '10 min read',
+    readingTime: '33 min read',
   },
 ]
 
