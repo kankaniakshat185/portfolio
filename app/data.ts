@@ -229,7 +229,7 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
     githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
   },
   {
-    title: 'Inside a 14.5M Ops/sec C++ order Book Matching Engine',
+    title: 'Inside a 14.5M Ops/sec C++ Order Book Matching Engine',
     description: 'what got built: a limit order book, from scratch, in c++20. price-time priority matching, partial fills, market orders.',
     link: '/tech-blog/low-latency-matching-engine',
     uid: 'tech-blog-2',
