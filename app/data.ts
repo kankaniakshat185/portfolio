@@ -182,7 +182,7 @@ export const PROJECTS: Project[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'A deep dive',
+    title: 'Unrushed: The art, music and places that shape me',
     description: 'A deep dive into me and my interests',
     link: '/blog/a-deep-dive-into-me',
     uid: 'blog-1',
@@ -199,7 +199,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readingTime: '4 min read',
   },
   {
-    title: 'Dreams. Goals',
+    title: "The Life I'm trying to build",
     description:
       'An ever expanding page going deep into what I\'ve always dream\'t about and the goals I strive to achieve.',
     link: '/blog/my-dreams-and-goals',
