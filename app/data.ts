@@ -115,12 +115,12 @@ export const PROJECTS: Project[] = [
   {
     name: 'BiasScope - News Sentiment and Bias Intelligence',
     description: [
-      "Claim-Centric News Intelligence: Built BiasScope, a full-stack platform that breaks news articles into individual factual claims — instead of scoring an article's overall tone — to show exactly where left- and right-leaning coverage of the same story agree, diverge, or flatly contradict each other.",
-      "Multi-Model NLP Pipeline: Engineered an extraction pipeline combining six specialized models — an LLM for claim extraction, sentence-embeddings for semantic search, HDBSCAN for event clustering, and a DeBERTa-v3 NLI cross-encoder for contradiction detection — to turn hundreds of raw articles per search into verified, deduplicated claim clusters.",
-      "Original Trust Metrics: Designed two original scoring formulas — a weighted Data Quality Score and a Jensen-Shannon Divergence Polarization Score — computed live on every search and fully documented with real math in an in-app Methodology & Trust Report, not a black-box percentage.",
-      "Asynchronous Pipeline Architecture: Architected a two-phase FastAPI pipeline that returns a complete initial result instantly while background tasks run deeper claim clustering and event detection, with the frontend polling live pipeline status instead of blocking on a slow request.",
-      "Secure Cross-Service Proxy Layer: Designed a same-origin API proxy bridging the Next.js frontend and the Hugging Face-hosted backend, enabling fully credentialed, cookie-authenticated requests across services without ever exposing session tokens to the browser.",
-      "Test-Driven Reliability: Maintained 220+ automated tests covering the entire extraction-to-clustering pipeline, plus static type checking and linting across a Python/FastAPI backend and TypeScript/Next.js frontend, catching regressions before they reach production."
+      "Claim-Centric News Intelligence: Built a platform that extracts individual factual claims from news articles to reveal exactly where left- and right-leaning coverage agrees or contradicts.",
+      "Automated Event Detection: Groups thousands of raw claims into verified real-world events, filtering duplicates and confirming genuine cross-source agreement using a dedicated NLI contradiction-detection model.",
+      "Echo Chamber Summaries: Surfaces side-by-side AI-generated narratives showing how left- and right-leaning outlets frame the same story, exposing media echo chambers at a glance.",
+      "Original Trust Metrics: Scores every search with two original formulas — a weighted Data Quality Score and a Jensen-Shannon Divergence Polarization Score — fully documented in-app instead of a black-box percentage.",
+      "Instant Results, Deeper Analysis in Background: Returns full search results in seconds while background processing keeps refining claim clusters and event relationships — no waiting on a slow multi-stage pipeline.",
+      "Reliable by Design: Backed by 220+ automated tests and a fully authenticated, cross-service architecture, keeping search history and analysis secure and stable in production."
     ],
     techStack: ['Python', 'FastAPI', 'PostgreSQL', 'Next.js', 'Docker', 'Redis + Celery', 'Hugging Face', 'Prisma'],
     liveLink: 'https://biasscope-app.vercel.app',
