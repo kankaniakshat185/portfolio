@@ -115,13 +115,14 @@ export const PROJECTS: Project[] = [
   {
     name: 'BiasScope - News Sentiment and Bias Intelligence',
     description: [
-      'Claim-Centric Media Intelligence: Architected a full-stack news analysis platform using Next.js and FastAPI that moves beyond basic sentiment analysis, extracting and mapping distinct political claims to expose media echo chambers across hundreds of global news outlets.',
-      'Intelligent Information Extraction: Engineered an automated NLP pipeline integrating LLMs for atomic claim extraction and Sentence-Transformers for vector-based semantic clustering, instantly condensing hundreds of disparate news paragraphs into unified, verifiable factual clusters.',
-      'Distributed Background Processing: Built an asynchronous task queue utilizing Celery and Redis to offload heavy web scraping and LLM computations from the main API thread, keeping the frontend UI completely responsive during multi-minute intelligence runs.',
-      'Secure Data Persistence & Auth: Implemented a robust PostgreSQL database managed via Prisma ORM, seamlessly integrated with Better-Auth for stateless JWT session management to safely track user query histories and persist thousands of generated claim graphs.',
-      'High-Performance Visual Dashboard: Designed a polished, interactive UI leveraging Tailwind CSS and Next.js server-side rendering, translating dense mathematical and semantic relationships into a clean, zero-lag visual experience for end-users.'
+      "Claim-Centric News Intelligence: Built BiasScope, a full-stack platform that breaks news articles into individual factual claims — instead of scoring an article's overall tone — to show exactly where left- and right-leaning coverage of the same story agree, diverge, or flatly contradict each other.",
+      "Multi-Model NLP Pipeline: Engineered an extraction pipeline combining six specialized models — an LLM for claim extraction, sentence-embeddings for semantic search, HDBSCAN for event clustering, and a DeBERTa-v3 NLI cross-encoder for contradiction detection — to turn hundreds of raw articles per search into verified, deduplicated claim clusters.",
+      "Original Trust Metrics: Designed two original scoring formulas — a weighted Data Quality Score and a Jensen-Shannon Divergence Polarization Score — computed live on every search and fully documented with real math in an in-app Methodology & Trust Report, not a black-box percentage.",
+      "Asynchronous Pipeline Architecture: Architected a two-phase FastAPI pipeline that returns a complete initial result instantly while background tasks run deeper claim clustering and event detection, with the frontend polling live pipeline status instead of blocking on a slow request.",
+      "Secure Cross-Service Proxy Layer: Designed a same-origin API proxy bridging the Next.js frontend and the Hugging Face-hosted backend, enabling fully credentialed, cookie-authenticated requests across services without ever exposing session tokens to the browser.",
+      "Test-Driven Reliability: Maintained 220+ automated tests covering the entire extraction-to-clustering pipeline, plus static type checking and linting across a Python/FastAPI backend and TypeScript/Next.js frontend, catching regressions before they reach production."
     ],
-    techStack: ['Python', 'Hugging Face', 'PostgreSQL', 'FastAPI', 'Docker', 'Redis', 'Next.js', 'Sentence-BERT', 'DeBERTa-v3 NLI'],
+    techStack: ['Python', 'FastAPI', 'PostgreSQL', 'Next.js', 'Docker', 'Redis + Celery', 'Hugging Face', 'Prisma'],
     liveLink: 'https://biasscope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
     id: 'project1',

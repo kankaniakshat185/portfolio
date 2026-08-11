@@ -2,21 +2,42 @@ import { Server } from "http"
 
 export const PROJECT_DIAGRAMS: Record<string, string> = {
   project1: `graph TD
-    A[Raw Media Ingestion] --> B{Input Modality}
-    B -->|Topic Search| C[NewsAPI Aggregator]
-    B -->|Single URL| D[Direct HTML Parsing / Trafilatura]
-    B -->|Image/Screenshot| E[Vision LLM Processor]
-    
-    C --> F[Data Cleaning & Deduplication]
-    D --> F
-    E --> F
-    
-    F --> G[Llama-3 Claim Extraction Engine]
-    G --> H[(Global Claim Database w/ pgvector)]
-    H --> I[Claim Clustering via Cosine Similarity]
-    I --> J[Event & Narrative Generation]
-    J --> K[Cross-Ideological Consensus Calculation]
-    K --> L[FastAPI Results Endpoint]`,
+    Browser[Browser] -->|same-origin, credentialed| Proxy["Next.js /api/proxy\n(server-to-server relay)"]
+    Proxy -->|HTTPS + session cookie| API[FastAPI on Hugging Face Spaces]
+
+    API --> Auth["app/deps/auth.py\nsession lookup"]
+    API --> Pipeline["run_search_pipeline\n(app/services/pipeline.py)"]
+
+    subgraph "Synchronous /search"
+        Pipeline --> Ingest["ingest_articles\nNewsAPI + GDELT + newspaper3k"]
+        Ingest --> Clean["clean_and_deduplicate\nURL + fuzzy-title dedup"]
+        Clean --> NLP["analyze_articles\nsentiment / bias / NER"]
+        NLP --> Validate["validate_articles\nDQS, JSD polarization, diversity"]
+        Validate --> Narrative["generate_narrative +\ncontrastive summaries (LLM, cached)"]
+        Narrative --> Persist[(Search / Article / Insight)]
+    end
+
+    Persist -.->|BackgroundTasks, non-blocking| Phase2["run_phase2_pipeline"]
+
+    subgraph "Background Phase 2 — phase2Status: pending -> processing -> complete"
+        Phase2 --> Extract["process_and_store_claims\nquality gate + dedup"]
+        Extract --> Cluster["run_claim_clustering\nHDBSCAN, scoped to this topic"]
+        Cluster --> Events["run_event_detection\ncohesion + eligibility gates, NLI contradiction check"]
+        Events --> ClaimDB[(Claim / Evidence / ClaimCluster / Event)]
+    end
+
+    Extract -.-> LLMClient["cached_llm_call\nSHA-256 prompt cache"]
+    Narrative -.-> LLMClient
+    LLMClient -->|cache miss| HFRouter["HF Inference Router\nQwen2.5-7B-Instruct"]
+    LLMClient --> LLMCacheDB[(LLMCache / LLMUsage)]
+
+    ClaimDB -->|GET /results/:id/intelligence| API
+    Persist -->|GET /results/:id| API
+
+    Snapshot["Celery Beat: run_weekly_snapshots\n(app/tasks/snapshot_task.py)"] -.->|weekly, per subscription| Ingest
+    Snapshot --> SnapshotDB[(TopicSnapshot)]
+    Redis[(Upstash Redis)] --- Snapshot
+`,
     
   project2: `graph TD
     User([Quant / User]) -->|Build Strategy| UI(Next.js Web UI)
