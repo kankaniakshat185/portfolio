@@ -237,6 +237,15 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
     date: 'Aug 2026',
     readingTime: '33 min read',
   },
+  {
+    title: 'Strata: a Time-Series Database From Scratch, and Exactly Where My Half Ends',
+    description: 'a time-series database built from scratch in c++. custom bit-level compression, write-ahead log, memtable, and lsm-tree compaction.',
+    link: '/tech-blog/strata',
+    uid: 'tech-blog-3',
+    date: 'Aug 2026',
+    readingTime: '70 min read',
+    githubLink: 'https://github.com/kankaniakshat185/strata',
+  },
 ]
 
 export const SOCIAL_LINKS: SocialLink[] = [
