@@ -198,6 +198,21 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
     C -.->|"template parameter,<br/>zero code changes elsewhere"| I["1.0 OrderBook<br/>std::map + std::list + unordered_map"]
     C -.-> J["2.0 OrderBookV2<br/>std::map + intrusive pool-backed list"]
     C -.-> K["3.0 OrderBookV3<br/>flat tick-indexed array + occupancy bitmap"]
-    C -.-> L["4.0 OrderBookV4<br/>V3 + cached best-tick + flat id index"]`
+    C -.-> L["4.0 OrderBookV4<br/>V3 + cached best-tick + flat id index"]`,
 
+  project7: `flowchart LR
+    W[Writers] --> WAL[("WAL<br/>fsync'd")]
+    WAL --> MT["MemTable<br/>(sorted in memory)"]
+    MT -->|flush| L0["L0 block<br/>Gorilla-compressed,<br/>raw resolution"]
+    L0 -->|compaction| L1["L1<br/>rollups: min/max/avg/count/p99"]
+    L1 -->|compaction, coarser| L2["L2<br/>rollups"]
+    L2 -->|compaction, coarser| L3["L3<br/>rollups"]
+
+    IDX[["Inverted index<br/>label filter → matching series<br/>O(1)-ish, any scale"]]
+    Q{{"Query router"}}
+    IDX -.resolves series.-> Q
+    L0 -.recent range.-> Q
+    L1 -.older range.-> Q
+    L2 -.older still.-> Q
+    L3 -.spanning → stitched.-> Q`
 }

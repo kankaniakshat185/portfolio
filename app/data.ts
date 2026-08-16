@@ -253,7 +253,7 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
     link: '/tech-blog/custom-http-server',
     uid: 'tech-blog-1',
     date: 'Aug 2026',
-    readingTime: '17 min read',
+    readingTime: '32 min read',
     githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
   },
   {
@@ -262,7 +262,7 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
     link: '/tech-blog/low-latency-matching-engine',
     uid: 'tech-blog-2',
     date: 'Aug 2026',
-    readingTime: '33 min read',
+    readingTime: '40 min read',
   },
   {
     title: 'Strata: a Time-Series Database From Scratch, and Exactly Where My Half Ends',
@@ -270,7 +270,7 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
     link: '/tech-blog/strata',
     uid: 'tech-blog-3',
     date: 'Aug 2026',
-    readingTime: '70 min read',
+    readingTime: '65 min read',
     githubLink: 'https://github.com/kankaniakshat185/strata',
   },
 ]
