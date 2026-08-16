@@ -16,6 +16,10 @@ type WorkExperience = {
   end: string
   link: string
   id: string
+  collaborator?: {
+    name: string
+    githubLink: string
+  }
 }
 
 type BlogPost = {
@@ -35,6 +39,25 @@ type SocialLink = {
 }
 
 export const PROJECTS: Project[] = [
+  {
+    name: 'Strata',
+    description: [
+      'Built a tiered-resolution time-series database in C++20 from scratch, implementing a write-ahead log, a hand-rolled bit-level compression codec, and a crash-safe four-level compaction cascade (L0 → L1 → L2 → L3).',
+      'Designed and benchmarked two independent index structures for high-cardinality label lookup — a hash-map-based inverted index and a from-scratch B+ tree — to directly compare lookup, intersection, and prefix-scan performance at scale.',
+      "Achieved 4.28x smaller storage than naive encoding via delta-of-delta timestamp and XOR'd-value compression, with p50 label-lookup latency staying flat and sub-microsecond from 1,000 to 1,000,000 unique series.",
+      'Verified correctness at the bit level, not just on round-trip: every decoded value checked against its raw IEEE-754 bit pattern, with encoding tables hand-traced digit-by-digit against real output before either was trusted.',
+      "Proved crash safety via deterministic fault injection — a self-inflicted SIGKILL at 7 exact code points mid-write and mid-compaction — and measured the rollup approximation's real accuracy cost directly (89.1% p99 divergence on adversarial data) instead of leaving it assumed.",
+      'Backed by 10 passing test binaries, ~3,100 lines of engine code, and two independent crash-recovery harnesses — one deterministic, one a real external kill — with every known limitation (single write lock, no group commit, point-estimate percentiles) stated and measured, not hidden.'
+    ],
+    techStack: ['C++20', 'POSIX APIs', 'Multithreading', 'Make', 'GitHub Actions'],
+    githubLink: 'https://github.com/kankaniakshat185/strata',
+    collaborator: {
+      name: 'Vaishnavi Rai',
+      githubLink: 'https://github.com/VaishnaviRai287'
+    },
+    id: 'project7',
+    categories: ['Systems', 'Team Project'],
+  },
   {
     name: 'Low-Latency Matching-Engine',
     description: [
@@ -103,8 +126,12 @@ export const PROJECTS: Project[] = [
     techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'DuckDB', 'Celery', 'Redis'],
     liveLink: 'https://alphalab-hq.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/alphalab',
+    collaborator: {
+      name: 'Vaishnavi Rai',
+      githubLink: 'https://github.com/VaishnaviRai287'
+    },
     id: 'project2',
-    categories: ['Research', 'Backend', 'Fullstack'],
+    categories: ['Research', 'Backend', 'Fullstack', 'Team Project'],
     techDetails: {
       'Next.js': 'Frontend interface & Flow builder',
       'FastAPI': 'Backend API & Database Management',

@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { Github, LinkIcon, ChevronDown, ChevronUp, Network, XIcon } from 'lucide-react'
+import { Github, LinkIcon, ChevronDown, ChevronUp, Network, XIcon, Users } from 'lucide-react'
 import { motion, AnimatePresence } from 'motion/react'
 import {
   MorphingDialog,
@@ -35,17 +35,19 @@ export function ProjectCard({ project }: { project: Project }) {
       <div className="relative z-10">
         <div className="flex items-start justify-between gap-4">
           <div className="flex flex-wrap items-center gap-2.5">
-            <a
-              className="font-medium text-base text-zinc-900 dark:text-zinc-50 hover:underline flex items-center gap-1"
-              href={project.liveLink || project.githubLink}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {project.name}
-              <span className="text-zinc-400 dark:text-zinc-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-sm">
-                ↗
-              </span>
-            </a>
+            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+              <a
+                className="font-medium text-base text-zinc-900 dark:text-zinc-50 hover:underline flex items-center gap-1"
+                href={project.liveLink || project.githubLink}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {project.name}
+                <span className="text-zinc-400 dark:text-zinc-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-sm">
+                  ↗
+                </span>
+              </a>
+            </div>
           </div>
           <div className="flex items-center gap-1.5 shrink-0 pt-0.5">
             {/* Toggle Details */}
@@ -65,6 +67,24 @@ export function ProjectCard({ project }: { project: Project }) {
                 {isExpanded ? 'Hide Details' : 'Show Details'}
               </span>
             </div>
+
+            {/* Collaborator */}
+            {project.collaborator && (
+              <div className="relative group/tooltip">
+                <a
+                  href={project.collaborator.githubLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-zinc-200 bg-white text-zinc-600 transition-all duration-200 hover:text-zinc-950 hover:bg-zinc-50 dark:border-zinc-800 dark:bg-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 dark:hover:bg-zinc-900"
+                  aria-label={`Collaborator: ${project.collaborator.name}`}
+                >
+                  <Users className="h-3.5 w-3.5" />
+                </a>
+                <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 scale-95 opacity-0 rounded-md bg-zinc-900 px-2 py-1 text-[10px] font-sans font-medium text-white transition-all duration-200 group-hover/tooltip:scale-100 group-hover/tooltip:opacity-100 dark:bg-zinc-100 dark:text-zinc-900 whitespace-nowrap shadow-md z-30">
+                  Co-authored by {project.collaborator.name}
+                </span>
+              </div>
+            )}
 
             {/* Architecture Diagram */}
             {PROJECT_DIAGRAMS[project.id] && (
@@ -146,6 +166,8 @@ export function ProjectCard({ project }: { project: Project }) {
                 </span>
               </div>
             )}
+
+
           </div>
         </div>
 
