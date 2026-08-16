@@ -7,6 +7,10 @@ type Project = {
   id: string
   categories: string[]
   techDetails?: Record<string, string>
+  collaborator?: {
+    name: string
+    githubLink: string
+  }
 }
 
 type WorkExperience = {
@@ -265,12 +269,12 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
     readingTime: '40 min read',
   },
   {
-    title: 'Strata: a Time-Series Database From Scratch, and Exactly Where My Half Ends',
+    title: 'Strata: a Time-Series Database From Scratch in C++',
     description: 'a time-series database built from scratch in c++. custom bit-level compression, write-ahead log, memtable, and lsm-tree compaction.',
     link: '/tech-blog/strata',
     uid: 'tech-blog-3',
     date: 'Aug 2026',
-    readingTime: '65 min read',
+    readingTime: '50 min read',
     githubLink: 'https://github.com/kankaniakshat185/strata',
   },
 ]
