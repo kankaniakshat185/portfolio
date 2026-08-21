@@ -214,5 +214,54 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
     L0 -.recent range.-> Q
     L1 -.older range.-> Q
     L2 -.older still.-> Q
-    L3 -.spanning → stitched.-> Q`
+    L3 -.spanning → stitched.-> Q`,
+
+  project8: `flowchart TB
+    Browser["Browser<br/>Next.js frontend (Vercel)"]
+
+    subgraph API["FastAPI backend (Render)"]
+        direction TB
+        Auth["auth/<br/>login OAuth — GitHub · Slack · Google"]
+        Connectors["connectors/<br/>data-access OAuth + API clients<br/>GitHub · Slack · Jira"]
+
+        subgraph Features["features/ — one router + service per query mode"]
+            direction LR
+            CS["context_search"]
+            Arch["archaeology"]
+            WTA["who_to_ask<br/>+ PR Blast Radius"]
+            FT["flaky_tests"]
+            Notes["notes"]
+            WD["weekly_digest"]
+        end
+
+        subgraph Engine["engine/ — shared retrieval & correlation core"]
+            direction LR
+            Ingestion["ingestion"]
+            Indexing["indexing<br/>hybrid keyword + vector search"]
+            Correlation["correlation"]
+            Ranking["ranking<br/>differential-tested"]
+            CodeContext["code_context<br/>live git blame"]
+            CodeSearch["code_search"]
+            Synthesis["synthesis<br/>BYOK / free-tier LLM"]
+        end
+    end
+
+    Worker["Celery worker<br/>15-min periodic resync + indexing"]
+
+    DB[("Neon Postgres<br/>+ pgvector")]
+    Cache[("Redis<br/>broker + rate limits")]
+
+    Providers["GitHub · Slack · Jira APIs"]
+    LLMs["OpenAI · Anthropic · Groq · Gemini"]
+
+    Browser -->|session cookie| Auth
+    Browser -->|session cookie| Features
+    Features --> Engine
+    Connectors --> Providers
+    Auth --> DB
+    Engine --> DB
+    Worker --> Connectors
+    Worker --> Engine
+    Worker --> Cache
+    Engine --> LLMs`
 }
