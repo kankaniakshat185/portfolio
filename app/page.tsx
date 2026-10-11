@@ -154,13 +154,13 @@ export default function Personal() {
         >
           <div className="flex-1 space-y-4">
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
-              I’m a Computer Science student specializing in Artificial Intelligence, with core interests in <span className="font-serif italic font-medium text-zinc-900 dark:text-zinc-100">backend engineering, distributed systems, machine learning, and scalable architectures</span>. I enjoy building applications that fuse rigorous software engineering with practical AI, specifically systems involving large-scale data pipelines, APIs, and intelligent workflows.
+              I'm a Computer Science student specializing in Artificial Intelligence, drawn to the space where <span className="font-serif italic font-medium text-zinc-900 dark:text-zinc-100">backend engineering, DevOps and cloud infrastructure, low-level systems programming, and machine learning</span> intersect. I like building things that combine rigorous software engineering with practical AI — large-scale data pipelines, resilient APIs, and intelligent workflows that hold up under real-world load.
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
-              A large part of my learning currently revolves around understanding how modern software scales end-to-end—from backend service design to model orchestration. I'm particularly drawn to backend development using Python &amp; FastAPI, asynchronous event-driven architectures, caching, and database design.
+              Much of what I'm learning right now is about how software scales end-to-end, from backend service design and deployment to model orchestration. That's pulled me toward Python and FastAPI for backend work, asynchronous event-driven architectures, caching, database design, and the DevOps practices (containerization, CI/CD, cloud infra) that keep systems like that reliable in production. I'm also increasingly interested in distributed systems as the next layer of that same problem.
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base text-zinc-500">
-              I prefer learning through building, focusing on applying theoretical concepts in real-world scenarios to design high-performance systems.
+              I learn best by building — taking theory and testing it against real-world constraints to design systems that are fast, correct, and built to last.
             </p>
           </div>
         </motion.section>
@@ -252,27 +252,31 @@ export default function Personal() {
             {[
               {
                 category: 'Languages',
-                items: ['Python', 'C', 'C++', 'SQL']
+                items: ['Python', 'C++', 'SQL']
               },
               {
                 category: 'Backend & Infrastructure',
-                items: ['FastAPI', 'RESTful APIs', 'WebSockets', 'Redis', 'Docker', 'Kubernetes', 'Celery', 'Asynchronous Processing', 'System Design', 'Caching', 'Authentication', 'CI/CD', 'Software Testing']
+                items: ['FastAPI', 'RESTful APIs', 'AWS', 'Docker', 'Kubernetes', 'Redis', 'Celery', 'WebSockets', 'SQLAlchemy']
               },
               {
                 category: 'Databases',
-                items: ['PostgreSQL', 'MongoDB', 'MySQL', 'Relational Schema Design']
+                items: ['PostgreSQL', 'MongoDB', 'MySQL']
               },
               {
-                category: 'Data Science & ML',
-                items: ['NumPy', 'Pandas', 'Matplotlib', 'Scikit-learn', 'PyTorch', 'HuggingFace', 'NLP', 'RAG']
+                category: 'Developer Tools',
+                items: ['Git', 'GitHub', 'Linux', 'Pytest', 'GoogleTest', 'GitHub Actions', 'Postman']
+              },
+              {
+                category: 'Systems',
+                items: ['System Design', 'Concurrency & Multithreading', 'Performance Optimization', 'Software Testing', 'CI/CD']
               },
               {
                 category: 'Core CS Concepts',
                 items: ['Distributed & Scalable Systems', 'OOP', 'DBMS', 'OS', 'CN']
               },
               {
-                category: 'Developer Tools',
-                items: ['Git', 'GitHub', 'Linux', 'Pytest', 'GitHub Actions', 'Postman', 'PowerBI']
+                category: 'AI & ML',
+                items: ['NumPy', 'Pandas', 'Matplotlib', 'Scikit-learn', 'PyTorch', 'HuggingFace', 'RAG', 'LLMs', 'MCP']
               }
             ].map((group) => (
               <div key={group.category} className="py-5 first:pt-0 last:pb-0 flex flex-col sm:flex-row sm:items-baseline gap-2 sm:gap-6 border-b border-zinc-100 dark:border-zinc-900/50 last:border-b-0">

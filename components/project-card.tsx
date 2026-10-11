@@ -81,7 +81,7 @@ export function ProjectCard({ project }: { project: Project }) {
                   <Users className="h-3.5 w-3.5" />
                 </a>
                 <span className="pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-2 scale-95 opacity-0 rounded-md bg-zinc-900 px-2 py-1 text-[10px] font-sans font-medium text-white transition-all duration-200 group-hover/tooltip:scale-100 group-hover/tooltip:opacity-100 dark:bg-zinc-100 dark:text-zinc-900 whitespace-nowrap shadow-md z-30">
-                  Co-authored by {project.collaborator.name}
+                  Co-developed with {project.collaborator.name}
                 </span>
               </div>
             )}

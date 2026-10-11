@@ -60,12 +60,10 @@ export const PROJECTS: Project[] = [
   {
     name: 'Strata',
     description: [
-      'Built a tiered-resolution time-series database in C++20 from scratch, implementing a write-ahead log, a hand-rolled bit-level compression codec, and a crash-safe four-level compaction cascade (L0 → L1 → L2 → L3).',
-      'Designed and benchmarked two independent index structures for high-cardinality label lookup — a hash-map-based inverted index and a from-scratch B+ tree — to directly compare lookup, intersection, and prefix-scan performance at scale.',
-      "Achieved 4.28x smaller storage than naive encoding via delta-of-delta timestamp and XOR'd-value compression, with p50 label-lookup latency staying flat and sub-microsecond from 1,000 to 1,000,000 unique series.",
-      'Verified correctness at the bit level, not just on round-trip: every decoded value checked against its raw IEEE-754 bit pattern, with encoding tables hand-traced digit-by-digit against real output before either was trusted.',
-      "Proved crash safety via deterministic fault injection — a self-inflicted SIGKILL at 7 exact code points mid-write and mid-compaction — and measured the rollup approximation's real accuracy cost directly (89.1% p99 divergence on adversarial data) instead of leaving it assumed.",
-      'Backed by 10 passing test binaries, ~3,100 lines of engine code, and two independent crash-recovery harnesses — one deterministic, one a real external kill — with every known limitation (single write lock, no group commit, point-estimate percentiles) stated and measured, not hidden.'
+      'Built a tiered-resolution time-series database in C++20 from scratch, with a write-ahead log, a hand-rolled bit-level compression codec, and a crash-safe four-level compaction cascade.',
+      'Achieved 4.28× smaller storage than naive encoding, with p50 label-lookup latency staying flat and sub-microsecond from 1,000 to 1,000,000 unique series.',
+      'Proved crash safety via deterministic fault injection at 7 exact code points mid-write and mid-compaction, with zero data loss in every scenario.',
+      'Benchmarked two independent index structures (a hash-based inverted index and a from-scratch B+ tree) to directly compare lookup and prefix-scan performance at scale.'
     ],
     techStack: ['C++20', 'POSIX APIs', 'Multithreading', 'Make', 'GitHub Actions'],
     githubLink: 'https://github.com/kankaniakshat185/strata',
@@ -81,7 +79,7 @@ export const PROJECTS: Project[] = [
     description: [
       'Built a C++20 limit order book and matching engine from scratch, implementing strict price-time priority matching with partial order fills.',
       'Designed and benchmarked four independent implementations of the order book\'s core data structure — a standard-library baseline, a custom memory pool, and two cache-optimized array-based variants — to directly compare their real-world performance impact.',
-      'Achieved up to 14.5 million orders processed per second in the best-performing version — a 2.4x to 3.9x throughput improvement over the baseline, measured consistently across three distinct workload patterns.',
+      'Achieved up to 14.5 million orders processed per second, with throughput improving 2.5× to 3.9× across three workloads after four rounds of optimization.',
       'Verified correctness across all four implementations with differential testing: identical order sequences replayed through each version, comparing results before trusting any performance claim.',
       'Profiled with real hardware performance counters to confirm the true source of every bottleneck, not just wall-clock timing.',
       'Backed by 71 automated tests, 99% code coverage, and a 5-stage CI pipeline — including one performance trade-off that was identified, documented, and resolved in a later version.'
