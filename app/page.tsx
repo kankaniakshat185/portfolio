@@ -331,12 +331,12 @@ export default function Personal() {
                 {TECH_BLOG_POSTS.map((post) => (
                   <Link
                     key={post.uid}
-                    className="-mx-3 rounded-xl px-3 py-3"
+                    className="w-full block -mx-3 rounded-xl px-3 py-3"
                     href={post.link}
                     data-id={post.uid}
                   >
-                    <div className="flex flex-col space-y-1">
-                      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                    <div className="flex flex-col space-y-1 w-full">
+                      <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 w-full">
                         <h4 className="font-normal dark:text-zinc-100">
                           {post.title}
                         </h4>
@@ -376,12 +376,12 @@ export default function Personal() {
               {BLOG_POSTS.map((post) => (
                 <Link
                   key={post.uid}
-                  className="-mx-3 rounded-xl px-3 py-3"
+                  className="w-full block -mx-3 rounded-xl px-3 py-3"
                   href={post.link}
                   data-id={post.uid}
                 >
-                  <div className="flex flex-col space-y-1">
-                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1">
+                  <div className="flex flex-col space-y-1 w-full">
+                    <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 w-full">
                       <h4 className="font-normal dark:text-zinc-100">
                         {post.title}
                       </h4>

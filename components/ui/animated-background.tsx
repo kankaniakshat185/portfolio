@@ -83,7 +83,9 @@ export function AnimatedBackground({
             />
           )}
         </AnimatePresence>
-        <div className="z-10">{child.props.children}</div>
+        <div className={cn('z-10', child.props.className?.includes('w-full') && 'w-full')}>
+          {child.props.children}
+        </div>
       </>,
     )
   })
