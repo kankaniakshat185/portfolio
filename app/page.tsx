@@ -154,13 +154,16 @@ export default function Personal() {
         >
           <div className="flex-1 space-y-4">
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
-              I'm a Computer Science student specializing in Artificial Intelligence, drawn to the space where <span className="font-serif italic font-medium text-zinc-900 dark:text-zinc-100">backend engineering, DevOps and cloud infrastructure, low-level systems programming, and machine learning</span> intersect. I like building things that combine rigorous software engineering with practical AI — large-scale data pipelines, resilient APIs, and intelligent workflows that hold up under real-world load.
+              I'm a Computer Science student specializing in Artificial Intelligence, drawn to the space where <strong className="font-semibold text-zinc-900 dark:text-zinc-100">distributed systems, low-level systems programming, backend infrastructure, and machine learning</strong> intersect. I like building things that combine rigorous software engineering with practical AI: resilient APIs, fast storage and scheduling layers, and intelligent workflows that hold up under real-world load.
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
-              Much of what I'm learning right now is about how software scales end-to-end, from backend service design and deployment to model orchestration. That's pulled me toward Python and FastAPI for backend work, asynchronous event-driven architectures, caching, database design, and the DevOps practices (containerization, CI/CD, cloud infra) that keep systems like that reliable in production. I'm also increasingly interested in distributed systems as the next layer of that same problem.
+              What ties my work together is a habit of asking how a system fails and what it costs. I'd rather know where the time actually goes than guess, so I profile before I optimize and keep a change only if the numbers back it up. I'd rather prove something is correct than hope, which means differential testing before I trust a benchmark, fault injection to show a crash loses nothing, and CI on every push. Most of my design decisions come down to a trade-off between latency, throughput, reliability and complexity, and I try to write the reasoning down so the next person doesn't have to rediscover it.
             </p>
-            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base text-zinc-500">
-              I learn best by building — taking theory and testing it against real-world constraints to design systems that are fast, correct, and built to last.
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
+              That's also why I care about documentation and clean engineering. A system that only works while its author remembers how it works isn't finished. I'm aiming for software engineering roles in backend and systems, where the work is making things faster, safer to change, and easier to trust.
+            </p>
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
+              I learn best by building, taking theory and testing it against real-world constraints to design systems that are <strong className="font-semibold text-zinc-900 dark:text-zinc-100">fast, correct, and built to last</strong>.
             </p>
           </div>
         </motion.section>
@@ -228,13 +231,17 @@ export default function Personal() {
           </div>
 
           <motion.div layout className="relative flex flex-col space-y-4">
-            <AnimatePresence mode="wait">
+            <AnimatePresence>
               {PROJECTS.filter(
                 (project) =>
                   activeCategory === 'All' ||
                   project.categories.includes(activeCategory)
-              ).map((project) => (
-                <ProjectCard key={project.id} project={project} />
+              ).map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  defaultExpanded={project.defaultExpanded ?? index < 5}
+                />
               ))}
             </AnimatePresence>
           </motion.div>
@@ -256,11 +263,11 @@ export default function Personal() {
               },
               {
                 category: 'Backend & Infrastructure',
-                items: ['FastAPI', 'RESTful APIs', 'AWS', 'Docker', 'Kubernetes', 'Redis', 'Celery', 'WebSockets', 'SQLAlchemy']
+                items: ['FastAPI', 'RESTful APIs', 'Celery', 'SQLAlchemy']
               },
               {
                 category: 'Databases',
-                items: ['PostgreSQL', 'MongoDB', 'MySQL']
+                items: ['PostgreSQL', 'Redis', 'MongoDB', 'MySQL']
               },
               {
                 category: 'Developer Tools',
@@ -268,11 +275,15 @@ export default function Personal() {
               },
               {
                 category: 'Systems',
-                items: ['System Design', 'Concurrency & Multithreading', 'Performance Optimization', 'Software Testing', 'CI/CD']
+                items: ['System Design', 'Design Patterns', 'Distributed Systems', 'Concurrency & Multithreading', 'Performance Optimization', 'Software Testing', 'CI/CD']
               },
               {
                 category: 'Core CS Concepts',
-                items: ['Distributed & Scalable Systems', 'OOP', 'DBMS', 'OS', 'CN']
+                items: ['Object-Oriented Programming', 'DevOps & Cloud', 'Database Management Systems', 'Operating Systems', 'Computer Architecture', 'Computer Networks']
+              },
+              {
+                category: 'DevOps & CI/CD',
+                items: ['Docker', 'AWS', 'Kubernetes', 'GitHub Actions (CI/CD)', 'Shell Scripting', 'Prometheus', 'Grafana', 'SDLC']
               },
               {
                 category: 'AI & ML',

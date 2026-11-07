@@ -268,5 +268,43 @@ export const PROJECT_DIAGRAMS: Record<string, string> = {
     Worker --> Connectors
     Worker --> Engine
     Worker --> Cache
-    Engine --> LLMs`
+    Engine --> LLMs`,
+
+  project9: `flowchart LR
+    subgraph CP["chronosd (one process)"]
+        API["API server (FastAPI)"]
+        STORE[("Versioned store<br/>in memory + WAL and snapshots on disk")]
+        DC["Deployment controller<br/>(+ rollouts)"]
+        SCH["Scheduler"]
+        NLC["Node lifecycle controller<br/>(+ eviction)"]
+        API <--> STORE
+        STORE -->|"watch log"| INF["shared informers<br/>(list + watch caches)"]
+        INF -->|"keys"| DC
+        INF -->|"keys"| SCH
+        INF -->|"keys"| NLC
+        DC -->|"CAS writes"| STORE
+        SCH -->|"bind"| STORE
+        NLC -->|"CAS writes"| STORE
+    end
+    CLI["chronosctl"] -->|HTTP| API
+    subgraph N1["chronos-agent (node)"]
+        A1["heartbeat · fence watch · sync · probes"] --> R1["process runtime"]
+        A1 -.->|"writes"| L1[/"lease file<br/>(send time of last accepted heartbeat)"/]
+        R1 --> S1a["chronos-shim"] --> W1a(("workload"))
+        R1 --> S1b["chronos-shim"] --> W1b(("workload"))
+        L1 -.->|"read every 100 ms"| S1a
+        L1 -.->|"read every 100 ms"| S1b
+    end
+    A1 -->|"heartbeat; watch pods?node=self; status"| API`,
+
+  project10: `flowchart TD
+    A["Caller: my_malloc / my_free / my_realloc / my_calloc"] --> B["C API glue<br/>abort with a diagnostic on bad free or detected corruption"]
+    B --> C["default_heap(): BasicHeap&lt;Fit&gt;, 256 MiB"]
+    T["C++ callers, tests, benchmarks<br/>BasicHeap&lt;Fit&gt; directly, any arena size"] --> C
+    C -->|"owns"| D["Arena: one fixed mmap reservation, lazily committed"]
+    C -->|"head pointer"| E["Explicit free list<br/>links live inside the free blocks"]
+    C --> F["malloc: find_fit -&gt; safe unlink -&gt; place (split)<br/>free: validate -&gt; release (coalesce both ways) -&gt; push"]
+
+    C -.->|"template parameter,<br/>zero code changes elsewhere"| G["FirstFit (default): first block that fits"]
+    C -.-> H["BestFit: smallest block that fits, stop on exact match"]`
 }

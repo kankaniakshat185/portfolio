@@ -6,6 +6,7 @@ type Project = {
   githubLink?: string
   id: string
   categories: string[]
+  defaultExpanded?: boolean
   techDetails?: Record<string, string>
   collaborator?: {
     name: string
@@ -44,28 +45,28 @@ type SocialLink = {
 
 export const PROJECTS: Project[] = [
   {
-    name: 'Relay - Shared Context Engine for GitHub/Slack/Jira',
+    name: 'Chronos',
     description: [
-      'Architected a shared context engine correlating GitHub, Slack, and Jira into eight query modes (context search, git-blame archaeology, PR blast radius, flaky-test detection, weekly digests, incident correlation, deciion debt) — one retrieval/ranking core reused by every feature, never duplicated.',
-      'Built hybrid keyword + vector search on PostgreSQL/pgvector with pluggable LLM synthesis (OpenAI, Anthropic, Groq, Gemini, BYOK or free tier), validated by 300+ tests at 95% coverage across unit, integration, and differential-ranking suites.',
-      "Traced live git blame via GitHub's GraphQL API to correlate any file, PR, or contributor against the Jira tickets and Slack threads discussing it — three different entry points funneling into one pooling/dedup/ranking pipeline, not three copies of it.",
-      'Deployed a three-platform production stack (Render, Vercel, Neon) with automated Alembic migrations and backgrounded Celery workers, securing six separate OAuth apps across four providers by deliberately isolating login credentials from data-access credentials.'
+      'Built a Kubernetes-style orchestrator in Python with a versioned CAS store, filter/score scheduler, level-triggered reconciliation and rolling updates.',
+      'Designed self-fencing nodes timed from heartbeat send time, guaranteeing no duplicate replicas under pause, crash and partition, with failed-node workloads replaced in 5.3 s.',
+      'Implemented a write-ahead log with group commit and snapshots, raising durable writes 11× (300 → 3,393/s) and cutting 1M-record recovery from 124 s to 0.22 s.',
+      'Profiled the scheduler and found 85% of time spent deep-copying cached nodes; a read-only cache view made it 2.8–3.9× faster (221 pods/s at 100 nodes).'
     ],
-    techStack: ['Python', 'FastAPI', 'PostgreSQL+pgvector', 'SQLAlchemy', 'Celery+Redis', 'Next.js', 'TypeScript'],
-    githubLink: 'https://github.com/kankaniakshat185/Relay',
-    liveLink: 'https://therelay.vercel.app',
-    id: 'project8',
-    categories: ['Full Stack'],
+    techStack: ['Python', 'FastAPI', 'Prometheus', 'Grafana', 'GitHub Actions'],
+    githubLink: 'https://github.com/kankaniakshat185/Chronos',
+    id: 'project9',
+    categories: ['Systems', 'Backend'],
+    defaultExpanded: true,
   },
   {
     name: 'Strata',
     description: [
-      'Built a tiered-resolution time-series database in C++20 from scratch, with a write-ahead log, a hand-rolled bit-level compression codec, and a crash-safe four-level compaction cascade.',
-      'Achieved 4.28× smaller storage than naive encoding, with p50 label-lookup latency staying flat and sub-microsecond from 1,000 to 1,000,000 unique series.',
-      'Proved crash safety via deterministic fault injection at 7 exact code points mid-write and mid-compaction, with zero data loss in every scenario.',
-      'Benchmarked two independent index structures (a hash-based inverted index and a from-scratch B+ tree) to directly compare lookup and prefix-scan performance at scale.'
+      'Built a C++ time-series storage engine with write-ahead logging, crash recovery and LSM-style compaction.',
+      'Implemented Gorilla-based compression using delta-of-delta and XOR encoding, reducing storage by 4.28×.',
+      'Benchmarked a hash-indexed and a B+ tree index at 1M entries — hash map wins lookups (500ns vs 3.8μs), B+ tree wins prefix scans by 3.4×, each losing where expected.',
+      'Proved crash safety via deterministic fault injection, killing the process at 7 exact code points mid-write/compaction with zero data loss.'
     ],
-    techStack: ['C++20', 'POSIX APIs', 'Multithreading', 'Make', 'GitHub Actions'],
+    techStack: ['C++', 'POSIX APIs (file I/O, fsync, signals)', 'Multithreading', 'Make'],
     githubLink: 'https://github.com/kankaniakshat185/strata',
     collaborator: {
       name: 'Vaishnavi Rai',
@@ -73,58 +74,64 @@ export const PROJECTS: Project[] = [
     },
     id: 'project7',
     categories: ['Systems', 'Team Project'],
+    defaultExpanded: true,
   },
   {
-    name: 'Low-Latency Matching-Engine',
+    name: 'Low-Latency Matching Engine',
     description: [
-      'Built a C++20 limit order book and matching engine from scratch, implementing strict price-time priority matching with partial order fills.',
-      'Designed and benchmarked four independent implementations of the order book\'s core data structure — a standard-library baseline, a custom memory pool, and two cache-optimized array-based variants — to directly compare their real-world performance impact.',
-      'Achieved up to 14.5 million orders processed per second, with throughput improving 2.5× to 3.9× across three workloads after four rounds of optimization.',
-      'Verified correctness across all four implementations with differential testing: identical order sequences replayed through each version, comparing results before trusting any performance claim.',
-      'Profiled with real hardware performance counters to confirm the true source of every bottleneck, not just wall-clock timing.',
-      'Backed by 71 automated tests, 99% code coverage, and a 5-stage CI pipeline — including one performance trade-off that was identified, documented, and resolved in a later version.'
+      'Built a C++ limit-order-book matching engine with price-time priority, partial fills, and O(1) cancels.',
+      'Benchmarked four OrderBook data-structure designs from a tree-based map to a cached flat-index array, improving throughput 2.5–3.9× (up to 14.5M ops/sec).',
+      'Diagnosed a 10.3% regression via hardware performance counters, traced to an uncached bitmap scan; fixed it with a cached best-price index, turning it into a 100.6% gain (up to 122% elsewhere).',
+      'Verified every optimization with differential testing, requiring all four implementations to produce byte-identical trade ledgers on the same input before any performance number was trusted.'
     ],
-    techStack: ['C++20', 'CMake', 'GoogleTest', 'clang', 'GitHub Actions', 'Apple Instruments (os_signpost)'],
+    techStack: ['C++', 'CMake', 'GoogleTest', 'Hardware Performance Profiling'],
     githubLink: 'https://github.com/kankaniakshat185/low-latency-matching-engine',
     id: 'project6',
     categories: ['Systems'],
-    techDetails: {
-      'C++20': 'Low-latency systems programming'
-    }
+    defaultExpanded: true,
   },
   {
-    name: 'Custom-http-server',
+    name: 'Relay',
     description: [
-      'Hybrid Concurrency Model: Async selectors (epoll/kqueue) event loop with a worker thread pool, single-writer selector queue, and per-connection locking — backed by a 33-test suite in CI.',
-      'TCP Socket Management: Low-level binding, non-blocking listening, and accepting of raw network connections.',
-      'Persistent Connections: Keep-Alive and request pipelining to reuse TCP connections across multiple requests.',
-      'Content Negotiation: Dynamic gzip compression based on Accept-Encoding, skipped automatically for already-compressed content types.',
-      'Dynamic Routing: URL path parsing with correct 404 vs. 405 semantics, plus request size and idle-timeout limits to resist abuse.',
-      'File System Operations: Safely reads, writes, and deletes binary files, streaming large files in chunks with directory-traversal defense.',
+      'Built an LLM-orchestrated context engine automating cross-tool workflows across GitHub, Slack, and Jira — 8 query modes helping teams find code, investigate issues, and capture engineering knowledge.',
+      'Implemented hybrid keyword/vector retrieval and relevance scoring, separating true matches from noisy correlations across integrated systems.',
+      'Built asynchronous background jobs with Celery and Redis for data ingestion and indexing, and a provider-agnostic LLM layer supporting OpenAI, Claude, Groq, and Gemini, backed by 300+ tests.',
+      'Diagnosed and fixed live production failures — a Redis/TLS misconfiguration, a Celery rate-limit exhaustion incident, and a silently stalled job scheduler — using structured JSON logging, Sentry, and Postgres query-plan analysis.'
     ],
-    techStack: ['Python', 'HTTP Protocols', 'Socket Programming', 'Docker', 'Concurrency & Multithreading'],
-    githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
-    id: 'project5',
+    techStack: ['Python', 'FastAPI', 'SQLAlchemy', 'PostgreSQL/pgvector', 'RAG', 'Redis/Celery'],
+    githubLink: 'https://github.com/kankaniakshat185/Relay',
+    liveLink: 'https://therelay.vercel.app',
+    id: 'project8',
+    categories: ['Fullstack', 'Backend'],
+    defaultExpanded: true,
+  },
+  {
+    name: 'Custom Memory Allocator',
+    description: [
+      'Built a C++ heap allocator (malloc/free/realloc) from scratch with explicit free lists, block splitting, and O(1) boundary-tag coalescing, hardened against use-after-free, verified by fuzzing and sanitizer-clean tests.',
+      'Benchmarked six allocator designs across four workloads, eliminating all fragmentation failures (9,293 → 0), cutting memory up to 2.7×, and running up to 1.32× faster than macOS malloc.',
+      'Profiled hardware performance counters to show worst-case cost was memory-bound free-list walks (98% of time), which coalescing shrank 8.5×, making the worst case 2.9× faster.'
+    ],
+    techStack: ['C++', 'CMake', 'GoogleTest', 'Hardware Performance Profiling'],
+    githubLink: 'https://github.com/kankaniakshat185/custom-memory-allocator',
+    id: 'project10',
     categories: ['Systems'],
-    techDetails: {
-      'Python': 'Low-level socket programming'
-    }
+    defaultExpanded: true,
   },
   {
     name: 'PRScope - PR Review Intelligence',
     description: [
-      'Architected a Chrome Extension + FastAPI platform injecting deterministic PR risk scores and LLM-driven reviews directly into GitHub.',
-      'Built a risk engine using real control-flow-graph complexity and Bandit security scanning — reproducible without any LLM call.',
-      'Engineered multi-language (Python/JS/TS) call-graph analysis backed by a persisted, incrementally-updated repo index for cross-file blast-radius detection.',
-      'Designed and evaluated a retrieval-augmented incident matcher — 93% precision@1 — catching a real calibration bug that hid correct matches from users.',
-      'Automated CI-style analysis via debounced GitHub webhooks; cut LLM call volume ~85% with multi-provider failover with BYOK (Gemini/OpenAI/Groq) for resilience',
-      'Extended the platform with team-scoped collaboration: shared review visibility, crowdsourced incidents, and one-click GitHub commit-status publishing.'
+      'Built a Chrome extension performing secure code analysis on GitHub PRs — Bandit-based vulnerability scanning plus configurable architecture-rule enforcement — flagging risks before merge.',
+      'Integrated LLMs (Gemini, OpenAI, Groq) for PR summaries, checklists, and review comments; cut calls per analysis from up to 14 to 2 and enforced structured JSON output after rate-limit and malformed-output failures.',
+      'Architected a risk-scoring engine and an incident-retrieval feature matching PRs against 15 real software incidents (Log4Shell, GitLab, Knight Capital), validated at 93% precision@1.',
+      'Debugged and resolved a production issue through structured troubleshooting — root-caused a race condition causing intermittent first-login 500s, fixed and backed by a regression test.'
     ],
     techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'TailwindCSS', 'OAuth 2.0', 'ChromaDB', 'Tree-sitter'],
     liveLink: 'https://chromewebstore.google.com/detail/jfngcklfbiljgpoeehlkpkackahgopoc?utm_source=item-share-cb',
     githubLink: 'https://github.com/kankaniakshat185/prscope',
     id: 'project3',
     categories: ['Backend', 'Fullstack'],
+    defaultExpanded: true,
     techDetails: {
       'Next.js': 'Chrome Extension UI',
       'FastAPI': 'Risk-scoring & AST parsing engine'
@@ -133,11 +140,9 @@ export const PROJECTS: Project[] = [
   {
     name: 'AlphaLab - α Factor Stress-testing Platform',
     description: [
-      'Interactive Quantitative Research: Architected a full-stack financial backtesting platform using Next.js and FastAPI, featuring an intuitive visual Flow page and a comprehensive technical glossary to make complex quantitative strategies accessible to all users.',
-      'High-Performance Stress Testing: Integrated an embedded DuckDB analytics engine to query 5 years of daily NIFTY 50 market data, powering an intensive 18-fold robustness testing grid that stress-tests strategies against missing data and market noise in under 3 minutes.',
-      'Distributed Background Processing: Built an asynchronous job queue using Celery and Redis to offload heavy, multi-minute mathematical calculations from the main thread, keeping the frontend UI highly responsive during long experiments.',
-      'Data Persistence & Authentication: Developed a secure JWT-based login system with PostgreSQL to authenticate users and automatically save complete experiment histories, allowing users to seamlessly review and iterate on past strategies.',
-      'Cloud-Native Deployment: Engineered a production-ready environment deployed on Render, utilizing auto-running Alembic database migrations and Apache Arrow-optimized memory queries to safely process massive datasets on limited cloud hardware.'
+      'Built a full-stack quant research platform for backtesting equity alpha factors, computing a deterministic Robustness Score across 18 stress scenarios to automatically flag overfit factors.',
+      'Designed a custom DSL with a recursive-descent lexer, parser, and AST compiler that statically blocks look-ahead bias before execution, enforced through 48 dedicated test cases.',
+      'Enforced rigorous code review and branch-protected version control in a 2-engineer team, gating every merge to main behind CI (GitHub Actions) and 104 tests.'
     ],
     techStack: ['Python', 'Next.js', 'FastAPI', 'PostgreSQL', 'DuckDB', 'Celery', 'Redis'],
     liveLink: 'https://alphalab-hq.vercel.app',
@@ -148,6 +153,7 @@ export const PROJECTS: Project[] = [
     },
     id: 'project2',
     categories: ['Research', 'Backend', 'Fullstack', 'Team Project'],
+    defaultExpanded: false,
     techDetails: {
       'Next.js': 'Frontend interface & Flow builder',
       'FastAPI': 'Backend API & Database Management',
@@ -158,18 +164,16 @@ export const PROJECTS: Project[] = [
   {
     name: 'BiasScope - News Sentiment and Bias Intelligence',
     description: [
-      "Claim-Centric News Intelligence: Built a platform that extracts individual factual claims from news articles to reveal exactly where left- and right-leaning coverage agrees or contradicts.",
-      "Automated Event Detection: Groups thousands of raw claims into verified real-world events, filtering duplicates and confirming genuine cross-source agreement using a dedicated NLI contradiction-detection model.",
-      "Echo Chamber Summaries: Surfaces side-by-side AI-generated narratives showing how left- and right-leaning outlets frame the same story, exposing media echo chambers at a glance.",
-      "Original Trust Metrics: Scores every search with two original formulas — a weighted Data Quality Score and a Jensen-Shannon Divergence Polarization Score — fully documented in-app instead of a black-box percentage.",
-      "Instant Results, Deeper Analysis in Background: Returns full search results in seconds while background processing keeps refining claim clusters and event relationships — no waiting on a slow multi-stage pipeline.",
-      "Reliable by Design: Backed by 220+ automated tests and a fully authenticated, cross-service architecture, keeping search history and analysis secure and stable in production."
+      'Architected a distributed news-intelligence platform transforming multi-source media into structured claims, evidence graphs, and event-level intelligence through LLM-based extraction and transformer NLP.',
+      'Engineered claim-centric retrieval and clustering with sentence-transformer embeddings, tuned cosine-similarity thresholds, HDBSCAN, and DeBERTa-v3 NLI, processing up to 100 articles per search and flagging contradictory claims.',
+      'Built asynchronous FastAPI pipelines for ingestion, enrichment, clustering, and intelligence generation with Celery/Redis and SHA-256 LLM caching, validated by 220+ automated tests.'
     ],
     techStack: ['Python', 'FastAPI', 'PostgreSQL', 'Next.js', 'Docker', 'Redis + Celery', 'Hugging Face', 'Prisma'],
     liveLink: 'https://biasscope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
     id: 'project1',
     categories: ['AI/ML', 'Backend', 'Fullstack'],
+    defaultExpanded: false,
     techDetails: {
       'Python': 'Backend service & data processing',
       'FastAPI': 'High-performance API endpoints',
@@ -177,19 +181,36 @@ export const PROJECTS: Project[] = [
     }
   },
   {
+    name: 'Custom-http-server',
+    description: [
+      'Built an HTTP/1.1 server and web framework from scratch in Python, using non-blocking epoll/kqueue I/O, a worker thread pool, keep-alive with pipelining, onion-style middleware and parametric routing.',
+      'Designed a single-writer selector model, where only the event-loop thread touches the selector, workers post register/unregister actions to a queue, and a socketpair wakes the loop. This fixed a stall that limited a single client to 2.5 req/s, and throughput reached about 12K req/s.',
+      'Fixed graceful shutdown, which hung on every open connection, so it now completes in about 0.5 s with up to 50 connections open.',
+      'Hardened the server against abuse, with a realpath-based directory-traversal defense (including a prefix-bypass regression test), 16 KB header and 10 MB body limits and a 30 s idle timeout, all covered by a 33-test pytest suite running in GitHub Actions CI.'
+    ],
+    techStack: ['Python', 'HTTP Protocols', 'Socket Programming', 'Docker', 'Concurrency & Multithreading'],
+    githubLink: 'https://github.com/kankaniakshat185/custom-http-server',
+    id: 'project5',
+    categories: ['Systems'],
+    defaultExpanded: false,
+    techDetails: {
+      'Python': 'Low-level socket programming'
+    }
+  },
+  {
     name: 'DataScope - ML Observability Intelligence',
     description: [
-      'Automated ML Data Governance: Engineered a deployment gating system (APPROVED/REVIEW/REJECTED) that mathematically evaluates dataset health. Processed datasets with hundreds of columns in under 20 seconds using FastAPI, Pandas, and Scikit-Learn to block poor-quality data from reaching production.',
-      'Programmatic Pipeline Integration: Developed and published the datascope Python SDK on PyPI, enabling data scientists to trigger heavy cloud analytics from local notebooks. Designed the SDK to act as an automated CI/CD blocking gate for data pipelines without requiring manual UI checks.',
-      'Causal Data Leakage Engine: Built a statistical engine that goes beyond simple correlation to isolate true data leakage before model training. Utilized automated feature ablation and mutual information to confidently flag problematic columns with over 95% accuracy.',
-      'Outlier Consensus & Concept Drift: Architected a robust anomaly detection system that aggregates votes across 4 different algorithms (like Isolation Forests and DBSCAN). Implemented Population Stability Index (PSI) tracking to monitor data drift across millions of rows and prevent silent model degradation.',
-      'High-Performance Full-Stack Analytics: Designed a decoupled, serverless architecture using Next.js and a Neon PostgreSQL database. Offloaded heavy ML computations to asynchronous FastAPI background workers, rendering interactive SHAP features and exploratory data analysis (EDA) with zero browser lag.'
+      'Built an ML dataset governance platform that scores data for leakage, missingness and synthetic identifiers, then marks it APPROVED, REVIEW or REJECTED before training.',
+      'Implemented leakage detection with mutual information, standalone predictive power and feature ablation, separating true leakage from harmless correlation.',
+      'Built consensus outlier detection (Z-Score, MAD, Isolation Forest, DBSCAN) and drift detection (PSI, KL divergence, Wasserstein distance, KS) to catch bad data and silent model degradation.',
+      'Published the datascope-ml Python SDK on PyPI, with a deployment check that fails an Airflow or Prefect pipeline on rejected data, backed by a Next.js gateway, Neon Postgres and async FastAPI workers.'
     ],
     techStack: ['Python', 'Pandas', 'scikit-learn', 'PostgreSQL', 'FastAPI', 'Docker', 'Next.js'],
     liveLink: 'https://datascope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/datascope-hf-backend',
     id: 'project4',
     categories: ['AI/ML', 'Backend', 'Fullstack'],
+    defaultExpanded: false,
     techDetails: {
       'scikit-learn': 'Evaluation engine for metrics',
       'FastAPI': 'Real-time ML processing backend'

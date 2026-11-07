@@ -16,8 +16,16 @@ import { Mermaid } from '@/components/mermaid'
 
 type Project = typeof PROJECTS[0]
 
-export function ProjectCard({ project }: { project: Project }) {
-  const [isExpanded, setIsExpanded] = useState(true)
+export function ProjectCard({
+  project,
+  defaultExpanded,
+}: {
+  project: Project
+  defaultExpanded?: boolean
+}) {
+  const [isExpanded, setIsExpanded] = useState(
+    project.defaultExpanded ?? defaultExpanded ?? true
+  )
 
   return (
     <motion.div
