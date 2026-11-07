@@ -42,20 +42,23 @@ export function ProjectCard({
     >
       <div className="relative z-10">
         <div className="flex items-start justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-2.5">
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <a
-                className="font-medium text-base text-zinc-900 dark:text-zinc-50 hover:underline flex items-center gap-1"
-                href={project.liveLink || project.githubLink}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {project.name}
-                <span className="text-zinc-400 dark:text-zinc-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-sm">
-                  ↗
-                </span>
-              </a>
-            </div>
+          <div className="flex-1 min-w-0">
+            <a
+              className="font-medium text-base text-zinc-900 dark:text-zinc-50 hover:underline inline-flex items-center gap-1"
+              href={project.liveLink || project.githubLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {project.name}
+              <span className="text-zinc-400 dark:text-zinc-500 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 text-sm">
+                ↗
+              </span>
+            </a>
+            {project.tagline && (
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed font-normal">
+                {project.tagline}
+              </p>
+            )}
           </div>
           <div className="flex items-center gap-1.5 shrink-0 pt-0.5">
             {/* Toggle Details */}

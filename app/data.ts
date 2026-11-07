@@ -1,5 +1,6 @@
 type Project = {
   name: string
+  tagline?: string
   description: string[]
   techStack: string[]
   liveLink?: string
@@ -46,6 +47,7 @@ type SocialLink = {
 export const PROJECTS: Project[] = [
   {
     name: 'Chronos',
+    tagline: 'A Kubernetes-style container orchestrator, built from scratch in Python.',
     description: [
       'Built a Kubernetes-style orchestrator in Python with a versioned CAS store, filter/score scheduler, level-triggered reconciliation and rolling updates.',
       'Designed self-fencing nodes timed from heartbeat send time, guaranteeing no duplicate replicas under pause, crash and partition, with failed-node workloads replaced in 5.3 s.',
@@ -55,11 +57,12 @@ export const PROJECTS: Project[] = [
     techStack: ['Python', 'FastAPI', 'Prometheus', 'Grafana', 'GitHub Actions'],
     githubLink: 'https://github.com/kankaniakshat185/Chronos',
     id: 'project9',
-    categories: ['Systems', 'Backend'],
+    categories: ['Systems'],
     defaultExpanded: true,
   },
   {
     name: 'Strata',
+    tagline: 'A tiered-resolution time-series storage engine, built from scratch in C++.',
     description: [
       'Built a C++ time-series storage engine with write-ahead logging, crash recovery and LSM-style compaction.',
       'Implemented Gorilla-based compression using delta-of-delta and XOR encoding, reducing storage by 4.28×.',
@@ -78,6 +81,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Low-Latency Matching Engine',
+    tagline: 'A limit order book and matching engine in C++, built for low latency.',
     description: [
       'Built a C++ limit-order-book matching engine with price-time priority, partial fills, and O(1) cancels.',
       'Benchmarked four OrderBook data-structure designs from a tree-based map to a cached flat-index array, improving throughput 2.5–3.9× (up to 14.5M ops/sec).',
@@ -92,6 +96,7 @@ export const PROJECTS: Project[] = [
   },
   {
     name: 'Relay',
+    tagline: 'A context engine that connects GitHub, Slack and Jira so teams can search code, issues and decisions in one place.',
     description: [
       'Built an LLM-orchestrated context engine automating cross-tool workflows across GitHub, Slack, and Jira — 8 query modes helping teams find code, investigate issues, and capture engineering knowledge.',
       'Implemented hybrid keyword/vector retrieval and relevance scoring, separating true matches from noisy correlations across integrated systems.',
@@ -102,11 +107,12 @@ export const PROJECTS: Project[] = [
     githubLink: 'https://github.com/kankaniakshat185/Relay',
     liveLink: 'https://therelay.vercel.app',
     id: 'project8',
-    categories: ['Fullstack', 'Backend'],
+    categories: ['Backend', 'AI/ML'],
     defaultExpanded: true,
   },
   {
     name: 'Custom Memory Allocator',
+    tagline: 'A heap allocator built from scratch in C++17, replacing malloc, free, realloc and calloc.',
     description: [
       'Built a C++ heap allocator (malloc/free/realloc) from scratch with explicit free lists, block splitting, and O(1) boundary-tag coalescing, hardened against use-after-free, verified by fuzzing and sanitizer-clean tests.',
       'Benchmarked six allocator designs across four workloads, eliminating all fragmentation failures (9,293 → 0), cutting memory up to 2.7×, and running up to 1.32× faster than macOS malloc.',
@@ -119,7 +125,8 @@ export const PROJECTS: Project[] = [
     defaultExpanded: true,
   },
   {
-    name: 'PRScope - PR Review Intelligence',
+    name: 'PRScope',
+    tagline: 'A Chrome extension that reviews GitHub pull requests in place, backed by a FastAPI service.',
     description: [
       'Built a Chrome extension performing secure code analysis on GitHub PRs — Bandit-based vulnerability scanning plus configurable architecture-rule enforcement — flagging risks before merge.',
       'Integrated LLMs (Gemini, OpenAI, Groq) for PR summaries, checklists, and review comments; cut calls per analysis from up to 14 to 2 and enforced structured JSON output after rate-limit and malformed-output failures.',
@@ -130,7 +137,7 @@ export const PROJECTS: Project[] = [
     liveLink: 'https://chromewebstore.google.com/detail/jfngcklfbiljgpoeehlkpkackahgopoc?utm_source=item-share-cb',
     githubLink: 'https://github.com/kankaniakshat185/prscope',
     id: 'project3',
-    categories: ['Backend', 'Fullstack'],
+    categories: ['Backend'],
     defaultExpanded: true,
     techDetails: {
       'Next.js': 'Chrome Extension UI',
@@ -138,7 +145,8 @@ export const PROJECTS: Project[] = [
     }
   },
   {
-    name: 'AlphaLab - α Factor Stress-testing Platform',
+    name: 'AlphaLab',
+    tagline: 'A quantitative research platform that tests whether trading factors hold up or are just overfit.',
     description: [
       'Built a full-stack quant research platform for backtesting equity alpha factors, computing a deterministic Robustness Score across 18 stress scenarios to automatically flag overfit factors.',
       'Designed a custom DSL with a recursive-descent lexer, parser, and AST compiler that statically blocks look-ahead bias before execution, enforced through 48 dedicated test cases.',
@@ -152,7 +160,7 @@ export const PROJECTS: Project[] = [
       githubLink: 'https://github.com/VaishnaviRai287'
     },
     id: 'project2',
-    categories: ['Research', 'Backend', 'Fullstack', 'Team Project'],
+    categories: ['Backend', 'Team Project'],
     defaultExpanded: false,
     techDetails: {
       'Next.js': 'Frontend interface & Flow builder',
@@ -162,7 +170,8 @@ export const PROJECTS: Project[] = [
     }
   },
   {
-    name: 'BiasScope - News Sentiment and Bias Intelligence',
+    name: 'BiasScope',
+    tagline: 'A news intelligence platform that detects political bias and lets you question articles through a chat interface.',
     description: [
       'Architected a distributed news-intelligence platform transforming multi-source media into structured claims, evidence graphs, and event-level intelligence through LLM-based extraction and transformer NLP.',
       'Engineered claim-centric retrieval and clustering with sentence-transformer embeddings, tuned cosine-similarity thresholds, HDBSCAN, and DeBERTa-v3 NLI, processing up to 100 articles per search and flagging contradictory claims.',
@@ -172,7 +181,7 @@ export const PROJECTS: Project[] = [
     liveLink: 'https://biasscope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/biasscope-app-frontend',
     id: 'project1',
-    categories: ['AI/ML', 'Backend', 'Fullstack'],
+    categories: ['Backend', 'AI/ML'],
     defaultExpanded: false,
     techDetails: {
       'Python': 'Backend service & data processing',
@@ -181,7 +190,8 @@ export const PROJECTS: Project[] = [
     }
   },
   {
-    name: 'Custom-http-server',
+    name: 'Custom HTTP Server',
+    tagline: 'An HTTP/1.1 server and web framework, built from scratch in Python.',
     description: [
       'Built an HTTP/1.1 server and web framework from scratch in Python, using non-blocking epoll/kqueue I/O, a worker thread pool, keep-alive with pipelining, onion-style middleware and parametric routing.',
       'Designed a single-writer selector model, where only the event-loop thread touches the selector, workers post register/unregister actions to a queue, and a socketpair wakes the loop. This fixed a stall that limited a single client to 2.5 req/s, and throughput reached about 12K req/s.',
@@ -198,7 +208,8 @@ export const PROJECTS: Project[] = [
     }
   },
   {
-    name: 'DataScope - ML Observability Intelligence',
+    name: 'DataScope',
+    tagline: 'A dataset governance platform that decides whether data is safe to train on.',
     description: [
       'Built an ML dataset governance platform that scores data for leakage, missingness and synthetic identifiers, then marks it APPROVED, REVIEW or REJECTED before training.',
       'Implemented leakage detection with mutual information, standalone predictive power and feature ablation, separating true leakage from harmless correlation.',
@@ -209,7 +220,7 @@ export const PROJECTS: Project[] = [
     liveLink: 'https://datascope-app.vercel.app',
     githubLink: 'https://github.com/kankaniakshat185/datascope-hf-backend',
     id: 'project4',
-    categories: ['AI/ML', 'Backend', 'Fullstack'],
+    categories: ['Backend', 'AI/ML'],
     defaultExpanded: false,
     techDetails: {
       'scikit-learn': 'Evaluation engine for metrics',
