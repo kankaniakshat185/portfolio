@@ -176,13 +176,12 @@ export default function Personal() {
           transition={TRANSITION_SECTION}
         >
           <h3 className="mb-4 text-lg font-medium">Education</h3>
-          <div className="relative overflow-hidden rounded-2xl p-3 bg-zinc-50/30 dark:bg-zinc-900/10 transition-colors duration-300 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/20">
+          <div className="relative overflow-hidden rounded-2xl -mx-3 p-3 bg-zinc-50/30 dark:bg-zinc-900/10 transition-colors duration-300 hover:bg-zinc-50/50 dark:hover:bg-zinc-900/20">
             <div className="relative z-10 flex flex-col gap-1.5">
-              <span className="text-sm font-mono text-zinc-400 dark:text-zinc-500">July 2023 – May 2027</span>
               <div className="flex items-center justify-between gap-4">
-                <h4 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">Manipal Institute of Technology</h4>
-                <span className="text-sm font-mono text-zinc-500 dark:text-zinc-400">
-                  CGPA: 8.11
+                <h4 className="text-base font-semibold text-zinc-900 dark:text-zinc-100">Manipal Institute of Technology, Bengaluru</h4>
+                <span className="text-sm font-mono text-zinc-400 dark:text-zinc-500 shrink-0">
+                  July 2023 – May 2027
                 </span>
               </div>
               <p className="text-base text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed">
@@ -200,7 +199,7 @@ export default function Personal() {
           transition={TRANSITION_SECTION}
         >
           <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
-            <h3 className="text-lg font-medium">Selected Projects</h3>
+            <h3 className="text-lg font-medium">Projects</h3>
 
             {/* Category filter tabs */}
             <div className="flex gap-1 p-1 rounded-full bg-white/60 backdrop-blur-lg shadow-lg shadow-zinc-200/20 dark:bg-zinc-950/60 dark:shadow-none border border-zinc-200/20 dark:border-zinc-800/20 w-fit">
@@ -274,16 +273,16 @@ export default function Personal() {
                 items: ['Git', 'GitHub', 'Linux', 'Pytest', 'GoogleTest', 'GitHub Actions', 'Postman']
               },
               {
+                category: 'DevOps & CI/CD',
+                items: ['Docker', 'AWS', 'Kubernetes', 'GitHub Actions (CI/CD)', 'Shell Scripting', 'Prometheus', 'Grafana', 'SDLC']
+              },
+              {
                 category: 'Systems',
                 items: ['System Design', 'Design Patterns', 'Distributed Systems', 'Concurrency & Multithreading', 'Performance Optimization', 'Software Testing', 'CI/CD']
               },
               {
                 category: 'Core CS Concepts',
                 items: ['Object-Oriented Programming', 'DevOps & Cloud', 'Database Management Systems', 'Operating Systems', 'Computer Architecture', 'Computer Networks']
-              },
-              {
-                category: 'DevOps & CI/CD',
-                items: ['Docker', 'AWS', 'Kubernetes', 'GitHub Actions (CI/CD)', 'Shell Scripting', 'Prometheus', 'Grafana', 'SDLC']
               },
               {
                 category: 'AI & ML',
@@ -335,7 +334,7 @@ export default function Personal() {
                     href={post.link}
                     data-id={post.uid}
                   >
-                    <div className="flex flex-col space-y-1 w-full">
+                    <div className="relative z-10 flex flex-col space-y-1 w-full">
                       <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 w-full">
                         <h4 className="font-normal dark:text-zinc-100">
                           {post.title}
@@ -380,7 +379,7 @@ export default function Personal() {
                   href={post.link}
                   data-id={post.uid}
                 >
-                  <div className="flex flex-col space-y-1 w-full">
+                  <div className="relative z-10 flex flex-col space-y-1 w-full">
                     <div className="flex flex-col sm:flex-row sm:items-baseline sm:justify-between gap-1 w-full">
                       <h4 className="font-normal dark:text-zinc-100">
                         {post.title}
