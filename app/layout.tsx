@@ -14,20 +14,20 @@ export const viewport: Viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://kankaniakshat.vercel.app/'),
+  metadataBase: new URL('https://akshatkankani.vercel.app/'),
   alternates: {
     canonical: '/'
   },
   title: {
-    default: 'Akshat - Software Developer',
-    template: '%s | Akshat'
+    default: 'Akshat Kankani | Backend & Systems Engineer',
+    template: '%s | Akshat Kankani'
   },
-  description:  'Akshat Kankani\'s personal portfolio website built with Next.js 15, React 19 and Motion-Primitives.',
+  description: 'CS undergrad building low-level, distributed and backend systems and applied AI: a C++ storage engine, a 14.5M ops/sec matching engine, a Python orchestrator, LLM tools. Projects, benchmarks, deep-dive engineering blogs.',
   openGraph: {
-    title: 'Akshat - Software Developer',
-    description: 'Akshat Kankani\'s personal portfolio website built with Next.js 15, React 19 and Motion-Primitives.',
-    url: 'https://kankaniakshat.vercel.app/',
-    siteName: 'Akshat Kankani Portfolio',
+    title: 'Akshat Kankani | Backend & Systems Engineer',
+    description: 'CS undergrad building low-level, distributed and backend systems and applied AI: a C++ storage engine, a 14.5M ops/sec matching engine, a Python orchestrator, LLM tools. Projects, benchmarks, deep-dive engineering blogs.',
+    url: 'https://akshatkankani.vercel.app/',
+    siteName: 'Akshat Kankani',
     images: [
       {
         url: '/cover.jpg',
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Akshat - Software Developer',
-    description: 'Akshat Kankani\'s personal portfolio website built with Next.js 15, React 19 and Motion-Primitives.',
+    title: 'Akshat Kankani | Backend & Systems Engineer',
+    description: 'CS undergrad building low-level, distributed and backend systems and applied AI: a C++ storage engine, a 14.5M ops/sec matching engine, a Python orchestrator, LLM tools. Projects, benchmarks, deep-dive engineering blogs.',
     images: ['/cover.jpg'],
   },
 };

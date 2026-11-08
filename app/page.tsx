@@ -154,13 +154,16 @@ export default function Personal() {
         >
           <div className="flex-1 space-y-4">
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
-              I'm a Computer Science student specializing in Artificial Intelligence, drawn to the space where <strong className="font-semibold text-zinc-900 dark:text-zinc-100">distributed systems, low-level systems programming, backend infrastructure, and machine learning</strong> intersect. I like building things that combine rigorous software engineering with practical AI: resilient APIs, fast storage and scheduling layers, and intelligent workflows that hold up under real-world load.
+              I’m a final-year Computer Science student specializing in Artificial Intelligence, drawn to the space where <strong className="font-semibold text-zinc-900 dark:text-zinc-100">distributed systems, low-level systems programming, backend infrastructure, and applied AI</strong> intersect. I like building things that combine rigorous software engineering with practical AI: resilient APIs, fast storage and scheduling layers, and intelligent workflows that hold up under real-world load.
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
-              What ties my work together is a habit of asking how a system fails and what it costs. I'd rather know where the time actually goes than guess, so I profile before I optimize and keep a change only if the numbers back it up. I'd rather prove something is correct than hope, which means differential testing before I trust a benchmark, fault injection to show a crash loses nothing, and CI on every push. Most of my design decisions come down to a trade-off between latency, throughput, reliability and complexity, and I try to write the reasoning down so the next person doesn't have to rediscover it.
+              What ties my work together is a habit of asking how a system fails and what it costs. I’d rather know where the time actually goes than guess, so I profile before I optimize and keep a change only if the numbers back it up. I’d rather prove something is correct than hope, which means differential testing before I trust a benchmark, fault injection to show a crash loses nothing, and CI on every push. Most of my design decisions come down to a trade-off between latency, throughput, reliability and complexity, and I try to write the reasoning down so the next person doesn’t have to rediscover it.
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
-              That's also why I care about documentation and clean engineering. A system that only works while its author remembers how it works isn't finished. I'm aiming for software engineering roles in backend and systems, where the work is making things faster, safer to change, and easier to trust.
+              The same habits carry into my applied AI work, which spans developer tooling, security review, news analysis, and quant research: retrieval pipelines, LLM orchestration across providers, and evaluating output against real data instead of trusting it.
+            </p>
+            <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
+              That’s also why I care about documentation and clean engineering. A system that only works while its author remembers how it works isn’t finished. I’m aiming for software engineering roles in backend and distributed systems, where the work is making things faster, safer to change, and easier to trust.
             </p>
             <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-base">
               I learn best by building, taking theory and testing it against real-world constraints to design systems that are <strong className="font-semibold text-zinc-900 dark:text-zinc-100">fast, correct, and built to last</strong>.
@@ -187,6 +190,33 @@ export default function Personal() {
               <p className="text-base text-zinc-600 dark:text-zinc-400 font-medium leading-relaxed">
                 Bachelor of Technology in Computer Science (Artificial Intelligence)
               </p>
+              <div className="pt-2.5 mt-0.5 border-t border-zinc-100 dark:border-zinc-800/50 flex flex-col gap-2">
+                <h5 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                  Relevant Coursework
+                </h5>
+                <div className="flex flex-wrap gap-x-3 gap-y-1.5 leading-relaxed">
+                  {[
+                    'Data Structures & Algorithms',
+                    'Object-Oriented Programming',
+                    'DevOps & Cloud Computing',
+                    'Operating Systems',
+                    'Computer Architecture',
+                    'Computer Networks',
+                    'Database Management Systems',
+                    'Machine Learning',
+                    'Generative AI',
+                  ].map((course, idx, arr) => (
+                    <div key={course} className="flex items-center text-sm">
+                      <span className="text-zinc-500 hover:text-zinc-950 dark:text-zinc-400 dark:hover:text-zinc-50 transition-colors duration-200 cursor-default font-medium">
+                        {course}
+                      </span>
+                      {idx < arr.length - 1 && (
+                        <span className="ml-3 text-zinc-300 dark:text-zinc-800 font-mono text-xs select-none">/</span>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
             </div>
           </div>
         </motion.section>
@@ -279,10 +309,6 @@ export default function Personal() {
               {
                 category: 'Systems',
                 items: ['System Design', 'Design Patterns', 'Distributed Systems', 'Concurrency & Multithreading', 'Performance Optimization', 'Software Testing', 'CI/CD']
-              },
-              {
-                category: 'Core CS Concepts',
-                items: ['Object-Oriented Programming', 'DevOps & Cloud', 'Database Management Systems', 'Operating Systems', 'Computer Architecture', 'Computer Networks']
               },
               {
                 category: 'AI & ML',

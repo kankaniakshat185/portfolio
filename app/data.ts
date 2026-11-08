@@ -258,7 +258,7 @@ export const PROJECTS: Project[] = [
 
 export const BLOG_POSTS: BlogPost[] = [
   {
-    title: 'Unrushed: The art, music and places that shape me',
+    title: 'Unrushed: The Art, Music and Places That Shape Me',
     description: 'A deep dive into me and my interests',
     link: '/blog/a-deep-dive-into-me',
     uid: 'blog-1',
@@ -266,7 +266,7 @@ export const BLOG_POSTS: BlogPost[] = [
     readingTime: '3 min read',
   },
   {
-    title: 'Thinking in systems: How I learn Computer Science',
+    title: 'Thinking in Systems: How I Learn Computer Science',
     description:
       'A deep dive into how I see Computers and my thoughts about everything related.',
     link: '/blog/thinking-in-systems',
@@ -275,9 +275,9 @@ export const BLOG_POSTS: BlogPost[] = [
     readingTime: '4 min read',
   },
   {
-    title: "The Life I'm trying to build",
+    title: "The Life I'm Trying to Build",
     description:
-      'An ever expanding page going deep into what I\'ve always dream\'t about and the goals I strive to achieve.',
+      'An ever expanding page going deep into what I\'ve always dreamt about and the goals I strive to achieve.',
     link: '/blog/my-dreams-and-goals',
     uid: 'blog-3',
     date: 'May 2026',
@@ -313,7 +313,7 @@ export const TECH_BLOG_POSTS: BlogPost[] = [
     readingTime: '40 min read',
   },
   {
-    title: 'Strata: a Time-Series Database From Scratch in C++',
+    title: 'Strata: A Time-Series Database From Scratch in C++',
     description: 'a time-series database built from scratch in c++. custom bit-level compression, write-ahead log, memtable, and lsm-tree compaction.',
     link: '/tech-blog/strata',
     uid: 'tech-blog-3',

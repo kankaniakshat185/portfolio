@@ -1,5 +1,5 @@
 export const metadata = {
-  title: 'Strata: a Time-Series Database From Scratch in C++',
+  title: 'Strata: A Time-Series Database From Scratch in C++',
   description:
     "a time-series database built from scratch in c++. custom bit-level compression, write-ahead log, memtable, and lsm-tree compaction.",
   alternates: {
@@ -7,7 +7,7 @@ export const metadata = {
   },
 };
 
-# Strata: a Time-Series Database From Scratch in C++
+# Strata: A Time-Series Database From Scratch in C++
 
 you can't fully trust a bit-level compressor you wrote yourself. the encoder and the decoder came out of the same heads, working from the same mental model — so if that mental model has a bug in it, the encoder and the decoder can agree with each other perfectly and both be wrong about reality at the same time. there's no `gorilla-cli` sitting around to diff your output against. the only oracle you have is the code you're trying to verify. that problem, and what it actually takes to get past it, is most of what this post is about.
 
