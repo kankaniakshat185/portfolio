@@ -137,7 +137,7 @@ export const PROJECTS: Project[] = [
     liveLink: 'https://chromewebstore.google.com/detail/jfngcklfbiljgpoeehlkpkackahgopoc?utm_source=item-share-cb',
     githubLink: 'https://github.com/kankaniakshat185/prscope',
     id: 'project3',
-    categories: ['Backend'],
+    categories: ['Backend', 'AI/ML'],
     defaultExpanded: true,
     techDetails: {
       'Next.js': 'Chrome Extension UI',
